@@ -1,0 +1,573 @@
+fileFormatVersion: 2
+guid: 366dfb1fd5c51ef4498fe618c7fe6fcc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rina_Walk_L_1
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 907
+        width: 218
+        height: 464
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7040d82e022441d4795bb09fe077eddb
+      internalID: 2092265350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_2
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 901
+        width: 172
+        height: 472
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6f74b8bd5de2f4985ca7ca481005ef
+      internalID: 1141598019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_3
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 905
+        width: 143
+        height: 474
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3924eb5734ee789488ea7b3a9085cfa8
+      internalID: -28757323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_4
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 906
+        width: 135
+        height: 471
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026070365fcef5b4790fa1fb5f24a062
+      internalID: 938552443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_5
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 897
+        width: 154
+        height: 476
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb7019e5e5d2544281dc2306ced5013
+      internalID: -1345502520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_6
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 891
+        width: 222
+        height: 466
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbbe3d4a182a9324183d190da1d5eb38
+      internalID: 1704732821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_7
+      rect:
+        serializedVersion: 2
+        x: 2321
+        y: 885
+        width: 182
+        height: 476
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7abadc99638b083449aa50262bda66f7
+      internalID: -472099733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_8
+      rect:
+        serializedVersion: 2
+        x: 2573
+        y: 891
+        width: 134
+        height: 472
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9996127a2df22054e96e2921e2525327
+      internalID: -706409313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_9
+      rect:
+        serializedVersion: 2
+        x: 2781
+        y: 879
+        width: 165
+        height: 472
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c2ff048c515574995799753d5a2819
+      internalID: -1071631903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_L_10
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 883
+        width: 218
+        height: 464
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f22cb7845cc21143b5f216a91ba5565
+      internalID: -20645180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_1
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 384
+        width: 220
+        height: 466
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b492e8e12d1304c9b69e2d8898b736
+      internalID: 1154478284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_2
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 382
+        width: 179
+        height: 476
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59bae128cdda81346a21bd0faf577177
+      internalID: 1203807609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_3
+      rect:
+        serializedVersion: 2
+        x: 1302
+        y: 382
+        width: 134
+        height: 472
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4176f25f6dea7324aad6359d8a1c10f5
+      internalID: 1167832488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_4
+      rect:
+        serializedVersion: 2
+        x: 1515
+        y: 375
+        width: 162
+        height: 470
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa9af0a45ba367479e827fd1340065a
+      internalID: -689368005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_5
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 378
+        width: 227
+        height: 461
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384bcbdf431b3294ba782aadb369e4ec
+      internalID: 1568538391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_6
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 371
+        width: 172
+        height: 470
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc51ed724b572c42b646c68c5b8a3de
+      internalID: 1501683881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_7
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 369
+        width: 142
+        height: 474
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788b0d644b3e76c4f8b3fb8af1ad59fe
+      internalID: -1367614173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_8
+      rect:
+        serializedVersion: 2
+        x: 2536
+        y: 366
+        width: 135
+        height: 471
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5671078323ff37499fe873cda54303c
+      internalID: -369157899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_9
+      rect:
+        serializedVersion: 2
+        x: 2804
+        y: 370
+        width: 153
+        height: 476
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2076a0482f41a459d3c5fee0b78d11
+      internalID: -568950944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rina_Walk_R_10
+      rect:
+        serializedVersion: 2
+        x: 3028
+        y: 363
+        width: 221
+        height: 466
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787856e0836ad6a47bf948e4bc3410ec
+      internalID: 251608507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Rina_Walk_0: -314268427
+      Rina_Walk_10: 75895420
+      Rina_Walk_14: -2024975064
+      Rina_Walk_15: -939613673
+      Rina_Walk_16: 850338900
+      Rina_Walk_17: 1362396211
+      Rina_Walk_18: 904038316
+      Rina_Walk_22: 1471101249
+      Rina_Walk_24: -1052945430
+      Rina_Walk_26: 1142378075
+      Rina_Walk_30: 819549722
+      Rina_Walk_32: -1495898038
+      Rina_Walk_34: -1350891101
+      Rina_Walk_35: -1958563809
+      Rina_Walk_36: 1308258245
+      Rina_Walk_37: -2065458517
+      Rina_Walk_38: 662382655
+      Rina_Walk_4: 1835296263
+      Rina_Walk_6: -216773656
+      Rina_Walk_L_1: 2092265350
+      Rina_Walk_L_10: -20645180
+      Rina_Walk_L_2: 1141598019
+      Rina_Walk_L_3: -28757323
+      Rina_Walk_L_4: 938552443
+      Rina_Walk_L_5: -1345502520
+      Rina_Walk_L_6: 1704732821
+      Rina_Walk_L_7: -472099733
+      Rina_Walk_L_8: -706409313
+      Rina_Walk_L_9: -1071631903
+      Rina_Walk_R_1: 1154478284
+      Rina_Walk_R_10: 251608507
+      Rina_Walk_R_2: 1203807609
+      Rina_Walk_R_3: 1167832488
+      Rina_Walk_R_4: -689368005
+      Rina_Walk_R_5: 1568538391
+      Rina_Walk_R_6: 1501683881
+      Rina_Walk_R_7: -1367614173
+      Rina_Walk_R_8: -369157899
+      Rina_Walk_R_9: -568950944
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
