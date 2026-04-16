@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Barista_2
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "Ciob? Ce ciob? Eu v\xE2nd licori, domni\u0219oar\u0103.."
+  - Speaker: Rina
+    Text: 
+  choices:
+  - choiceText: "Scuze, nu voiam s\u0103 te jignesc"
+    nextDialogue: {fileID: 11400000, guid: 451f195fc2a01024e99178b767bf87bb, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 10
+      plantCorruption: 0
+  - choiceText: "Nu insinuam c\u0103 ai vinde cioburi..?"
+    nextDialogue: {fileID: 11400000, guid: 451f195fc2a01024e99178b767bf87bb, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 10
+      plantCorruption: 0

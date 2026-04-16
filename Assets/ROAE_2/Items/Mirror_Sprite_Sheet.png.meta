@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Mirror_Frame
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 90
+        width: 1581
+        height: 2500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d770448514226e46a3ca42d1e6bf186
+      internalID: -1487609598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Ciob1
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 3241
+        width: 312
+        height: 426
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9703e432b988b5e48b6ff314d9bf26f3
+      internalID: 194505115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Ciob3
+      rect:
+        serializedVersion: 2
+        x: 2364
+        y: 3307
+        width: 272
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d30662ff4135074b9a55d97d3e78588
+      internalID: -136011968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Ciob2
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 2660
+        width: 705
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2212ba7a45a6eeb41ba8c2285798b1fc
+      internalID: -2043605618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Broken
+      rect:
+        serializedVersion: 2
+        x: 1813
+        y: 65
+        width: 1007
+        height: 2345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce588a72047f13469e612afb6f2c1ac
+      internalID: 1416911869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Intact
+      rect:
+        serializedVersion: 2
+        x: 2875
+        y: 1851
+        width: 842
+        height: 2114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa99b148cea3c6c4485259a4648aceef
+      internalID: 852676492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +232,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mirror_Broken: 1416911869
+      Mirror_Ciob1: 194505115
+      Mirror_Ciob2: -2043605618
+      Mirror_Ciob3: -136011968
+      Mirror_Frame: -1487609598
+      Mirror_Intact: 852676492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

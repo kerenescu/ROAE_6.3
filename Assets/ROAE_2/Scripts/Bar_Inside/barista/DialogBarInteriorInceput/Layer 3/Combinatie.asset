@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Combinatie
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "\u0102STA-I SPIRITUL! Trebuie s\u0103 verific \xEEn spate dac\u0103 am...
+      nu am... "
+  - Speaker: Rina
+    Text: "Ce s\u0103 ai?"
+  - Speaker: Barista
+    Text: "Nu vreau s\u0103 te jignesc dar se evde destul de clar c\u0103 nu e\u0219ti
+      plant\u0103. \u0218i ca s\u0103 po\u021Bi s\u0103 bei licori de-ale plantelor,
+      e nevoie de un pansament gastric puternic pe care... chiar nu \xEEl mai am,
+      sorry."
+  - Speaker: Barista
+    Text: "De\u0219i... cred c\u0103 ai noroc. Dac\u0103 mi-l aduci, \xEE\u021Bi
+      prepar b\u0103uturape gratis."
+  - Speaker: Rina
+    Text: "Ce trebuie s\u0103 fac?"
+  - Speaker: Barista
+    Text: "O vei g\u0103si afar\u0103 pe Madame Lichenia... vr\u0103jitoarea. F\u0103
+      cumva s\u0103 ti-l dea."
+  choices: []

@@ -1,0 +1,64 @@
+﻿using UnityEngine;
+
+public class JournalToggle : MonoBehaviour
+{
+    public GameObject closedJournal;
+    public GameObject journalUI;
+
+    private Collider2D[] allColliders;
+    private MonoBehaviour[] inputScripts;
+
+    void Start()
+    {
+        allColliders = FindObjectsOfType<Collider2D>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            inputScripts = player.GetComponents<MonoBehaviour>();
+        }
+    }
+
+    public void ShowClosedJournal()
+    {
+        closedJournal.SetActive(true);
+        journalUI.SetActive(false);
+
+        ToggleGameplayInteraction(false);
+    }
+
+    public void OpenJournal()
+    {
+        closedJournal.SetActive(false);
+        journalUI.SetActive(true);
+        FindObjectOfType<JournalManager>().ShowThoughts();
+
+        ToggleGameplayInteraction(false); // încă suntem în jurnal
+    }
+
+    public void CloseJournal()
+    {
+        closedJournal.SetActive(false);
+        journalUI.SetActive(false);
+
+        ToggleGameplayInteraction(true);
+    }
+
+    private void ToggleGameplayInteraction(bool enable)
+    {
+        foreach (Collider2D col in allColliders)
+            col.enabled = enable;
+
+        if (inputScripts != null)
+        {
+            foreach (MonoBehaviour script in inputScripts)
+            {
+                if (script != this)
+                    script.enabled = enable;
+            }
+        }
+
+        Time.timeScale = enable ? 1f : 0f;
+    }
+
+}

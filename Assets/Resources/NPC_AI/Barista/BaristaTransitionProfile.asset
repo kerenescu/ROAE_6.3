@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968d2b38d3c80724193749a951e128f3, type: 3}
+  m_Name: BaristaTransitionProfile
+  m_EditorClassIdentifier: 
+  transitions:
+  - action: 0
+    worsenProbability: 0.2
+    keepProbability: 0.6
+    improveProbability: 0.2
+  - action: 1
+    worsenProbability: 0.1
+    keepProbability: 0.4
+    improveProbability: 0.5
+  - action: 2
+    worsenProbability: 0.5
+    keepProbability: 0.4
+    improveProbability: 0.1
+  - action: 3
+    worsenProbability: 0.15
+    keepProbability: 0.5
+    improveProbability: 0.35
+  - action: 4
+    worsenProbability: 0.05
+    keepProbability: 0.35
+    improveProbability: 0.6
+  - action: 5
+    worsenProbability: 0.35
+    keepProbability: 0.45
+    improveProbability: 0.2

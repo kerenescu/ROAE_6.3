@@ -12,6 +12,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace AC
 {
@@ -1424,8 +1425,17 @@ namespace AC
 			return false;
 		}
 
+        public void LockMovement(bool v)
+        {
+            throw new NotImplementedException();
+        }
 
-		public GameObject ClickPrefabInstance
+        public void UnlockMovement()
+        {
+            throw new NotImplementedException();
+        }
+
+        public GameObject ClickPrefabInstance
 		{
 			get
 			{

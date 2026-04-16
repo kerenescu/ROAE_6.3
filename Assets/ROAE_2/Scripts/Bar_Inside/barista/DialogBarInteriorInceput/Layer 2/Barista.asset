@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Barista
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "Depinde ce ai pe suflet. Am Am\u0103r\u0103ciune Dubl\u0103, Ceai de Regrete
+      sau Extract de 'Eh, m\u0103car am \xEEncercat'."
+  choices:
+  - choiceText: "Po\u021Bi s\u0103 le combini toate \xEEntr-una singur\u0103?"
+    nextDialogue: {fileID: 11400000, guid: 391994983269e9842a04732cfed5512f, type: 2}
+    statEffect:
+      creativity: 10
+      empathy: 0
+      plantCorruption: 10
+  - choiceText: O cola nu ai?
+    nextDialogue: {fileID: 11400000, guid: 0b63eb593f968fe4b993a8f672ff35fd, type: 2}
+    statEffect:
+      creativity: 5
+      empathy: -5
+      plantCorruption: -15

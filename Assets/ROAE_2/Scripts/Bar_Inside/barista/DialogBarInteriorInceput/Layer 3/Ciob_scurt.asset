@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Ciob_scurt
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "pocalurile mele nu se sparg, am grij\u0103 la siguran\u021Ba clien\u021Bilor
+      mei. La tine acas\u0103 nu e a\u0219a..?"
+  - Speaker: Rina
+    Text: "m\u0103 \xEEntrebi din complezen\u021B\u0103, nu?"
+  choices: []

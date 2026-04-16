@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Barista_FirstDalogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "Ia zi, \u0219efa. Ce bei azi?"
+  - Speaker: Rina
+    Text: 
+  choices:
+  - choiceText: "Mmmmm nu am auzit de niciuna dintre b\u0103uturile astea... Ce \xEEmi
+      recomanzi?"
+    nextDialogue: {fileID: 11400000, guid: 6d246fa75c1b7ae47a758f10aa16a396, type: 2}
+    statEffect:
+      creativity: -2
+      empathy: 0
+      plantCorruption: 15
+  - choiceText: "De fapt... eu caut un ciob, l-ai v\u0103zut cuuumva?"
+    nextDialogue: {fileID: 11400000, guid: d7a9aa02b89765d41803d8db0a38b95f, type: 2}
+    statEffect:
+      creativity: 13
+      empathy: 0
+      plantCorruption: 2
+  - choiceText: "De ce a\u0219 vrea s\u0103... \xEEmi pice frunza?"
+    nextDialogue: {fileID: 11400000, guid: ae3145562286877498578c901fc05cc1, type: 2}
+    statEffect:
+      creativity: 5
+      empathy: 9
+      plantCorruption: 4

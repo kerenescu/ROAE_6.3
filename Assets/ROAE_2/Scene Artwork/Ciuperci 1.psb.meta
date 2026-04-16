@@ -1,0 +1,1222 @@
+fileFormatVersion: 2
+guid: f6cc3019ffe7da14aa3c9999ae76398a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: Shroom11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 278
+      height: 315
+    spriteID: 42e95a4be9b47024a8b4a4112f9853eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1799, y: -1177}
+    spritePosition: {x: 1803, y: 1181}
+  - name: Shroom12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 327
+      width: 278
+      height: 315
+    spriteID: a132edc65c3dd7e4fb1e5f984e8bc3b6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1786, y: -1287}
+    spritePosition: {x: 1790, y: 1614}
+  - name: Shroom13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 650
+      width: 278
+      height: 315
+    spriteID: d09e1e3bf30dea24da4ef4c93e29e254
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -2225, y: -970}
+    spritePosition: {x: 2229, y: 1620}
+  - name: Shroom14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 973
+      width: 278
+      height: 315
+    spriteID: 1b19843d5c8407b4e8385937432117d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -2235, y: -200}
+    spritePosition: {x: 2239, y: 1173}
+  - name: Shroom21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1778
+      width: 105
+      height: 115
+    spriteID: 8a6fffc27dd22ed4c9855d9819b6eab9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -898, y: 1635}
+    spritePosition: {x: 1188, y: 143}
+  - name: Shroom22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1901
+      width: 105
+      height: 115
+    spriteID: 684bd1bf28da74a40ae62a3a77a6970e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -905, y: 1555}
+    spritePosition: {x: 1195, y: 346}
+  - name: Shroom23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 499
+      y: 1016
+      width: 105
+      height: 115
+    spriteID: a1a37e2d8107f524abda27427bdad107
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -696, y: 457}
+    spritePosition: {x: 1195, y: 559}
+  - name: Shroom24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 499
+      y: 1139
+      width: 105
+      height: 115
+    spriteID: e4049c16426d09445ade2bb68e3eac15
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -696, y: 349}
+    spritePosition: {x: 1195, y: 790}
+  - name: Shroom31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1296
+      width: 201
+      height: 373
+    spriteID: 2903d38dbd5a0144ba23f86726a582df
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1204, y: -317}
+    spritePosition: {x: 1208, y: 1613}
+  - name: Shroom32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1016
+      width: 201
+      height: 373
+    spriteID: 6225b8b61418b494e944b6996acc3326
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -585, y: -591}
+    spritePosition: {x: 875, y: 1607}
+  - name: Shroom33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1397
+      width: 201
+      height: 373
+    spriteID: eef3699f6a6976d41ac2e7003fcf979d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 136, y: -205}
+    spritePosition: {x: 154, y: 1602}
+  - name: Shroom34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 621
+      y: 4
+      width: 201
+      height: 373
+    spriteID: a461e3149fb65b546896c685861cabdd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 104, y: -1603}
+    spritePosition: {x: 517, y: 1607}
+  - name: Flower1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 4
+      width: 323
+      height: 245
+    spriteID: a45f9e3bb79947f4b8451c3e313fe331
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -220, y: -323}
+    spritePosition: {x: 510, y: 327}
+  - name: Flower2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 257
+      width: 323
+      height: 245
+    spriteID: 5cfa7d8a67b5e164fa8706cbbc71a08a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 207, y: -90}
+    spritePosition: {x: 83, y: 347}
+  - name: Flower3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 510
+      width: 323
+      height: 245
+    spriteID: a64cbbd66e8bdd24a91bd69d964e531c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: -225}
+    spritePosition: {x: 73, y: 735}
+  - name: Flower4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 763
+      width: 323
+      height: 245
+    spriteID: 7c3255108eb86a94e806762b79cfc805
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -200, y: 54}
+    spritePosition: {x: 490, y: 709}
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  rigSpriteImportData:
+  - name: Shroom11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 278
+      height: 315
+    spriteID: 42e95a4be9b47024a8b4a4112f9853eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1799, y: -1177}
+    spritePosition: {x: 1803, y: 1181}
+  - name: Shroom12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 327
+      width: 278
+      height: 315
+    spriteID: a132edc65c3dd7e4fb1e5f984e8bc3b6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1786, y: -1287}
+    spritePosition: {x: 1790, y: 1614}
+  - name: Shroom13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 650
+      width: 278
+      height: 315
+    spriteID: d09e1e3bf30dea24da4ef4c93e29e254
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -2225, y: -970}
+    spritePosition: {x: 2229, y: 1620}
+  - name: Shroom14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 973
+      width: 278
+      height: 315
+    spriteID: 1b19843d5c8407b4e8385937432117d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -2235, y: -200}
+    spritePosition: {x: 2239, y: 1173}
+  - name: Shroom21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1778
+      width: 105
+      height: 115
+    spriteID: 8a6fffc27dd22ed4c9855d9819b6eab9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -898, y: 1635}
+    spritePosition: {x: 1188, y: 143}
+  - name: Shroom22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1901
+      width: 105
+      height: 115
+    spriteID: 684bd1bf28da74a40ae62a3a77a6970e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -905, y: 1555}
+    spritePosition: {x: 1195, y: 346}
+  - name: Shroom23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 499
+      y: 1016
+      width: 105
+      height: 115
+    spriteID: a1a37e2d8107f524abda27427bdad107
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -696, y: 457}
+    spritePosition: {x: 1195, y: 559}
+  - name: Shroom24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 499
+      y: 1139
+      width: 105
+      height: 115
+    spriteID: e4049c16426d09445ade2bb68e3eac15
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -696, y: 349}
+    spritePosition: {x: 1195, y: 790}
+  - name: Shroom31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1296
+      width: 201
+      height: 373
+    spriteID: 2903d38dbd5a0144ba23f86726a582df
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -1204, y: -317}
+    spritePosition: {x: 1208, y: 1613}
+  - name: Shroom32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1016
+      width: 201
+      height: 373
+    spriteID: 6225b8b61418b494e944b6996acc3326
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -585, y: -591}
+    spritePosition: {x: 875, y: 1607}
+  - name: Shroom33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 1397
+      width: 201
+      height: 373
+    spriteID: eef3699f6a6976d41ac2e7003fcf979d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 136, y: -205}
+    spritePosition: {x: 154, y: 1602}
+  - name: Shroom34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 621
+      y: 4
+      width: 201
+      height: 373
+    spriteID: a461e3149fb65b546896c685861cabdd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 104, y: -1603}
+    spritePosition: {x: 517, y: 1607}
+  - name: Flower1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 4
+      width: 323
+      height: 245
+    spriteID: a45f9e3bb79947f4b8451c3e313fe331
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -220, y: -323}
+    spritePosition: {x: 510, y: 327}
+  - name: Flower2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 257
+      width: 323
+      height: 245
+    spriteID: 5cfa7d8a67b5e164fa8706cbbc71a08a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 207, y: -90}
+    spritePosition: {x: 83, y: 347}
+  - name: Flower3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 510
+      width: 323
+      height: 245
+    spriteID: a64cbbd66e8bdd24a91bd69d964e531c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: -225}
+    spritePosition: {x: 73, y: 735}
+  - name: Flower4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 763
+      width: 323
+      height: 245
+    spriteID: 7c3255108eb86a94e806762b79cfc805
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -200, y: 54}
+    spritePosition: {x: 490, y: 709}
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  generateTileAssets: 0
+  tilePaletteCellLayout: 0
+  tilePaletteHexagonLayout: 0
+  tilePaletteCellSize: {x: 1, y: 1, z: 0}
+  tilePaletteCellSizing: 0
+  transparencySortMode: 0
+  transparencySortAxis: {x: 0, y: 0, z: 1}
+  tileTemplate: {instanceID: 0}
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: Shroom11
+    spriteName: Shroom11
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 42e95a4be9b47024a8b4a4112f9853eb
+    layerID: 17
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom12
+    spriteName: Shroom12
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a132edc65c3dd7e4fb1e5f984e8bc3b6
+    layerID: 16
+    mosaicPosition: {x: 4, y: 327}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom13
+    spriteName: Shroom13
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d09e1e3bf30dea24da4ef4c93e29e254
+    layerID: 15
+    mosaicPosition: {x: 4, y: 650}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom14
+    spriteName: Shroom14
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1b19843d5c8407b4e8385937432117d5
+    layerID: 14
+    mosaicPosition: {x: 4, y: 973}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom21
+    spriteName: Shroom21
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8a6fffc27dd22ed4c9855d9819b6eab9
+    layerID: 13
+    mosaicPosition: {x: 290, y: 1778}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom22
+    spriteName: Shroom22
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 684bd1bf28da74a40ae62a3a77a6970e
+    layerID: 12
+    mosaicPosition: {x: 290, y: 1901}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom23
+    spriteName: Shroom23
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a1a37e2d8107f524abda27427bdad107
+    layerID: 11
+    mosaicPosition: {x: 499, y: 1016}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom24
+    spriteName: Shroom24
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e4049c16426d09445ade2bb68e3eac15
+    layerID: 10
+    mosaicPosition: {x: 499, y: 1139}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom31
+    spriteName: Shroom31
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 2903d38dbd5a0144ba23f86726a582df
+    layerID: 9
+    mosaicPosition: {x: 4, y: 1296}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom32
+    spriteName: Shroom32
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6225b8b61418b494e944b6996acc3326
+    layerID: 8
+    mosaicPosition: {x: 290, y: 1016}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom33
+    spriteName: Shroom33
+    isGroup: 0
+    parentIndex: -1
+    spriteID: eef3699f6a6976d41ac2e7003fcf979d
+    layerID: 7
+    mosaicPosition: {x: 290, y: 1397}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom34
+    spriteName: Shroom34
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a461e3149fb65b546896c685861cabdd
+    layerID: 6
+    mosaicPosition: {x: 621, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower1
+    spriteName: Flower1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a45f9e3bb79947f4b8451c3e313fe331
+    layerID: 5
+    mosaicPosition: {x: 290, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower2
+    spriteName: Flower2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5cfa7d8a67b5e164fa8706cbbc71a08a
+    layerID: 4
+    mosaicPosition: {x: 290, y: 257}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower3
+    spriteName: Flower3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a64cbbd66e8bdd24a91bd69d964e531c
+    layerID: 3
+    mosaicPosition: {x: 290, y: 510}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower4
+    spriteName: Flower4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 7c3255108eb86a94e806762b79cfc805
+    layerID: 2
+    mosaicPosition: {x: 290, y: 763}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Background
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 4b340dd9601526a42af0c194b094ad25
+    layerID: 1
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Shroom11
+    spriteName: Shroom11
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 42e95a4be9b47024a8b4a4112f9853eb
+    layerID: 17
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom12
+    spriteName: Shroom12
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a132edc65c3dd7e4fb1e5f984e8bc3b6
+    layerID: 16
+    mosaicPosition: {x: 4, y: 327}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom13
+    spriteName: Shroom13
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d09e1e3bf30dea24da4ef4c93e29e254
+    layerID: 15
+    mosaicPosition: {x: 4, y: 650}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom14
+    spriteName: Shroom14
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1b19843d5c8407b4e8385937432117d5
+    layerID: 14
+    mosaicPosition: {x: 4, y: 973}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom21
+    spriteName: Shroom21
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8a6fffc27dd22ed4c9855d9819b6eab9
+    layerID: 13
+    mosaicPosition: {x: 290, y: 1778}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom22
+    spriteName: Shroom22
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 684bd1bf28da74a40ae62a3a77a6970e
+    layerID: 12
+    mosaicPosition: {x: 290, y: 1901}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom23
+    spriteName: Shroom23
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a1a37e2d8107f524abda27427bdad107
+    layerID: 11
+    mosaicPosition: {x: 499, y: 1016}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom24
+    spriteName: Shroom24
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e4049c16426d09445ade2bb68e3eac15
+    layerID: 10
+    mosaicPosition: {x: 499, y: 1139}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom31
+    spriteName: Shroom31
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 2903d38dbd5a0144ba23f86726a582df
+    layerID: 9
+    mosaicPosition: {x: 4, y: 1296}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom32
+    spriteName: Shroom32
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6225b8b61418b494e944b6996acc3326
+    layerID: 8
+    mosaicPosition: {x: 290, y: 1016}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom33
+    spriteName: Shroom33
+    isGroup: 0
+    parentIndex: -1
+    spriteID: eef3699f6a6976d41ac2e7003fcf979d
+    layerID: 7
+    mosaicPosition: {x: 290, y: 1397}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Shroom34
+    spriteName: Shroom34
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a461e3149fb65b546896c685861cabdd
+    layerID: 6
+    mosaicPosition: {x: 621, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower1
+    spriteName: Flower1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a45f9e3bb79947f4b8451c3e313fe331
+    layerID: 5
+    mosaicPosition: {x: 290, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower2
+    spriteName: Flower2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5cfa7d8a67b5e164fa8706cbbc71a08a
+    layerID: 4
+    mosaicPosition: {x: 290, y: 257}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower3
+    spriteName: Flower3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a64cbbd66e8bdd24a91bd69d964e531c
+    layerID: 3
+    mosaicPosition: {x: 290, y: 510}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Flower4
+    spriteName: Flower4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 7c3255108eb86a94e806762b79cfc805
+    layerID: 2
+    mosaicPosition: {x: 290, y: 763}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Background
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 4b340dd9601526a42af0c194b094ad25
+    layerID: 1
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

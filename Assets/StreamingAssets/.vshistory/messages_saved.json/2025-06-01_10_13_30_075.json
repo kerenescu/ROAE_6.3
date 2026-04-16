@@ -1,0 +1,698 @@
+{
+  "conversations": [
+    {
+      "contactName": "Număr necunoscut (+40 XXX XXX XXX)",
+      "messages": [
+        {
+          "sender": "+40 XXX XXX XXX",
+          "text": "ai uitat cum sa desenezi, este?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    },
+    {
+      "contactName": "The Originals",
+      "messages": [
+        {
+          "sender": "Mama",
+          "text": "Bună dimineața, iubita mea! Ai apucat să dormi puțin după seară?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Da, am dormit câteva ore.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Tata",
+          "text": "Am văzut câteva poze de la expoziție. Nu părea multă lume... e totul ok?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "A fost... dezamăgitor.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Mama",
+          "text": "Îmi pare rău, puiule. Dar poate e un semn că trebuie să încerci altceva?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Ce altceva?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Tata",
+          "text": "Poate ceva mai stabil. O colaborare, un job, orice. Nu poți trăi doar din inspirație...",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Tocmai. Nu mai am nici aia.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Mama",
+          "text": "Nu spune asta… poate ai nevoie de o schimbare. Să ieși puțin din oraș?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Poate.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Tata",
+          "text": "Poate ți-ar prinde bine să revii la schițe mai simple. Ce făceai când erai în facultate...",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Nu mai simt nimic când desenez. E ca și cum... totul e gol.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Mama",
+          "text": "Atunci poate e momentul să te gândești serios dacă nu vrei să te întorci la ceva mai „concret”…",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Tata",
+          "text": "Ai făcut facultatea aia bună. Aveai note excelente la mate, informatică… Poate ar trebui să încerci un job în IT.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Nu mai suport să mă uit la un ecran ore în șir. Nu pot să mă întorc acolo.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Mama",
+          "text": "Dar ai putea face freelancing. Să ai ceva al tău. Nu zice nimeni să renunți la artă, doar să ai și un plan B.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "E ciudat. Parcă și planul A s-a evaporat.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Tata",
+          "text": "Nu zicem că trebuie să renunți. Dar talentul nu e de ajuns uneori. Trebuie și stabilitate.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    },
+    {
+      "contactName": "Curator",
+      "messages": [
+        {
+          "sender": "Curator",
+          "text": "Bună, Rina. A fost dificil să explic publicului ce ai vrut să transmiți. Îți recomand, pe viitor, să fii mai clară în concept.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Curator",
+          "text": "Sunt sigură că ai avut intenții bune, dar publicul nu poate fi educat cu lucrări incomplete. Mai ales nu în spațiul nostru.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Curator",
+          "text": "Dacă vei avea ceva nou și coerent, putem discuta despre o nouă colaborare. Succes în continuare.",
+          "wasRead": false,
+          "isDecision": true,
+          "wasDecisionTaken": false,
+          "choices": [
+            {
+              "responseText": "sunt convinsa... =))",
+              "statsEffect": {
+                "creativity": -1,
+                "empathy": 0,
+                "plantCorruption": 0
+              },
+              "followUpContent": ""
+            },
+            {
+              "responseText": "apreciez, dar nu trebuie sa ma minti",
+              "statsEffect": {
+                "creativity": 0,
+                "empathy": 4,
+                "plantCorruption": 0
+              },
+              "followUpContent": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contactName": "Iza",
+      "messages": [
+        {
+          "sender": "Iza",
+          "text": "Hei… știu că nu vrei să vorbești acum, dar sunt aici.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Mulțumesc. Nu pot să cred că am stricat tot…",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Nu ai stricat nimic. S-a întâmplat. Ai mai avut momente din astea. O să treacă.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Era important pentru mine. Ultima șansă să mai simt că fac ceva real.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Tu ești reală. Munca ta e reală. Faptul că ai nevoie de o pauză nu te face mai puțin artistă.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Dar dacă nu e o pauză? Dacă e… gol, pur și simplu?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Nu e gol. E doar... ceață. Și tu ai mai ieșit din ceață.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "A fost diferit atunci. Acum parcă ceva s-a rupt.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Atunci hai să-l lipim la loc. Vino la mine weekendul ăsta.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Nu știu…",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Rina. Te-ai închis în studio de două săptămâni. Ai ignorat o mie de apeluri de la mine.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "...îmi pare rău. Nu am știut ce să zic.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Nu trebuie să zici nimic. Doar... nu te pierde singură.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Ok. Vin sâmbătă.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "<3",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    },
+    {
+      "contactName": "Leo",
+      "messages": [
+        {
+          "sender": "Leo",
+          "text": "Heii, scuze că te deranjez aiurea, dar tu ai făcut info, nu?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Da... de ce?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "Am un curs opțional de Structuri de Date și n-am înțeles nimic azi la lab.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": ":P",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "Adică… cum naiba se mută pointerele alea?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Uhm da evident",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "deci ai rămas și cu trauma și cu cunoștințele, nice",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "ok, sună-mă și îți explic",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "ACUM",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "wow rina de ce explică nimeni lucrurile așa? ești o legendă. mersi încă o dată",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "am avut nevoie de o metaforă ca să nu-mi dau shut down",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "te scot la un ceai drept mulțumire?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "ai zis ceai, da? nu vin, bere, da?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Leo",
+          "text": "absolut, nici nu-mi place alcooolul, ew, yikes ew",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "mai vedem:))",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    },
+    {
+      "contactName": "Revel",
+      "messages": [
+        {
+          "sender": "Cretu",
+          "text": "BĂĂĂĂĂ A FOST CINEVA LA CAFENEA ASTĂZI SAU DOAR EU TRĂIESC ÎN FILME DE LYNCH",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Dominic",
+          "text": "doar tu, dar ne bucurăm că ți-ai regăsit viba :P",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "am castigat o rasnita",
+          "text": "eu am fost dar numa pe terasa bro era dubios inăuntru",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "S-ar putea să fi fost doar în capul tău, Cretu. Dar e adevărat că locul a fost… ciudat.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Dominic",
+          "text": "Voi știți că atelierul lui E.S. e în continuare închis? Gen... lacăt. Nimeni n-a mai intrat.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Cretu",
+          "text": "E.S. E ÎN ALTĂ DIMENSIUNE. SUNT SIGUR.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "...nu glumi cu asta.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "-__-",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Dominic",
+          "text": "chill, Rina, e doar Cretu. Efecte secundare de la prea mult cold brew.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Nu e doar Cretu. Și voi simțiți că ceva e... off, nu?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "am castigat o rasnita",
+          "text": "bro io am auzit ceva in spate când eram la baie",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Cretu",
+          "text": "FANTOMELE LUI E.S. CARE PICTEAZĂ ÎN ULEI DE GHEAȚĂ",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Dominic",
+          "text": "...nu, serios acum. N-a mai postat nimic de săptămâni. Nici stories, nici nimic. L-a văzut cineva?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Nu. Dar nici nu l-am mai căutat.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Ultima oară când am vorbit cu el… era straniu. Se uita prin mine. Ca și cum nu mai era acolo.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "am castigat o rasnita",
+          "text": "gen posedat sau gen burnout",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Dominic",
+          "text": "sau ambele?",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Cretu",
+          "text": "EU ZIC SĂ MERGEM ÎNTR-O SEARĂ ȘI VORBIM CU CE-A MAI RĂMAS DIN EL",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Iza",
+          "text": "Sau, alternativ, îl lăsăm în pace pe omul dispărut până avem un motiv real de panică.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Rina",
+          "text": "Poate că deja avem.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    },
+        {
+      "contactName": "Fostul",
+      "messages": [
+        {
+          "sender": "Fostul",
+          "text": "Îmi pare așa de rău pentru tot.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Dacă aș putea da timpul înapoi, aș face-o.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Meriți pe cineva mult mai bun decât mine...",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Mă tot uit la tabloul ăla cu frunza albastră…",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Ai fost la expoziție? Am văzut niște story-uri.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Rina… Îmi lipsesc până și certurile cu tine.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Încă îți știu toate umbrele de pe chip.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        },
+        {
+          "sender": "Fostul",
+          "text": "Dacă ai citi măcar unul din mesajele astea, te rog... scrie-mi „nu”.",
+          "wasRead": false,
+          "isDecision": false,
+          "wasDecisionTaken": false,
+          "choices": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class TarotReadingManager : MonoBehaviour
+{
+    public static TarotReadingManager Instance;
+
+    [Header("UI References")]
+    [SerializeField] private GameObject tarotPanelUI;
+    [SerializeField] private Button deckButton;
+    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private Transform cardSpawnParent;
+    [SerializeField] private TextMeshProUGUI madameText;
+    [SerializeField] private Button closeReadingButton;
+
+    [Header("Settings")]
+    [SerializeField] private string introText = "Alege 3 cărți.";
+    [SerializeField] private string finalText = "Hmm... interesant. Asta e tot ce-ți pot spune.";
+
+    private List<GameObject> selectedCards = new List<GameObject>();
+    private int revealedCardsCount = 0;
+    private const int maxCards = 3;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        tarotPanelUI.SetActive(false);
+        closeReadingButton.gameObject.SetActive(false);
+        closeReadingButton.onClick.AddListener(CloseReading);
+    }
+
+    public void StartReading()
+    {
+        tarotPanelUI.SetActive(true);
+        deckButton.gameObject.SetActive(true);
+        madameText.text = introText;
+        revealedCardsCount = 0;
+        selectedCards.Clear();
+    }
+
+    public void OnDeckClick()
+    {
+        if (selectedCards.Count >= maxCards)
+            return;
+
+        GameObject card = Instantiate(cardPrefab, cardSpawnParent);
+        selectedCards.Add(card);
+
+        if (selectedCards.Count == maxCards)
+        {
+            deckButton.gameObject.SetActive(false);
+            StartCoroutine(DelayAndAllowReveal());
+        }
+    }
+
+    private IEnumerator DelayAndAllowReveal()
+    {
+        yield return new WaitForSeconds(0.5f);
+        madameText.text = "Apasă pe fiecare carte pentru a o întoarce.";
+    }
+
+    public void NotifyCardRevealed()
+    {
+        revealedCardsCount++;
+
+        if (revealedCardsCount == maxCards)
+        {
+            StartCoroutine(ShowFinalLine());
+        }
+    }
+
+    private IEnumerator ShowFinalLine()
+    {
+        yield return new WaitForSeconds(1.2f);
+        madameText.text = finalText;
+        closeReadingButton.gameObject.SetActive(true);
+    }
+
+    private void CloseReading()
+    {
+        tarotPanelUI.SetActive(false);
+        Time.timeScale = 1f; // dacă ai blocat jocul în timpul citirii
+        Debug.Log("🔮 Tarot reading complete. Returning to gameplay.");
+    }
+}
