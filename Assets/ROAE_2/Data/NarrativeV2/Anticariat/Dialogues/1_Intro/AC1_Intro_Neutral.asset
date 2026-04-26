@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC1_Intro_Neutral
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: Good. Someone with eyes. Most people enter a bookshop looking for titles. That is never the interesting part.
+  - Speaker: Rina
+    Text: Then what is the interesting part?
+  - Speaker: Anticar
+    Text: The weather that arrives one street too early. The roots under the tram lines. The rumors that keep proving they have better memory than people.
+  - Speaker: Anticar
+    Text: If you came here after talking to the barista, ask quickly. I know a fair amount about how this city misbehaves.
+  choices:
+  - choiceText: Keep going. You make the city sound like it is alive on purpose.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52001, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: That was either expertise or a threat.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52001, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: I am listening. Surprise me with the weirdest version.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52001, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: -1
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: -1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}

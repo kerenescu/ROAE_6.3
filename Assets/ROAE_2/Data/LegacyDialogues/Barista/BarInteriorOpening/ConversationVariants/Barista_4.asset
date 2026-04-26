@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Barista_4
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "\xCEn fine, vrei s\u0103 bei sau nu?"
+  - Speaker: Rina
+    Text: "Ar trebui s\u0103 vreau s\u0103 beau?"
+  - Speaker: Barista
+    Text: "E\u0219ti con\u0219tient\u0103 c\u0103 te afli \xEEntr-un bar, nu?"
+  - Speaker: Rina
+    Text: "Am aflat \xEEn momentul \xEEn care am intrat, da"
+  - Speaker: Barista
+    Text: "C\u0103utai baia? Ei bine sunt diferen\u021Be anatomice \xEEntre plante
+      \u0219i... tu"
+  - Speaker: Rina
+    Text: 'Nu, nu caut nicio baie!!... '
+  choices:
+  - choiceText: "Ce \xEEmi recomanzi..? De b\u0103ut."
+    nextDialogue: {fileID: 11400000, guid: 6d246fa75c1b7ae47a758f10aa16a396, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0

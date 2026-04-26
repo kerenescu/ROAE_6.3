@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Barista_after_Tarot
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "Ce e cu f\u0103\u021Buca asta? Nu \u021Bi-a priit discu\u021Bia cu Lichenia?"
+  - Speaker: Rina
+    Text: "Nu \u0219tiu cum m-a f\u0103cut s\u0103 m\u0103 simt, sincer."
+  - Speaker: Barista
+    Text: "Hai c\u0103 \xEE\u021Bi z\u0103mislim acum b\u0103utura, s\u0103 te sim\u021Bi
+      mai bine"
+  - Speaker: Barista
+    Text: "Ne auzim mai \xEEncolo, ok?"
+  - Speaker: Rina
+    Text: "\u0218i eu ce ar trebui s\u0103 fac p\xE2n\u0103 atunci?"
+  - Speaker: Barista
+    Text: "Mai plimb\u0103-te. Subr\u0103d\u0103cina e plin\u0103 de locuri nemaiv\u0103zute!"
+  choices: []

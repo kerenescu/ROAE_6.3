@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9b8a4d7e6f4123b8c2d9e1f4a7c6b5, type: 3}
+  m_Name: ML_UnlockTarotDeck
+  m_EditorClassIdentifier: Assembly-CSharp::TarotDeckUnlockChoiceEffect
+  tarotUnlockFlag: {fileID: 11400000, guid: e98b352d5794b9c479c6108bfc82e719, type: 2}
+  debugLogs: 1

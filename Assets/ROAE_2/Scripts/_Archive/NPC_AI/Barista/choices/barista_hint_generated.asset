@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: barista_hint_generated
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: If you are looking for a thread, do not begin with what is said aloud.
+  - Speaker: Rina
+    Text: Begin with what is polished too often, avoided too quickly, or named with
+      suspicious ease.
+  choices:
+  - choiceText: That is enough for me to begin without hurting the wrong person.
+    nextDialogue: {fileID: 11400000, guid: 0a19b43558305ba45adbe19bbdacd245, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 2
+  - choiceText: Then I will follow the repetitions. Repetition is never innocent.
+    nextDialogue: {fileID: 11400000, guid: e526b18c82cd095488c682757ddc78b1, type: 2}
+    statEffect:
+      creativity: 10
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 1
+  - choiceText: If rot is hiding under the sugar, I would rather taste it now.
+    nextDialogue: {fileID: 11400000, guid: 5d538d8c3330e3b4c8d56b47b5383fcf, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: barista
+      amount: -1

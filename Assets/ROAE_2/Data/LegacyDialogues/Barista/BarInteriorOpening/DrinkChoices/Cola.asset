@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Cola
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: "Pubul meu se respect\u0103, p\u0103pu\u0219\u0103. Dac\u0103 \xEE\u021Bi
+      arde de glume du-te \xEEn alt\u0103 parte!"
+  choices:
+  - choiceText: "Scuze! D\u0103-mi o licoare ce crezi c\u0103 \xEEmi va prii!"
+    nextDialogue: {fileID: 11400000, guid: 391994983269e9842a04732cfed5512f, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 10
+      plantCorruption: 20

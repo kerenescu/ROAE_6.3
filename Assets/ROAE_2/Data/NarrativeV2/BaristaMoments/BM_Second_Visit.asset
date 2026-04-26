@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e043d4e29ca2a14d9691fb2c8d2c2ca, type: 3}
+  m_Name: BM_Second_Visit
+  m_EditorClassIdentifier: Assembly-CSharp::BaristaMomentDefinition
+  momentId: barista_second_visit
+  isEnabled: 1
+  priority: 200
+  requiredChapterId: 
+  requiredSceneId: Bar_Interior
+  requiredNarrativeMomentId: barista_second_visit
+  requiredTrueFlags: []
+  requiredFalseFlags: []
+  skipWhenCompleted: 0
+  completedFlagKey: 
+  mode: 1
+  toneMode: 0
+  singleDialogue: {fileID: 0}
+  neutralIntroDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3001, type: 2}
+  warmIntroDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3002, type: 2}
+  mischievousIntroDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3003, type: 2}
+  neutralOrderMenuDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3004, type: 2}
+  warmOrderMenuDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3005, type: 2}
+  mischievousOrderMenuDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3006, type: 2}
+  neutralPreparingDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3007, type: 2}
+  warmPreparingDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3008, type: 2}
+  mischievousPreparingDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3009, type: 2}
+  neutralPendingReminderDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300a, type: 2}
+  warmPendingReminderDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300b, type: 2}
+  mischievousPendingReminderDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300c, type: 2}
+  alreadyHasColaDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300d, type: 2}
+  alreadyHasSapDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300e, type: 2}
+  genericAlreadyHasDrinkDialogue: {fileID: 0}

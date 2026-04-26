@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e043d4e29ca2a14d9691fb2c8d2c2ca, type: 3}
+  m_Name: BM_Welcome_Default
+  m_EditorClassIdentifier: Assembly-CSharp::BaristaMomentDefinition
+  momentId: barista_welcome
+  isEnabled: 1
+  priority: 100
+  requiredTrueFlags: []
+  requiredFalseFlags: []
+  skipWhenCompleted: 0
+  completedFlagKey: 
+  mode: 1
+  toneMode: 0
+  singleDialogue: {fileID: 0}
+  neutralIntroDialogue: {fileID: 11400000, guid: 383269f776a164d428502ef4328e576e, type: 2}
+  warmIntroDialogue: {fileID: 11400000, guid: 8eb1ffae502115b4b860916eaf1b4aa5, type: 2}
+  mischievousIntroDialogue: {fileID: 11400000, guid: 41b951804d1ddc64385065a64cde3306, type: 2}
+  neutralOrderMenuDialogue: {fileID: 11400000, guid: 799ed255f71e0ba4b84c58b48b9f43e6, type: 2}
+  warmOrderMenuDialogue: {fileID: 11400000, guid: b1372dbf8502b834a93f563c45fc0f9f, type: 2}
+  mischievousOrderMenuDialogue: {fileID: 11400000, guid: f69bc9256229650438bb5b07984ecfb4, type: 2}
+  neutralPreparingDialogue: {fileID: 11400000, guid: c7ca3744014f1e94e8ecbb7d78bdbdb6, type: 2}
+  warmPreparingDialogue: {fileID: 11400000, guid: ed493a7dce613834abe0d4544b043b2c, type: 2}
+  mischievousPreparingDialogue: {fileID: 11400000, guid: 9108f9cb362261c49bebc901c45b9833, type: 2}
+  neutralPendingReminderDialogue: {fileID: 11400000, guid: fbd628c9fc2e43879f3449280a62ce66, type: 2}
+  warmPendingReminderDialogue: {fileID: 11400000, guid: 8af475889d2b432ebf080900cfab1bb0, type: 2}
+  mischievousPendingReminderDialogue: {fileID: 11400000, guid: dee79cdf03614518a90371a583332936, type: 2}
+  alreadyHasColaDialogue: {fileID: 11400000, guid: e1312b4b824667147bd2bbf09a5197b8, type: 2}
+  alreadyHasSapDialogue: {fileID: 11400000, guid: eac7ae7db61f53741bc5658c8d387fcd, type: 2}
+  genericAlreadyHasDrinkDialogue: {fileID: 0}

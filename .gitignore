@@ -23,3 +23,17 @@ MemoryCaptures/
 # OS stuff
 .DS_Store
 Thumbs.db
+
+# Plastic SCM metadata
+.plastic/
+
+# Editor history / cache that can appear inside Assets
+.vshistory/
+**/.vshistory/
+Assets/.vs/
+
+# Local recovery / generated backups
+Assets/_Recovery/
+Assets/_Recovery.meta
+**/_GeneratedBackups/
+**/_GeneratedBackups.meta

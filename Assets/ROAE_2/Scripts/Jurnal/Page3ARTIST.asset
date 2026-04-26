@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c24e01ed0a48f14a8ec8de924835528, type: 3}
+  m_Name: Page3ARTIST
+  m_EditorClassIdentifier: 
+  thoughts:
+  - E.S. The initials appear on an old label, almost worn away. No one calls him by name. They call him the Unsigned Artist, as if his identity no longer matters.
+  - I found one of his works among the old books. The colors have not dried, even after all these years. I touched the canvas. It was warm.
+  - Sometimes I think he did not disappear. He just thinned out into his work. He is looking back at me from inside it, waiting for me to find him.
+  tasks: []
+  collectibles: []

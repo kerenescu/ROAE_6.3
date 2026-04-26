@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC2_Return_Neutral
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: Fine. Here is the short version. The city molts facts every season, and someone has to notice what gets left behind.
+  - Speaker: Rina
+    Text: That sounds exhausting.
+  - Speaker: Anticar
+    Text: Expertise usually is.
+  - Speaker: Anticar
+    Text: Last month the rain arrived carrying river-silt from a district that no longer exists. Before that, three customers asked for atlases of streets that have not been built yet.
+  - Speaker: Rina
+    Text: You say that like you catalog all of it.
+  - Speaker: Anticar
+    Text: Someone should.
+  - Speaker: Rina
+    Text: Then maybe you can explain one more thing. I have never seen frogs that huge. One was outside, blocking the door like it paid rent.
+  - Speaker: Anticar
+    Text: Outside?
+  - Speaker: Rina
+    Text: Outside. Massive. Damp. Weirdly authoritative.
+  - Speaker: Anticar
+    Text: Gilbert.
+  - Speaker: Anticar
+    Text: That was my frog.
+  - Speaker: Anticar
+    Text: If Gilbert has escaped into the street, I need to move now.
+  choices:
+  - choiceText: Go. I will keep an eye on the shop.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: You named a frog Gilbert?
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: That explains the door, not the size.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}

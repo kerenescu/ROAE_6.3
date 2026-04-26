@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: BW2_Order_Menu_Strange
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Barista
+    Text: Tell me. Are we ordering with caution or with curiosity today?
+  choices:
+  - choiceText: Caution. I need another minute.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects: []
+  - choiceText: Curiosity. The photosynthetic one again.
+    nextDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3009, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 2b8f0f3d515bf544089c0d76715abd49, type: 2}
+  - choiceText: Do you have anything as ordinary as cola?
+    nextDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d300f, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: e013d9ec08356c74dafd9a90791d02ed, type: 2}

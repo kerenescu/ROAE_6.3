@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: barista_guarded_generated
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: Careful.
+  - Speaker: Rina
+    Text: Some questions arrive like thieves and then act wounded when the locks
+      object.
+  choices:
+  - choiceText: Fine. I can be patient if patience gets us closer to the truth.
+    nextDialogue: {fileID: 11400000, guid: 8761694ab36932f448c3d995cd14ab86, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 2
+  - choiceText: Then I will read the omissions instead of the answers.
+    nextDialogue: {fileID: 11400000, guid: 2bea55b30442a7740ae5d9aea4978a82, type: 2}
+    statEffect:
+      creativity: 10
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 1
+  - choiceText: Then stop performing mystery and say what you mean.
+    nextDialogue: {fileID: 11400000, guid: 6dfe9d87be8cfb8479c9c0ebe5eb4f85, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: -1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: -2

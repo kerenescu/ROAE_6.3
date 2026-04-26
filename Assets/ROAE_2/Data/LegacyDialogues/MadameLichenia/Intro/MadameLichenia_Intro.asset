@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: MadameLichenia_Intro
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Rina
+    Text: Madame... Lichenia?
+  - Speaker: Madame Lichenia
+    Text: "Zi-mi IMEDIAT de unde \u021Bi-ai luat cerceii!! Sunt *DIVINI*"
+  - Speaker: Rina
+    Text: "\u0102\u0103\u0103 dintr-un t\xE2rg, cred"
+  - Speaker: Madame Lichenia
+    Text: "Excep\u021Bionali, merg excelent cu p\u0103rul t\u0103u. Pe roz nu aveau?"
+  - Speaker: Rina
+    Text: "Parc\u0103 nu, erau singurul model"
+  - Speaker: Madame Lichenia
+    Text: Ce unfortunate!
+  - Speaker: Madame Lichenia
+    Text: "\u0218i e\u0219ti nou\u0103 prin \xEEmprejurimi, nu? Nu \xEE\u021Bi recunosc
+      aura!"
+  - Speaker: Rina
+    Text: Sunt, da
+  - Speaker: Madame Lichenia
+    Text: "Ai \xEEncercat ceva de la bar? Sunt cele mai bune b\u0103uturi din ora\u0219!"
+  - Speaker: Rina
+    Text: "Nu, \xEEns\u0103 am auzit c\u0103 tu m\u0103 po\u021Bi ajuta \xEEn acest
+      sens"
+  - Speaker: Madame Lichenia
+    Text: "Haha, drag\u0103! O s\u0103 devin\u0103 a usual \xEEn vocabularul t\u0103u
+      expresia asta"
+  choices:
+  - choiceText: Care e treaba cu pansamentul gastric?
+    nextDialogue: {fileID: 11400000, guid: ea9fb06605fb48e438797c58ffa596fe, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 10
+      plantCorruption: 0

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class MushroomWithTextUI : MonoBehaviour
@@ -10,11 +9,22 @@ public class MushroomWithTextUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textBox;
 
     [Header("Conținut")]
-    [SerializeField] private List<Sprite> clickSprites;
-    [SerializeField] private List<string> clickTexts;
+    [SerializeField] private Sprite[] clickSprites;
+    [TextArea(2, 4)]
+    [SerializeField] private string[] clickTexts;
+
+    [Header("Puzzle Config")]
+    public int targetIndex = 2; // indexul sprite-ului considerat "magic"
+    [HideInInspector] public bool isInMagicState = false;
+
+    public static MushroomWithTextUI[] ciuperciImportante;
+    public static bool evenimentDeclansat = false;
 
     private int clickIndex = 0;
     private Camera mainCamera;
+
+    public static bool overrideTextLock = false;
+    public static GameObject ciobDeActivatStatic;
 
     void Start()
     {
@@ -23,7 +33,7 @@ public class MushroomWithTextUI : MonoBehaviour
         if (textBox != null)
             textBox.text = "";
 
-        if (spriteRenderer != null && clickSprites.Count > 0)
+        if (spriteRenderer != null && clickSprites.Length > 0)
             spriteRenderer.sprite = clickSprites[0];
     }
 
@@ -34,25 +44,84 @@ public class MushroomWithTextUI : MonoBehaviour
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
 
-            Collider2D hitCollider = Physics2D.OverlapPoint(clickPos);
+            Collider2D hit = Physics2D.OverlapPoint(clickPos);
 
-            if (hitCollider != null && hitCollider.gameObject == gameObject)
+            if (hit != null)
             {
-                // Click pe ciupercă
-                clickIndex++;
+                if (hit.gameObject == this.gameObject && !overrideTextLock)
+                {
+                    Debug.Log("✅ Click pe: " + gameObject.name);
+                    // Oprește jucătorul dacă se mișcă spre ciupercă
+                    var player = AC.KickStarter.player;
+                    if (player != null)
+                        player.EndPath();
 
-                if (spriteRenderer != null && clickSprites.Count > 0)
-                    spriteRenderer.sprite = clickSprites[clickIndex % clickSprites.Count];
+                    int currentSpriteIndex = clickIndex % clickSprites.Length;
 
-                if (typewriterEffect != null && clickTexts.Count > 0)
-                    typewriterEffect.Run(clickTexts[clickIndex % clickTexts.Count]);
+                    if (spriteRenderer != null && clickSprites.Length > 0)
+                        spriteRenderer.sprite = clickSprites[currentSpriteIndex];
+
+                    if (clickTexts.Length > 0)
+                    {
+                        string thought = clickTexts[currentSpriteIndex];
+                        var thoughtManager = FindObjectOfType<ThoughtManager>();
+                        if (thoughtManager != null)
+                            thoughtManager.ShowThought(thought);
+                    }
+
+                    clickIndex++;
+
+                    isInMagicState = (currentSpriteIndex == targetIndex);
+
+                    VerificaToateCiupercile();
+                }
+                else if (!overrideTextLock)
+                {
+                    // Ai dat click pe altceva → ascundem textul
+                    if (textBox != null)
+                        textBox.text = "";
+                }
             }
-            else
+            else if (!overrideTextLock)
             {
-                // Click în altă parte → ascunde textul
+                // Click în gol → ascundem textul
                 if (textBox != null)
                     textBox.text = "";
             }
         }
+    }
+
+    void VerificaToateCiupercile()
+    {
+        if (evenimentDeclansat || ciuperciImportante == null || ciuperciImportante.Length == 0)
+            return;
+
+        foreach (var shroom in ciuperciImportante)
+        {
+            Debug.Log($"🔍 {shroom.name} → Magic? {shroom.isInMagicState}");
+
+            if (!shroom.isInMagicState)
+                return;
+        }
+
+        evenimentDeclansat = true;
+        Debug.Log("🌟 TOATE ciupercile sunt în starea lor magică! ✨");
+
+        // 🎉 Efect final + apariție ciob
+        GlowEffectController glow = FindObjectOfType<GlowEffectController>();
+        if (glow != null)
+            glow.TriggerVignette();
+
+        // 🧩 Activează ciobul
+        if (ciobDeActivatStatic != null)
+        {
+            ciobDeActivatStatic.SetActive(true);
+            Debug.Log("🧩 Ciobul a fost activat!");
+        }
+        else
+        {
+            Debug.LogWarning("❗ Ciobul nu este setat în MushroomPuzzleSetup.");
+        }
+
     }
 }

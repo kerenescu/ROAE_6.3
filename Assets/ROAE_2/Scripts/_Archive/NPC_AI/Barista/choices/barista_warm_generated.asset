@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: barista_warm_generated
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Barista
+    Text: Sit, if you like. The room behaves better when people stop pretending they
+      are above fatigue.
+  - Speaker: Rina
+    Text: That is kinder than most architecture I have known.
+  choices:
+  - choiceText: Thank you. Kindness still surprises me, which is probably not flattering.
+    nextDialogue: {fileID: 11400000, guid: 90d57e5836d3aac46866fa3696ae1503, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 2
+  - choiceText: Then let me look properly. Rooms this careful are usually hiding
+      a diagram.
+    nextDialogue: {fileID: 11400000, guid: a20a03b778a2533438c070d146af4a88, type: 2}
+    statEffect:
+      creativity: 10
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: barista
+      amount: 1
+  - choiceText: If the room behaves, maybe it already knows what I came here to become.
+    nextDialogue: {fileID: 11400000, guid: 9bbf62bf5b093614891fe20ba35f04ea, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: barista
+      amount: -1

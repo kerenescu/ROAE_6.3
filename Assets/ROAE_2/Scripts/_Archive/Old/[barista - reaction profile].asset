@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1b933ab0c00149bc62bdc3c7c8385, type: 3}
+  m_Name: '[barista - reaction profile]'
+  m_EditorClassIdentifier: 
+  neutralDialogue: {fileID: 11400000, guid: f52f0c1dc79b46642804409a196539b7, type: 2}
+  warmDialogue: {fileID: 11400000, guid: 455b65266b8f28c4295af6b717559c6a, type: 2}
+  guardedDialogue: {fileID: 11400000, guid: d9325b5beee236449921cda4449e8b3c, type: 2}
+  hintDialogue: {fileID: 11400000, guid: 91a2ad9e17cb7984ebb94a841ce7d1ae, type: 2}
+  warmHintDialogue: {fileID: 11400000, guid: ae96136c190e0f74a8c09c2843bcd0cc, type: 2}
+  guardedHintDialogue: {fileID: 11400000, guid: d562fd31cf11fc6449a2c6060a2199e9, type: 2}

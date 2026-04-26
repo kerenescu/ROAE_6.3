@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC1_Intro_Mischievous
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: Ah, excellent. A curious human. That improves the room immediately.
+  - Speaker: Rina
+    Text: I cannot tell if that was hospitality or field research.
+  - Speaker: Anticar
+    Text: The best hospitality is selective.
+  - Speaker: Anticar
+    Text: Ask fast. I can offer truth, theater, or the kind of knowledge that should probably remain shelved.
+  choices:
+  - choiceText: Truth first, if it does not bite.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52003, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: Theater. Truth usually has terrible staging.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52003, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: The forbidden option, obviously.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52003, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: -1
+      plantCorruption: 2
+    relationshipEffect:
+      npcId: anticar
+      amount: -1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}

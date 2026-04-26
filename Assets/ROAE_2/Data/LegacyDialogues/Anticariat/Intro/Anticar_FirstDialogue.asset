@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: Anticar_FirstDialogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: AAAAARRRGGHHH
+  - Speaker: Rina
+    Text: aaaaaa!! ce s-a intamplat??
+  - Speaker: Anticar
+    Text: nu un om... NU IAR
+  - Speaker: Rina
+    Text: "nu \u0219tiu cum s\u0103 r\u0103spund"
+  - Speaker: Anticar
+    Text: nu mai suport! e horror
+  - Speaker: Rina
+    Text: "nu o s\u0103 \xEEmi cer iertare c\u0103 sunt om, s\u0103 \u0219tii!"
+  - Speaker: Rina
+    Text: "plant\u0103.. uria\u0219\u0103 \u0219i ciudat\u0103 ce e\u0219ti!"
+  - Speaker: Anticar
+    Text: "CIUDAT\u0102"
+  - Speaker: Anticar
+    Text: "TU e\u0219ti o CIUDAT\u0102"
+  - Speaker: Rina
+    Text: "\xEEmi sun\u0103 a rasism"
+  - Speaker: Anticar
+    Text: "se pronun\u021B\u0103 \"realism\""
+  - Speaker: Rina
+    Text: ughhh
+  choices:
+  - choiceText: "ce e cu libr\u0103ria asta?"
+    nextDialogue: {fileID: 11400000, guid: ba740532e2fc986489323e83ebb74723, type: 2}
+    statEffect:
+      creativity: 15
+      empathy: 5
+      plantCorruption: 5
+  - choiceText: "\u0219i... ce vinzi?"
+    nextDialogue: {fileID: 11400000, guid: b220619a78e16524a923e83a53a1c133, type: 2}
+    statEffect:
+      creativity: 15
+      empathy: 5
+      plantCorruption: 5

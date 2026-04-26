@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC2_Return_Mischievous
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: Here is the entertaining version. The world is full of systems pretending not to be rituals.
+  - Speaker: Rina
+    Text: That sounds like something you have been waiting to say all day.
+  - Speaker: Anticar
+    Text: Of course. Doors have moods, stairwells hold grudges, and old neighborhoods keep their own weather like petty nobility.
+  - Speaker: Anticar
+    Text: If you know how to read the pattern, the world stops being random and starts being embarrassingly dramatic.
+  - Speaker: Rina
+    Text: You really do know things.
+  - Speaker: Anticar
+    Text: I am spectacularly overinformed.
+  - Speaker: Rina
+    Text: Then maybe solve this. I have never seen frogs that huge, and one was outside blocking your door like a nightclub guard.
+  - Speaker: Anticar
+    Text: The frog was where?
+  - Speaker: Rina
+    Text: Outside. Enormous. Warty. Deeply committed to the doorway.
+  - Speaker: Anticar
+    Text: Gilbert escaped.
+  - Speaker: Anticar
+    Text: If Gilbert escaped, I need to catch him before he licks something municipal.
+  choices:
+  - choiceText: Run. I am suddenly invested in Gilbert's future.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: You named the giant frog Gilbert and expected no follow-up questions?
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: That is the best explanation for a blocked door I have ever heard.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 1
+      empathy: -1
+      plantCorruption: 2
+    relationshipEffect:
+      npcId: anticar
+      amount: -1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}

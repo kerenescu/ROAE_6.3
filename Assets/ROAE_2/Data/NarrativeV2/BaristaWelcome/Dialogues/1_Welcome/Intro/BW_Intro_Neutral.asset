@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: BW_Intro_Neutral
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Barista
+    Text: Hello. What can I get for you today?
+  - Speaker: Rina
+    Text: Hi... I am still figuring that out.
+  - Speaker: Barista
+    Text: That is fair. First visits can feel a little disorienting in here.
+  - Speaker: Rina
+    Text: You noticed?
+  - Speaker: Barista
+    Text: I notice most things.
+  - Speaker: Rina
+    Text: I do not have anything to pay you with.
+  - Speaker: Barista
+    Text: Then let me start you with something simple. A photosynthetic sap, on the
+      house.
+  choices:
+  - choiceText: Alright. Thank you.
+    nextDialogue: {fileID: 11400000, guid: c7ca3744014f1e94e8ecbb7d78bdbdb6, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: aaa89b7dc93155e478e088a012fbb643, type: 2}
+    - {fileID: 11400000, guid: 2b8f0f3d515bf544089c0d76715abd49, type: 2}
+    - {fileID: 11400000, guid: ff7fc9c9988561f4faa6dd67c4f8ad31, type: 2}
+  - choiceText: I should think a little longer.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 6cd564e724741b64abf524df68f41849, type: 2}
+    - {fileID: 11400000, guid: ff7fc9c9988561f4faa6dd67c4f8ad31, type: 2}

@@ -16,7 +16,7 @@ MonoBehaviour:
   cursorMode: 0
   uiCursorPrefab: {fileID: 1010892272971207586, guid: 1173ec6da89765e469fbdf4a7aef52a7, type: 3}
   cursorDisplay: 0
-  allowMainCursor: 1
+  allowMainCursor: 0
   lockSystemCursor: 1
   keepCursorWithinScreen: 1
   confineSystemCursor: 0

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: LIBRARIE
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: e anticariat, miss..?
+  - Speaker: Rina
+    Text: Rina
+  - Speaker: Anticar
+    Text: "*  ofteaz\u0103 surprins *"
+  - Speaker: Anticar
+    Text: Miss Rina, acesta este un A-N-T-I-C-A-R-I-A-T
+  - Speaker: Anticar
+    Text: "Cu A de la \"Absurd\", cu T de la \"Tain\u0103\", cu R de la... \"Regret\",
+      evident.."
+  - Speaker: Anticar
+    Text: "Dar nu v\u0103 face\u021Bi griji. Nu toat\u0103 lumea \xEEn\u021Belege
+      din prima"
+  choices:
+  - choiceText: "\u0219i.. ce vinzi?"
+    nextDialogue: {fileID: 11400000, guid: b220619a78e16524a923e83a53a1c133, type: 2}
+    statEffect:
+      creativity: 15
+      empathy: -3
+      plantCorruption: 20
