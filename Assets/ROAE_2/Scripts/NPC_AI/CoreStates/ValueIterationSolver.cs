@@ -13,6 +13,20 @@ public struct StateTransition
     }
 }
 
+public readonly struct NpcValueIterationSolution
+{
+    public readonly Dictionary<NpcDecisionState, NpcActionType> policy;
+    public readonly Dictionary<NpcDecisionState, float> values;
+
+    public NpcValueIterationSolution(
+        Dictionary<NpcDecisionState, NpcActionType> policy,
+        Dictionary<NpcDecisionState, float> values)
+    {
+        this.policy = policy ?? new Dictionary<NpcDecisionState, NpcActionType>();
+        this.values = values ?? new Dictionary<NpcDecisionState, float>();
+    }
+}
+
 public static class ValueIterationSolver
 {
     public static IReadOnlyDictionary<NpcDecisionState, float> LastComputedValues => lastComputedValues;
@@ -20,6 +34,25 @@ public static class ValueIterationSolver
     private static Dictionary<NpcDecisionState, float> lastComputedValues = new Dictionary<NpcDecisionState, float>();
 
     public static Dictionary<NpcDecisionState, NpcActionType> Solve(
+        List<NpcDecisionState> states,
+        NpcActionType[] actions,
+        Func<NpcDecisionState, NpcActionType, float> rewardFunction,
+        Func<NpcDecisionState, NpcActionType, List<StateTransition>> transitionFunction,
+        float gamma = 0.85f,
+        float epsilon = 0.0001f,
+        int maxIterations = 100)
+    {
+        return SolveWithValues(
+            states,
+            actions,
+            rewardFunction,
+            transitionFunction,
+            gamma,
+            epsilon,
+            maxIterations).policy;
+    }
+
+    public static NpcValueIterationSolution SolveWithValues(
         List<NpcDecisionState> states,
         NpcActionType[] actions,
         Func<NpcDecisionState, NpcActionType, float> rewardFunction,
@@ -112,6 +145,8 @@ public static class ValueIterationSolver
         }
 
         BaristaDebug.Log("ValueIterationSolver.Solve", "policyReady entries=" + policy.Count);
-        return policy;
+        return new NpcValueIterationSolution(
+            policy,
+            new Dictionary<NpcDecisionState, float>(values));
     }
 }

@@ -4599,6 +4599,7 @@ GameObject:
   - component: {fileID: 1102383883}
   - component: {fileID: 1102383884}
   - component: {fileID: 1102383885}
+  - component: {fileID: 1102383886}
   m_Layer: 0
   m_Name: Anticar
   m_TagString: Untagged
@@ -4717,7 +4718,7 @@ MonoBehaviour:
   - interaction: {fileID: 0}
     assetFile: {fileID: 0}
     customScriptObject: {fileID: 1102383877}
-    customScriptFunction: TriggerDialogue
+    customScriptFunction: TriggerAnticariatDialogue
     isDisabled: 0
     invID: 0
     iconID: 0
@@ -4806,7 +4807,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102383877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 309aa19137123ef4a97ff7319719bc96, type: 3}
   m_Name: 
@@ -5354,6 +5355,8 @@ MonoBehaviour:
   distractionFlag: {fileID: 11400000, guid: fc400abc499b4994b91ae34d91319635, type: 2}
   moveSpeed: 2
   distractionDuration: 5
+  acVariableName: AnticarulPrezent
+  debugLogs: 1
 --- !u!114 &1102383884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5361,7 +5364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102383877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 730497d7724a6c647914bb72406a0403, type: 3}
   m_Name: 
@@ -5375,12 +5378,37 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102383877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6127543b3b850a94aa9a2826dbc6d250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFlag: {fileID: 11400000, guid: fc400abc499b4994b91ae34d91319635, type: 2}
+--- !u!114 &1102383886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102383877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c57f8a7c32b4b4ea9e5d816bf8b5a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1467655198}
+  config: {fileID: 11400000, guid: c0a94b56139c4f62b8946e9d0cbf4801, type: 2}
+  neutralIntroDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51001, type: 2}
+  warmIntroDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51002, type: 2}
+  mischievousIntroDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51003, type: 2}
+  neutralRepeatDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52001, type: 2}
+  warmRepeatDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52002, type: 2}
+  mischievousRepeatDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52003, type: 2}
+  npcRelationshipId: anticar
+  introDoneFlagKey: anticariat_intro_done
+  knowledgeFlagKey: barista_tarot_followup_done
+  escapeFlagKey: AnticarLeft
+  debugLogs: 1
 --- !u!1 &1112915417
 GameObject:
   m_ObjectHideFlags: 0
@@ -7324,7 +7352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542609310}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 730497d7724a6c647914bb72406a0403, type: 3}
   m_Name: 

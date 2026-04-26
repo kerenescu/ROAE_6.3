@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class NpcRelationshipState : MonoBehaviour
 {
+    private const string PlayerPrefsPrefix = "npc_relationship_";
+
     private static readonly Dictionary<string, NpcRelationshipState> Registry =
         new Dictionary<string, NpcRelationshipState>();
 
@@ -14,6 +16,9 @@ public class NpcRelationshipState : MonoBehaviour
 
     private void Awake()
     {
+        if (!string.IsNullOrEmpty(npcId))
+            relationshipScore = PlayerPrefs.GetInt(BuildPrefsKey(npcId), relationshipScore);
+
         if (!string.IsNullOrEmpty(npcId))
             Registry[npcId] = this;
     }
@@ -28,12 +33,14 @@ public class NpcRelationshipState : MonoBehaviour
     {
         int oldValue = relationshipScore;
         relationshipScore += amount;
+        SaveRelationship();
         Debug.Log("Relationship " + npcId + ": " + oldValue + " -> " + relationshipScore);
     }
 
     public void SetRelationship(int value)
     {
         relationshipScore = value;
+        SaveRelationship();
     }
 
     public static void AdjustRelationship(string targetNpcId, int amount)
@@ -42,7 +49,31 @@ public class NpcRelationshipState : MonoBehaviour
             return;
 
         if (Registry.TryGetValue(targetNpcId, out var state))
+        {
             state.AdjustRelationship(amount);
+            return;
+        }
+
+        SetStoredRelationship(targetNpcId, GetRelationshipScore(targetNpcId) + amount);
+    }
+
+    public static void SetRelationship(string targetNpcId, int value)
+    {
+        if (string.IsNullOrEmpty(targetNpcId))
+            return;
+
+        if (Registry.TryGetValue(targetNpcId, out var state))
+        {
+            state.SetRelationship(value);
+            return;
+        }
+
+        SetStoredRelationship(targetNpcId, value);
+    }
+
+    public static void ResetRelationship(string targetNpcId)
+    {
+        SetRelationship(targetNpcId, 0);
     }
 
     public static int GetRelationshipScore(string targetNpcId)
@@ -53,6 +84,25 @@ public class NpcRelationshipState : MonoBehaviour
         if (Registry.TryGetValue(targetNpcId, out var state))
             return state.RelationshipScore;
 
-        return 0;
+        return PlayerPrefs.GetInt(BuildPrefsKey(targetNpcId), 0);
+    }
+
+    private void SaveRelationship()
+    {
+        if (string.IsNullOrEmpty(npcId))
+            return;
+
+        SetStoredRelationship(npcId, relationshipScore);
+    }
+
+    private static void SetStoredRelationship(string targetNpcId, int value)
+    {
+        PlayerPrefs.SetInt(BuildPrefsKey(targetNpcId), value);
+        PlayerPrefs.Save();
+    }
+
+    private static string BuildPrefsKey(string targetNpcId)
+    {
+        return PlayerPrefsPrefix + targetNpcId;
     }
 }

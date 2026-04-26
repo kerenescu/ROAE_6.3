@@ -266,6 +266,9 @@ public class TarotReadingManager : MonoBehaviour
 
     private void CloseReading()
     {
+        PlayerPrefs.SetInt(NarrativeFlagKeys.TarotReadingCompleted, 1);
+        PlayerPrefs.Save();
+        Debug.Log("[ROAE][TarotReadingManager] Flag set: " + NarrativeFlagKeys.TarotReadingCompleted);
 
         if (physicalDeckCollider != null)
             physicalDeckCollider.enabled = true;

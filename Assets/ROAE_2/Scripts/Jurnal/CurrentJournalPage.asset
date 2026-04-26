@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CurrentJournalPage
   m_EditorClassIdentifier: 
   thoughts:
-  - "Nu mai \u0219tiu exact c\xE2nd am ajuns aici.  "
-  - "Totul pare rupt dintr-un vis vechi, uitat \xEEntr-un sertar de copil\u0103rie.  "
-  - "E ceva ciudat \xEEn aer. Creativitatea mea\u2026 parc\u0103 e observat\u0103."
+  - I do not remember exactly when I arrived here.
+  - Everything feels torn out of an old dream, forgotten in a childhood drawer.
+  - There is something strange in the air. My creativity feels... watched.
   tasks:
-  - taskDescription: "Exploreaz\u0103 anticariatul"
+  - taskDescription: Explore the antiquarian bookshop
     isCompleted: 0
-  - taskDescription: "Rezolv\u0103 puzzle-ul cu ciuperci"
+  - taskDescription: Solve the mushroom puzzle
     isCompleted: 0
   collectibles:
   - {fileID: 21300000, guid: 26a7815f8c22cd8488c7744da2f874a0, type: 3}

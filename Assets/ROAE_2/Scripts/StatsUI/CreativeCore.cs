@@ -14,6 +14,30 @@ public class CreativeCore : MonoBehaviour
     [Range(0, 10)]
     public int plantCorruption = 0;
 
+
+    public int Creativity => creativity;
+    public int Empathy => empathy;
+    public int PlantCorruption => plantCorruption;
+
+    public void ForceSetStats(int newCreativity, int newEmpathy, int newCorruption)
+    {
+        if (Instance != null && Instance != this)
+        {
+            Instance.ForceSetStats(newCreativity, newEmpathy, newCorruption);
+            return;
+        }
+
+        creativity = newCreativity;
+        empathy = newEmpathy;
+        plantCorruption = newCorruption;
+
+        Debug.Log("[STATS][ForceSetStats] creativity=" + creativity +
+                  " empathy=" + empathy +
+                  " plantCorruption=" + plantCorruption);
+
+        PrintStats();
+    }
+
     void Awake()
     {
         if (Instance == null)

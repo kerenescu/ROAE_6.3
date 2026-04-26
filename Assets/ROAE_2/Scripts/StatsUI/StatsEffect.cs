@@ -10,11 +10,18 @@ public class StatsEffect
 
     public void Apply()
     {
+        CreativeCore core = CreativeCore.Instance ?? Object.FindFirstObjectByType<CreativeCore>();
+        if (core == null)
+        {
+            Debug.LogWarning("[STATS][StatsEffect.Apply] CreativeCore missing. Effect skipped.");
+            return;
+        }
+
         var hud = CreativeHUD.Instance;
 
-        int creativityBefore = CreativeCore.Instance.creativity;
-        int empathyBefore = CreativeCore.Instance.empathy;
-        int corruptionBefore = CreativeCore.Instance.plantCorruption;
+        int creativityBefore = core.creativity;
+        int empathyBefore = core.empathy;
+        int corruptionBefore = core.plantCorruption;
 
         Debug.Log(
             "[STATS][StatsEffect.Apply][START] " +
@@ -28,30 +35,29 @@ public class StatsEffect
         if (creativity != 0)
         {
             Debug.Log("[STATS][StatsEffect.Apply] applying creativity delta=" + creativity);
-            CreativeCore.Instance.AdjustCreativity(creativity);
-            hud.ShowStatChange("creativity", creativity);
+            core.AdjustCreativity(creativity);
+            if (hud != null) hud.ShowStatChange("creativity", creativity);
         }
 
         if (empathy != 0)
         {
             Debug.Log("[STATS][StatsEffect.Apply] applying empathy delta=" + empathy);
-            CreativeCore.Instance.AdjustEmpathy(empathy);
-            hud.ShowStatChange("empathy", empathy);
+            core.AdjustEmpathy(empathy);
+            if (hud != null) hud.ShowStatChange("empathy", empathy);
         }
 
         if (plantCorruption != 0)
         {
-            //Debug.Log("[STATS][StatsEffect.Apply] applying plantCorruption delta=" + plantCorruption);
-            CreativeCore.Instance.AdjustCorruption(plantCorruption);
-            hud.ShowStatChange("plantCorruption", plantCorruption);
+            core.AdjustCorruption(plantCorruption);
+            if (hud != null) hud.ShowStatChange("plantCorruption", plantCorruption);
         }
 
         Debug.Log(
             "[STATS][StatsEffect.Apply][END] " +
-            "afterCreativity=" + CreativeCore.Instance.creativity + " " +
-            "afterEmpathy=" + CreativeCore.Instance.empathy + " " +
-            "afterCorruption=" + CreativeCore.Instance.plantCorruption);
+            "afterCreativity=" + core.creativity + " " +
+            "afterEmpathy=" + core.empathy + " " +
+            "afterCorruption=" + core.plantCorruption);
 
-        CreativeCore.Instance.PrintStats();
+        core.PrintStats();
     }
 }

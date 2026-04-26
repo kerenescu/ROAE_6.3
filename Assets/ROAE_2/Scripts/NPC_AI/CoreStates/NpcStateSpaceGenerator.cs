@@ -3,7 +3,22 @@ using System.Collections.Generic;
 
 public static class NpcStateSpaceGenerator
 {
+    private static List<NpcDecisionState> cachedStates;
+
+    public static IReadOnlyList<NpcDecisionState> GetAllStates()
+    {
+        if (cachedStates == null)
+            cachedStates = BuildAllStates();
+
+        return cachedStates;
+    }
+
     public static List<NpcDecisionState> GenerateAllStates()
+    {
+        return new List<NpcDecisionState>(GetAllStates());
+    }
+
+    private static List<NpcDecisionState> BuildAllStates()
     {
         List<NpcDecisionState> states = new List<NpcDecisionState>();
 

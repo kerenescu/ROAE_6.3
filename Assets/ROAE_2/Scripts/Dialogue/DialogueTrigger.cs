@@ -5,6 +5,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private NpcReactionProfile reactionProfile;
     [SerializeField] private BaristaActionSelector actionSelector;
+    [SerializeField] private NpcActionSelector npcActionSelector;
 
     [Header("Manual fallback")]
     [SerializeField] private NpcActionType currentAction = NpcActionType.Neutral;
@@ -25,7 +26,9 @@ public class DialogueTrigger : MonoBehaviour
 
         NpcActionType action = currentAction;
 
-        if (actionSelector != null)
+        if (npcActionSelector != null)
+            action = npcActionSelector.GetAction();
+        else if (actionSelector != null)
             action = actionSelector.GetAction();
 
         DialogueData selectedDialogue = reactionProfile.GetDialogueForAction(action);

@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: PaginaLichenia
   m_EditorClassIdentifier: 
   thoughts:
-  - "Am \xEEnt\xE2lnit-o pe Madame Lichenia. Sau poate ea m-a \xEEnt\xE2lnit pe mine. 
-    Nu e genul de ghicitoare pe care o vezi \xEEn t\xE2rguri de noapte.   Are o prezen\u021B\u0103
-    vegetal\u0103, aproape mineral\u0103 \u2014 de parc\u0103 ar fi crescut acolo,
-    \xEEntre frunze \u0219i p\xE2nze de p\u0103ianjen.  Nu m-a \xEEntrebat nimic.
-    Doar a \u0219tiut.   C\xE2nd m-a \xEEntrebat dac\u0103 vreau s\u0103-mi citesc
-    soarta... sim\u021Beam c\u0103 deja o scrisese. "
+  - I met Madame Lichenia. Or maybe she met me first. She is not the kind of fortune teller you find at night fairs. There is something vegetal about her, almost mineral, as if she grew there between the leaves and the webs. She did not ask me anything. She simply knew. And when she asked if I wanted my fortune read, it felt as though she had already written it.
   tasks: []
   collectibles:
   - {fileID: 21300000, guid: 6297ea235a68955489bf300c8ecbdf5c, type: 3}

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC2_Return_Warm
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: The kind version is this. The world is always talking. Most people are simply too loud to hear it back.
+  - Speaker: Rina
+    Text: And you hear it?
+  - Speaker: Anticar
+    Text: Enough of it. Roots under the pavement. Heat moving through empty buildings. The little habits of places that would rather stay hidden.
+  - Speaker: Anticar
+    Text: Once you listen long enough, you stop mistaking strangeness for chaos.
+  - Speaker: Rina
+    Text: That is very wise for someone running a second-hand shop.
+  - Speaker: Anticar
+    Text: Books are only one of the things I collect.
+  - Speaker: Rina
+    Text: Then help me with something practical. I have never seen frogs that enormous, and one of them was blocking your door outside.
+  - Speaker: Anticar
+    Text: My door?
+  - Speaker: Rina
+    Text: Your door. Giant frog. Serious posture. No interest in negotiation.
+  - Speaker: Anticar
+    Text: Oh no.
+  - Speaker: Anticar
+    Text: That was Gilbert. He is not supposed to leave the frontage unattended.
+  choices:
+  - choiceText: Go after him. I will watch the place.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 2
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: You keep saying that like Gilbert is a coworker.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}
+  - choiceText: Please tell me the giant frog is the strangest thing here.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97502, type: 2}

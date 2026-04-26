@@ -13,13 +13,8 @@ MonoBehaviour:
   m_Name: Page3ARTIST
   m_EditorClassIdentifier: 
   thoughts:
-  - "E.S.   Ini\u021Bialele apar pe o etichet\u0103 veche, aproape \u0219tears\u0103.  
-    Nimeni nu-l nume\u0219te pe nume. \xCEi spun \u201EArtistul f\u0103r\u0103 semn\u0103tur\u0103\u201D,
-    de parc\u0103 identitatea lui n-ar mai conta.  "
-  - "Am g\u0103sit o lucrare de-a lui \xEEntre c\u0103r\u021Bile vechi. Culorile
-    nu s-au uscat, de\u0219i au trecut ani.   Am atins p\xE2nza \u2014 era cald\u0103.  "
-  - "Uneori cred c\u0103 nu a disp\u0103rut\u2026   Ci doar s-a diluat \xEEn lucr\u0103rile
-    lui.   Se uit\u0103 din ele \xEEnapoi la mine,   a\u0219tept\xE2nd s\u0103-l
-    g\u0103sesc."
+  - E.S. The initials appear on an old label, almost worn away. No one calls him by name. They call him the Unsigned Artist, as if his identity no longer matters.
+  - I found one of his works among the old books. The colors have not dried, even after all these years. I touched the canvas. It was warm.
+  - Sometimes I think he did not disappear. He just thinned out into his work. He is looking back at me from inside it, waiting for me to find him.
   tasks: []
   collectibles: []

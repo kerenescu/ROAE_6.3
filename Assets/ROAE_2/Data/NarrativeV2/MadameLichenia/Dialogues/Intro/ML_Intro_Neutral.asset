@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: ML_Intro_Neutral
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Madame Lichenia
+    Text: I noticed you before you reached me.
+  - Speaker: Rina
+    Text: Do you say that to everyone?
+  - Speaker: Madame Lichenia
+    Text: No. Most people enter a room. You changed the air in it.
+  - Speaker: Madame Lichenia
+    Text: Sit down. Let us see what the cards make of you.
+  choices:
+  - choiceText: All right. Show me.
+    nextDialogue: {fileID: 11400000, guid: cc7a2e1b8f5b4c7d9a31e7f0b2d5c6a8, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 21f0aa4e0d16494ab0a46dd8a8b61e52, type: 2}

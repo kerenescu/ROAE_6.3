@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC1_Intro_Warm
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Anticar
+    Text: You made it in one piece. That already puts you above the average visitor.
+  - Speaker: Rina
+    Text: Is that the official welcome speech for the shop?
+  - Speaker: Anticar
+    Text: No, the official one is longer and somehow more suspicious.
+  - Speaker: Anticar
+    Text: But since you are here, ask. I know this town better than the maps do, and maps are proud creatures.
+  choices:
+  - choiceText: Then orient me. What should I know before this place gets stranger?
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52002, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 2
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: Start with the version you only tell people you almost trust.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52002, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 1
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: anticar
+      amount: 1
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}
+  - choiceText: Honestly? I am here for answers and a little trouble.
+    nextDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52002, type: 2}
+    statEffect:
+      creativity: 1
+      empathy: 0
+      plantCorruption: 1
+    relationshipEffect:
+      npcId: anticar
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: d2d58ca231f34ba6a7abf21fe4e97501, type: 2}

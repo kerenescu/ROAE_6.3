@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Page2
   m_EditorClassIdentifier: 
   thoughts:
-  - "Florile din c\xE2mpul \u0103sta au ochi. Sau cel pu\u021Bin a\u0219a simt.  "
-  - "M\u0103 urm\u0103resc. \u0218tiu c\u0103 am ajuns aici ca s\u0103 g\u0103sesc
-    ceva,   dar deocamdat\u0103, singura constant\u0103 e sentimentul c\u0103 nu
-    sunt singur\u0103."
+  - The flowers in this field have eyes. At least that is how it feels.
+  - They are watching me. I know I came here to find something, but for now the only constant is the feeling that I am not alone.
   tasks: []
   collectibles:
   - {fileID: 21300000, guid: 1836166e1e2c8bc4bb4bfbc0e39ac660, type: 3}

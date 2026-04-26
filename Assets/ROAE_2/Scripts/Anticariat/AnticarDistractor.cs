@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using AC;
+using UnityEngine;
 
 public class AnticarDistractor : MonoBehaviour
 {
@@ -9,59 +10,103 @@ public class AnticarDistractor : MonoBehaviour
     public float moveSpeed = 2f;
     public float distractionDuration = 5f;
 
-    private bool isDistracted = false;
-    private float distractionTimer = 0f;
-    private Vector3 targetPosition;
+    [SerializeField] private string acVariableName = "AnticarulPrezent";
+    [SerializeField] private bool debugLogs = true;
 
-    void Start()
+    private const float ArrivalSqrDistance = 0.04f;
+
+    private bool isEscaping;
+    private bool escapeApplied;
+
+    private void Start()
     {
+        if (anticar == null)
+            anticar = gameObject;
+
+        if (distractionFlag != null && distractionFlag.IsTriggered())
+        {
+            ApplyEscapeState();
+            return;
+        }
+
         if (anticar != null && startPosition != null)
             anticar.transform.position = startPosition.position;
 
-        targetPosition = startPosition.position;
+        SetAnticarPresence(true);
     }
 
-    void Update()
+    private void Update()
     {
-        // Verificăm dacă trebuie pornită distragerea
-        if (!isDistracted && distractionFlag != null && distractionFlag.IsTriggered())
+        if (escapeApplied || anticar == null)
+            return;
+
+        if (!isEscaping)
         {
-            StartDistraction();
+            if (distractionFlag != null && distractionFlag.IsTriggered())
+                StartEscape();
+
+            return;
         }
 
-        // Mișcare smooth spre target
-        if (anticar != null && targetPosition != null)
+        if (distractionPoint == null)
         {
-            anticar.transform.position = Vector3.MoveTowards(
-                anticar.transform.position,
-                targetPosition,
-                moveSpeed * Time.deltaTime
-            );
+            ApplyEscapeState();
+            return;
         }
 
-        // Cronometru de distragere
-        if (isDistracted)
-        {
-            distractionTimer -= Time.deltaTime;
-            if (distractionTimer <= 0f)
-            {
-                ReturnToStart();
-            }
-        }
+        anticar.transform.position = Vector3.MoveTowards(
+            anticar.transform.position,
+            distractionPoint.position,
+            moveSpeed * Time.deltaTime);
+
+        if ((anticar.transform.position - distractionPoint.position).sqrMagnitude <= ArrivalSqrDistance)
+            ApplyEscapeState();
     }
 
-    void StartDistraction()
+    private void StartEscape()
     {
-        targetPosition = distractionPoint.position;
-        isDistracted = true;
-        distractionTimer = distractionDuration;
-        Debug.Log("📚 Anticarul merge să investigheze zgomotul...");
+        if (escapeApplied)
+            return;
+
+        isEscaping = true;
+        SetAnticarPresence(false);
+        Log("Anticar is running after Gilbert.");
     }
 
-    void ReturnToStart()
+    private void ApplyEscapeState()
     {
-        targetPosition = startPosition.position;
-        isDistracted = false;
-        Debug.Log("🔙 Anticarul revine la locul lui.");
+        if (escapeApplied)
+            return;
+
+        escapeApplied = true;
+        isEscaping = false;
+
+        SetAnticarPresence(false);
+
+        if (anticar != null)
+            anticar.SetActive(false);
+
+        Log("Anticar has left the shop.");
+    }
+
+    private void SetAnticarPresence(bool isPresent)
+    {
+        if (string.IsNullOrWhiteSpace(acVariableName))
+            return;
+
+        GVar acVar = GlobalVariables.GetVariable(acVariableName);
+        if (acVar == null || acVar.BooleanValue == isPresent)
+            return;
+
+        acVar.BooleanValue = isPresent;
+        acVar.Upload();
+    }
+
+    private void Log(string message)
+    {
+        if (!debugLogs)
+            return;
+
+        Debug.Log("[ROAE][AnticarDistractor] " + message);
     }
 }

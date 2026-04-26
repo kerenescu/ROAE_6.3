@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: BW2_Intro_Mischievous
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Barista
+    Text: There you are. I was starting to think I imagined you.
+  - Speaker: Rina
+    Text: That would have been convenient.
+  - Speaker: Barista
+    Text: Not for me. Imaginary customers are terrible for business.
+  - Speaker: Rina
+    Text: And real ones?
+  - Speaker: Barista
+    Text: Real ones usually know what they want by the second visit. Do you?
+  choices:
+  - choiceText: Maybe. Let me hear the options again.
+    nextDialogue: {fileID: 11400000, guid: a1b3d6f0e4c24138b9f17b7c1c2d3006, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 7027cfdbdd29375479be04321a04c3eb, type: 2}
+    - {fileID: 11400000, guid: ff7fc9c9988561f4faa6dd67c4f8ad31, type: 2}
+  - choiceText: I came back because you made that sound like a threat.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 7027cfdbdd29375479be04321a04c3eb, type: 2}
+    - {fileID: 11400000, guid: ff7fc9c9988561f4faa6dd67c4f8ad31, type: 2}

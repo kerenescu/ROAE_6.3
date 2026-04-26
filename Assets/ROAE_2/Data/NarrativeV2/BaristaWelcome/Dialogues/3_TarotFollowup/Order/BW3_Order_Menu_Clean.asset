@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: BW3_Order_Menu_Clean
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Barista
+    Text: Alright. After a reading, people usually choose one of two things. Something familiar, or something that feels like a dare.
+  choices:
+  - choiceText: Just cola.
+    nextDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f0f, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: e013d9ec08356c74dafd9a90791d02ed, type: 2}
+  - choiceText: Give me the photosynthetic sip.
+    nextDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f07, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 2b8f0f3d515bf544089c0d76715abd49, type: 2}
+  - choiceText: Not yet.
+    nextDialogue: {fileID: 0}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects: []

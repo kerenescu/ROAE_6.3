@@ -3,10 +3,25 @@ using System.Collections;
 
 public class PhoneUIFlow : MonoBehaviour
 {
+    public static PhoneUIFlow Instance;
+
     [SerializeField] private GameObject interfataVizuala;
     [SerializeField] private GameObject phoneButton_Open;
     [SerializeField] private GameObject phoneButton_Close;
     [SerializeField] private MessageManager messageManager;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+    }
 
     private void Start()
     {
@@ -19,6 +34,25 @@ public class PhoneUIFlow : MonoBehaviour
         Debug.Log("🧩 messageManager: " + (messageManager == null ? "NULL" : "OK"));
 
         StartCoroutine(InitialUIState());
+    }
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Alpha1))
+            return;
+
+        if (IsPhoneOpen())
+        {
+            OnCloseButtonPressed();
+            return;
+        }
+
+        if (JournalUIFlow.Instance != null && JournalUIFlow.Instance.IsJournalOpen())
+        {
+            JournalUIFlow.Instance.CloseJournalCompletely();
+        }
+
+        OnPhoneButtonPressed();
     }
 
     private IEnumerator InitialUIState()
@@ -37,9 +71,19 @@ public class PhoneUIFlow : MonoBehaviour
         return interfataVizuala;
     }
 
+    public bool IsPhoneOpen()
+    {
+        return interfataVizuala != null && interfataVizuala.activeSelf;
+    }
+
 
     public void OnPhoneButtonPressed()
     {
+        if (JournalUIFlow.Instance != null && JournalUIFlow.Instance.IsJournalOpen())
+        {
+            JournalUIFlow.Instance.CloseJournalCompletely();
+        }
+
         Time.timeScale = 0f; 
 
         interfataVizuala.SetActive(true);

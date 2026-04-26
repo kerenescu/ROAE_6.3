@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class JournalNotificationUI : MonoBehaviour
+public class JournalNotificationUI : MonoBehaviour, IPointerClickHandler
 {
     public TextMeshProUGUI messageText;
     public CanvasGroup canvasGroup;
@@ -11,6 +12,7 @@ public class JournalNotificationUI : MonoBehaviour
     public float fadeDuration = 0.5f;
 
     private Coroutine currentRoutine;
+    private JournalPageData lastNotifiedPage;
 
     public static JournalNotificationUI Instance;
 
@@ -26,10 +28,35 @@ public class JournalNotificationUI : MonoBehaviour
 
     public void ShowMessage(string msg)
     {
+        lastNotifiedPage = null;
+
         if (currentRoutine != null)
             StopCoroutine(currentRoutine);
 
         currentRoutine = StartCoroutine(AnimateMessage(msg));
+    }
+
+    public void ShowPageNotification(JournalPageData page)
+    {
+        lastNotifiedPage = page;
+        string pageName = page != null ? page.name : "Intrare noua";
+        ShowMessage($"Pagină nouă în jurnal: {pageName}");
+        lastNotifiedPage = page;
+    }
+
+    public void OnNotificationClick()
+    {
+        if (lastNotifiedPage != null && JournalUIFlow.Instance != null)
+        {
+            JournalUIFlow.Instance.OpenJournalToPage(lastNotifiedPage);
+        }
+
+        HideNotificationInstantly();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnNotificationClick();
     }
 
     private IEnumerator AnimateMessage(string msg)
@@ -58,5 +85,20 @@ public class JournalNotificationUI : MonoBehaviour
 
         canvasGroup.alpha = 0;
         messageText.text = "";
+        currentRoutine = null;
+        lastNotifiedPage = null;
+    }
+
+    private void HideNotificationInstantly()
+    {
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+            currentRoutine = null;
+        }
+
+        canvasGroup.alpha = 0f;
+        messageText.text = "";
+        lastNotifiedPage = null;
     }
 }

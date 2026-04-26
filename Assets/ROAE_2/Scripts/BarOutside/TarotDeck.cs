@@ -10,16 +10,7 @@ public class TarotDeck : MonoBehaviour
 
     private void Start()
     {
-        if (tarotFlag != null && tarotFlag.WasTriggered)
-        {
-            isInteractable = true;
-            if (interactionPrompt != null)
-                interactionPrompt.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        RefreshAvailability();
     }
 
     private void OnMouseDown()
@@ -38,5 +29,31 @@ public class TarotDeck : MonoBehaviour
             if (alreadyReadTarotFlag != null)
                 alreadyReadTarotFlag.MarkAsTriggered(); // ← salvăm că s-a făcut
         }
+    }
+
+    public void UnlockFromDialogue()
+    {
+        if (tarotFlag != null)
+            tarotFlag.MarkAsTriggered();
+
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        isInteractable = true;
+
+        if (interactionPrompt != null)
+            interactionPrompt.SetActive(true);
+    }
+
+    private void RefreshAvailability()
+    {
+        bool isUnlocked = tarotFlag == null || tarotFlag.WasTriggered;
+        isInteractable = isUnlocked;
+
+        if (interactionPrompt != null)
+            interactionPrompt.SetActive(isUnlocked);
+
+        if (!isUnlocked)
+            gameObject.SetActive(false);
     }
 }

@@ -96,11 +96,83 @@ public class JournalUIFlow : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Alpha2))
+            return;
+
+        if (IsJournalOpen())
+        {
+            CloseJournalCompletely();
+            return;
+        }
+
+        if (PhoneUIFlow.Instance != null && PhoneUIFlow.Instance.IsPhoneOpen())
+        {
+            PhoneUIFlow.Instance.OnCloseButtonPressed();
+        }
+
+        OpenJournal();
+    }
+
     void PlayPageFlipSound()
     {
         if (pageFlipAudioSource != null && pageFlipClip != null)
         {
             pageFlipAudioSource.PlayOneShot(pageFlipClip);
+        }
+    }
+
+    public bool IsJournalOpen()
+    {
+        return (closedJournalImage != null && closedJournalImage.activeSelf) ||
+               (openJournalImage != null && openJournalImage.activeSelf);
+    }
+
+    public void OpenJournal()
+    {
+        OpenJournalInternal(openToContent: true);
+    }
+
+    public void OpenJournalToPage(JournalPageData page)
+    {
+        if (page != null)
+        {
+            int pageIndex = journalPages.IndexOf(page);
+            if (pageIndex >= 0)
+            {
+                currentPageIndex = pageIndex;
+                currentPage = journalPages[currentPageIndex];
+            }
+            else
+            {
+                currentPage = page;
+            }
+        }
+
+        OpenJournalInternal(openToContent: true);
+    }
+
+    private void OpenJournalInternal(bool openToContent)
+    {
+        if (PhoneUIFlow.Instance != null && PhoneUIFlow.Instance.IsPhoneOpen())
+        {
+            PhoneUIFlow.Instance.OnCloseButtonPressed();
+        }
+
+        Time.timeScale = 0f;
+
+        journalButton.SetActive(false);
+        closedJournalImage.SetActive(!openToContent);
+        openJournalImage.SetActive(openToContent);
+        navigationButtons.SetActive(openToContent);
+        closeButton.SetActive(openToContent);
+
+        if (openToContent)
+        {
+            EnsureValidCurrentPage();
+            DisplayJournalContent();
         }
     }
 
@@ -133,6 +205,8 @@ public class JournalUIFlow : MonoBehaviour
     // Nouă metodă de afișare a conținutului
     public void DisplayJournalContent()
     {
+        EnsureValidCurrentPage();
+
         if (currentPage == null)
         {
             Debug.LogWarning("Lipsește JournalPageData!");
@@ -192,9 +266,28 @@ public class JournalUIFlow : MonoBehaviour
 
             if (JournalNotificationUI.Instance != null)
             {
-                JournalNotificationUI.Instance.ShowMessage($"Pagină nouă în jurnal: {newPage.name}");
+                JournalNotificationUI.Instance.ShowPageNotification(newPage);
             }
         }
+    }
+
+    private void EnsureValidCurrentPage()
+    {
+        if (journalPages.Count == 0)
+        {
+            currentPage = null;
+            currentPageIndex = 0;
+            return;
+        }
+
+        if (currentPage == null || !journalPages.Contains(currentPage))
+        {
+            currentPageIndex = Mathf.Clamp(currentPageIndex, 0, journalPages.Count - 1);
+            currentPage = journalPages[currentPageIndex];
+            return;
+        }
+
+        currentPageIndex = journalPages.IndexOf(currentPage);
     }
 
 
