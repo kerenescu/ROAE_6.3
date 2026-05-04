@@ -5,5 +5,11 @@ public enum NpcActionType
     Guarded,
     Hint,
     WarmHint,
-    GuardedHint
+    GuardedHint,
+    Mischievous,
+    Suspicious,
+    LoreHint,
+    Refuse,
+    Offer,
+    Deflect
 }

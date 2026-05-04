@@ -61,17 +61,13 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.11f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\BaristaWelcomeAutoSetup.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\BaristaOnly3SystemInstaller.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\ROAE_BaristaWelcomeBootstrapper.cs" />
-    <Compile Include="Assets\Editor\BaristaWelcomeConsolidator.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\ROAEBaristaPlannerUpgradeEditor.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\ROAEBaristaDialogueRepairEditor.cs" />
-    <Compile Include="Assets\Editor\BaristaMomentRouterAutoSetup.cs" />
+    <Compile Include="Assets\Editor\RoaeValueIterationAuditRunner.cs" />
+    <Compile Include="Assets\Editor\NpcToneDialogueProfileWindow.cs" />
+    <Compile Include="Assets\Tests\EditMode\Editor\NpcToneDialogueProfileEditModeTests.cs" />
+    <Compile Include="Assets\Editor\NpcToneDialogueToneBackfillUtility.cs" />
     <Compile Include="Assets\AdventureCreator\2D Demo\Scripts\Editor\ToolbarLinks2DDemo.cs" />
-    <Compile Include="Assets\Editor\BaristaWelcomeFlowAssetUpdater.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\BaristaWelcomeDialogueRewriter.cs" />
-    <Compile Include="Assets\Editor\ROAE_NarrativeV2\ROAE_BaristaWelcomeAssetsSetup.cs" />
+    <Compile Include="Assets\Editor\RoaeAiDevDashboardWindow.cs" />
+    <Compile Include="Assets\Editor\RoaeAiTestRunner.cs" />
     <Compile Include="Assets\AdventureCreator\Demo\Scripts\Editor\ToolbarLinksDemo.cs" />
   </ItemGroup>
   <ItemGroup>

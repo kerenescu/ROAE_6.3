@@ -68,20 +68,30 @@ public static class BaristaWelcomeOutcomeResolver
 {
     public static BaristaWelcomePlannerResult Resolve(BaristaWelcomePlannerInput input)
     {
-        return Resolve(input, BaristaPlannerMode.ValueIteration, BaristaPlannerSettings.Default);
+        return Resolve(input, BaristaPlannerMode.ValueIteration, NpcTonePlannerSettings.Default);
     }
 
     public static BaristaWelcomePlannerResult Resolve(
         BaristaWelcomePlannerInput input,
         BaristaPlannerMode plannerMode,
-        BaristaPlannerSettings settings)
+        NpcTonePlannerSettings settings)
     {
-        BaristaIntroPlanningRuntimeState runtimeState = ToRuntimeState(input);
-        BaristaPlannerEvaluation evaluation = BaristaIntroPlanningSolvers.Evaluate(
+        return Resolve(input, plannerMode, settings, false);
+    }
+
+    public static BaristaWelcomePlannerResult Resolve(
+        BaristaWelcomePlannerInput input,
+        BaristaPlannerMode plannerMode,
+        NpcTonePlannerSettings settings,
+        bool auditCacheLogs)
+    {
+        NpcTonePlanningRuntimeState runtimeState = ToRuntimeState(input);
+        NpcTonePlannerEvaluation evaluation = NpcTonePlanningSolvers.Evaluate(
             runtimeState,
             plannerMode,
             settings,
-            false);
+            false,
+            auditCacheLogs);
 
         var result = new BaristaWelcomePlannerResult
         {
@@ -108,14 +118,14 @@ public static class BaristaWelcomeOutcomeResolver
     public static BaristaIntroTone ResolveTone(
         BaristaWelcomePlannerInput input,
         BaristaPlannerMode plannerMode,
-        BaristaPlannerSettings settings)
+        NpcTonePlannerSettings settings)
     {
         return Resolve(input, plannerMode, settings).introTone;
     }
 
-    private static BaristaIntroPlanningRuntimeState ToRuntimeState(BaristaWelcomePlannerInput input)
+    private static NpcTonePlanningRuntimeState ToRuntimeState(BaristaWelcomePlannerInput input)
     {
-        return new BaristaIntroPlanningRuntimeState
+        return new NpcTonePlanningRuntimeState
         {
             readUnknownText = input.readUnknownText,
             creativity = input.creativity,
@@ -130,7 +140,7 @@ public static class BaristaWelcomeOutcomeResolver
     }
 
     private static void ApplyOutcome(
-        BaristaIntroPlanningRuntimeState runtimeState,
+        NpcTonePlanningRuntimeState runtimeState,
         BaristaIntroTone tone,
         BaristaWelcomePlannerResult result)
     {

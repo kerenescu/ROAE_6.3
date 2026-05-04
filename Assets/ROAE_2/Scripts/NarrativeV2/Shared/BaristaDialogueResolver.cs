@@ -83,7 +83,7 @@ public static class BaristaDialogueResolver
 
         if (toneMode == BaristaMomentToneMode.UseBrainOnIntroAndStoredLoop && brain != null)
         {
-            BaristaIntroPlanningRuntimeState runtimeState = brain.BuildCurrentRuntimeState();
+            NpcTonePlanningRuntimeState runtimeState = brain.BuildCurrentRuntimeState();
             runtimeState.introDone = momentIntroDone;
 
             BaristaWelcomePlannerResult plannerResult = brain.ResolveOutcome(runtimeState);

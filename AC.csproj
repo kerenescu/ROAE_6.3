@@ -332,8 +332,8 @@
     <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvInstance.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuToggle.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Events\Events\EventHotspotInteract.cs" />
-    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\Editor\InvActionListEditor.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Speech\ImportWizardWindow.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\Editor\InvActionListEditor.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuSelect.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Managers\CursorManager.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Save system\Editor\RememberNPCEditor.cs" />

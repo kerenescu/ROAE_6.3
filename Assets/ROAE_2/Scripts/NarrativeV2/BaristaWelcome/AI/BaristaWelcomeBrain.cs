@@ -1,19 +1,24 @@
 using UnityEngine;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
-public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner<BaristaIntroPlanningRuntimeState, BaristaWelcomePlannerResult>
+public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner<NpcTonePlanningRuntimeState, BaristaWelcomePlannerResult>
 {
     [SerializeField] private BaristaWelcomeConfig config;
+    [SerializeField] private NpcToneDialogueController toneController;
     [SerializeField] private BaristaPlannerMode plannerMode = BaristaPlannerMode.ValueIteration;
-    [SerializeField] private bool verbosePlannerLogs = true;
+    [SerializeField] private bool auditLogs = true;
+    [SerializeField] private bool verbosePlannerLogs = false;
     [SerializeField] private bool verboseStateExtraction = false;
     [SerializeField] private MonoBehaviour explicitStateSource;
 
     public BaristaPlannerMode PlannerMode => ResolvePlannerMode();
-    public BaristaPlannerSettings CurrentPlannerSettings => ResolvePlannerSettings();
+    public NpcTonePlannerSettings CurrentPlannerSettings => ResolvePlannerSettings();
 
     public void SetPlannerMode(BaristaPlannerMode mode)
     {
         plannerMode = mode;
+        if (toneController != null)
+            toneController.SetPlannerMode(mode);
 
         if (config != null)
             config.plannerMode = mode;
@@ -31,20 +36,26 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
 
     public BaristaIntroTone DecideOpeningTone()
     {
-        BaristaIntroPlanningRuntimeState runtimeState = ExtractRuntimeState();
-        BaristaPlannerEvaluation evaluation = Evaluate(runtimeState);
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        NpcTonePlanningRuntimeState runtimeState = ExtractRuntimeState();
+        NpcTonePlannerEvaluation evaluation = Evaluate(runtimeState);
+        stopwatch.Stop();
 
-        Debug.Log(
-            "[ROAE][BaristaWelcomeBrain] planner=" + PlannerMode +
-            " extractedState={" + runtimeState.ToDebugString() + "}" +
-            " evaluation={" + evaluation.BuildDebugString() + "}");
+        if (auditLogs)
+        {
+            Debug.Log(
+                "[ROAE][AI][BaristaWelcomeBrain][SUCCESS] planner=" + PlannerMode +
+                " extractedState={" + runtimeState.ToDebugString() + "}" +
+                " evaluation={" + evaluation.BuildDebugString() + "}" +
+                " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+        }
 
         return evaluation.mappedTone;
     }
 
     public string DebugDecideActionLabel()
     {
-        BaristaPlannerEvaluation evaluation = Evaluate(ExtractRuntimeState());
+        NpcTonePlannerEvaluation evaluation = Evaluate(ExtractRuntimeState());
         return PlannerMode + " -> " + evaluation.BuildDebugString();
     }
 
@@ -53,7 +64,7 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
         return ResolveOutcome(ExtractRuntimeState());
     }
 
-    public BaristaIntroPlanningRuntimeState BuildCurrentRuntimeState()
+    public NpcTonePlanningRuntimeState BuildCurrentRuntimeState()
     {
         return ExtractRuntimeState();
     }
@@ -63,9 +74,10 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
         return ResolveCurrentOutcome();
     }
 
-    public BaristaWelcomePlannerResult ResolveOutcome(BaristaIntroPlanningRuntimeState runtimeState)
+    public BaristaWelcomePlannerResult ResolveOutcome(NpcTonePlanningRuntimeState runtimeState)
     {
-        return BaristaWelcomeOutcomeResolver.Resolve(
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        BaristaWelcomePlannerResult result = BaristaWelcomeOutcomeResolver.Resolve(
             new BaristaWelcomePlannerInput
             {
                 creativity = runtimeState.creativity,
@@ -79,35 +91,49 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
                 heldDrink = runtimeState.heldDrink
             },
             ResolvePlannerMode(),
-            ResolvePlannerSettings());
+            ResolvePlannerSettings(),
+            auditLogs);
+
+        stopwatch.Stop();
+        if (auditLogs)
+        {
+            Debug.Log(
+                "[ROAE][AI][BaristaOutcome][SUCCESS] planner=" + PlannerMode +
+                " state={" + runtimeState.ToDebugString() + "}" +
+                " result={" + result.BuildDebugString() + "}" +
+                " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+        }
+
+        return result;
     }
 
-    public BaristaWelcomePlannerResult ResolveResult(BaristaIntroPlanningRuntimeState runtimeState)
+    public BaristaWelcomePlannerResult ResolveResult(NpcTonePlanningRuntimeState runtimeState)
     {
         return ResolveOutcome(runtimeState);
     }
 
-    public BaristaPlannerEvaluation Evaluate(BaristaIntroPlanningRuntimeState runtimeState)
+    public NpcTonePlannerEvaluation Evaluate(NpcTonePlanningRuntimeState runtimeState)
     {
-        return BaristaIntroPlanningSolvers.Evaluate(
+        return NpcTonePlanningSolvers.Evaluate(
             runtimeState,
             ResolvePlannerMode(),
             ResolvePlannerSettings(),
-            verbosePlannerLogs);
+            verbosePlannerLogs,
+            auditLogs);
     }
 
-    private BaristaIntroPlanningRuntimeState ExtractRuntimeState()
+    private NpcTonePlanningRuntimeState ExtractRuntimeState()
     {
         CreativeCore creativeCore = CreativeCore.Instance;
 
-        BaristaIntroPlanningRuntimeState runtimeState = new BaristaIntroPlanningRuntimeState
+        NpcTonePlanningRuntimeState runtimeState = new NpcTonePlanningRuntimeState
         {
             readUnknownText = BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.ReadUnknownText01),
             creativity = creativeCore != null ? creativeCore.Creativity : PlayerPrefs.GetInt("creativity", 50),
             corruption = creativeCore != null ? creativeCore.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", 0),
             empathy = creativeCore != null ? creativeCore.Empathy : PlayerPrefs.GetInt("empathy", 0),
             relationship = BaristaWelcomeState.GetBaristaRelationship(),
-            introDone = BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.BaristaIntroDone),
+            introDone = ReadCurrentIntroDoneState(),
             pendingDrink = BaristaWelcomeState.GetPendingDrink(),
             pendingDrinkAcknowledged = BaristaWelcomeState.HasAcknowledgedPendingDrink(),
             heldDrink = BaristaWelcomeState.GetHeldDrink()
@@ -129,11 +155,29 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
 
     private BaristaPlannerMode ResolvePlannerMode()
     {
+        if (toneController != null)
+            return toneController.ResolvePlannerMode();
+
         return config != null ? config.plannerMode : plannerMode;
     }
 
-    private BaristaPlannerSettings ResolvePlannerSettings()
+    private NpcTonePlannerSettings ResolvePlannerSettings()
     {
-        return config != null ? config.ToPlannerSettings() : BaristaPlannerSettings.Default;
+        if (toneController != null)
+            return toneController.ResolvePlannerSettings();
+
+        return config != null ? config.ToPlannerSettings() : NpcTonePlannerSettings.Default;
+    }
+
+    private bool ReadCurrentIntroDoneState()
+    {
+        if (toneController != null &&
+            toneController.TryGetActiveIntroDoneFlagKey(out string introDoneFlagKey) &&
+            !string.IsNullOrWhiteSpace(introDoneFlagKey))
+        {
+            return PlayerPrefs.GetInt(introDoneFlagKey, 0) == 1;
+        }
+
+        return BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.BaristaIntroDone);
     }
 }

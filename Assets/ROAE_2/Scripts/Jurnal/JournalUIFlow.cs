@@ -45,7 +45,7 @@ public class JournalUIFlow : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        Debug.Log("Open Journal Button pressed");
+        // Debug.Log("Open Journal Button pressed");
 
         journalButton.SetActive(false);
         closedJournalImage.SetActive(true);
@@ -70,7 +70,7 @@ public class JournalUIFlow : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        Debug.Log("CLOSE JOURNAL TRIGGERED");
+        // Debug.Log("CLOSE JOURNAL TRIGGERED");
 
         closedJournalImage.SetActive(false);
         openJournalImage.SetActive(false);

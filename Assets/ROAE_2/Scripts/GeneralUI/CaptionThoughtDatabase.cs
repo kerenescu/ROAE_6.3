@@ -38,7 +38,7 @@ public class CaptionThoughtDatabase : MonoBehaviour
             thoughts[entry.key] = entry.value;
         }
 
-        Debug.Log($"✅ Loaded {thoughts.Count} gânduri din thoughts.json");
+        // Debug.Log($"✅ Loaded {thoughts.Count} gânduri din thoughts.json");
     }
 
     public string GetThought(string contactName)

@@ -29,7 +29,7 @@ public class JournalAutoEntryManager : MonoBehaviour
                     JournalUIFlow.Instance.AddPageIfNotPresent(entry.page);
                     entry.wasAdded = true;
 
-                    Debug.Log($"Pagină \"{entry.page.name}\" adăugată automat în jurnal (flag: {entry.flag.name})");
+                    // Debug.Log($"Pagină \"{entry.page.name}\" adăugată automat în jurnal (flag: {entry.flag.name})");
 
                     // 🔊 Play sound
                     if (audioSource != null && entrySound != null)

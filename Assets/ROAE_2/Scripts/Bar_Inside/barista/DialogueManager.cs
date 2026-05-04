@@ -23,7 +23,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private VisualNovelPortraits portraitManager;
 
     [Header("Debug")]
-    [SerializeField] private bool debugLogs = true;
+    [SerializeField] private bool debugLogs = false;
+    [SerializeField] private bool quietPresentationLogs = true;
     [SerializeField] private bool skipPortraitCalls = false;
 
     private DialogueData currentDialogue;
@@ -383,7 +384,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Log(string message)
     {
-        if (debugLogs)
+        if (debugLogs && !quietPresentationLogs)
             Debug.Log("[ROAE][DialogueManager] " + message);
     }
 

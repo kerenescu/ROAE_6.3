@@ -11,9 +11,9 @@ public class AnticariatDialogueConfig : ScriptableObject
     [Min(1)] public int maxPolicyIterations = 24;
     [Min(1)] public int maxPolicyEvaluationSweeps = 96;
 
-    public BaristaPlannerSettings ToPlannerSettings()
+    public NpcTonePlannerSettings ToPlannerSettings()
     {
-        return new BaristaPlannerSettings(
+        return new NpcTonePlannerSettings(
             Mathf.Clamp(gamma, 0f, 0.99f),
             Mathf.Max(0.00001f, epsilon),
             Mathf.Max(1, maxValueIterations),

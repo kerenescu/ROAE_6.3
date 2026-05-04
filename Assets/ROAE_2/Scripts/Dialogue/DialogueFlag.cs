@@ -5,6 +5,7 @@ public class DialogueFlag : ScriptableObject
 {
     [SerializeField] private string flagKey;
 
+    public string FlagKey => flagKey;
     public bool WasTriggered => IsTriggered();
 
     public bool IsTriggered()

@@ -6,6 +6,6 @@ public class ShowCursorOnStart : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log("🖱️ Cursorul a fost făcut vizibil.");
+        // Debug.Log("🖱️ Cursorul a fost făcut vizibil.");
     }
 }

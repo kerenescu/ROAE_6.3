@@ -17,7 +17,7 @@ public class PhoneUIForceReveal : MonoBehaviour
             {
                 var rt = phoneGO.GetComponent<RectTransform>();
 
-                Debug.Log($"📐 RectTransform pos: {rt.anchoredPosition}, localPos: {rt.localPosition}, scale: {rt.localScale}");
+                // Debug.Log($"📐 RectTransform pos: {rt.anchoredPosition}, localPos: {rt.localPosition}, scale: {rt.localScale}");
 
                 rt.anchoredPosition = Vector2.zero;
                 rt.localPosition = Vector3.zero;
@@ -26,7 +26,7 @@ public class PhoneUIForceReveal : MonoBehaviour
                 // 🔍 Forțează toate CanvasGroup-urile să fie vizibile și active
                 foreach (var cg in phoneGO.GetComponentsInChildren<CanvasGroup>(true))
                 {
-                    Debug.Log($"🎯 CanvasGroup on {cg.name}: alpha={cg.alpha}, interactable={cg.interactable}, blocksRaycasts={cg.blocksRaycasts}");
+                    // Debug.Log($"🎯 CanvasGroup on {cg.name}: alpha={cg.alpha}, interactable={cg.interactable}, blocksRaycasts={cg.blocksRaycasts}");
                     cg.alpha = 1f;
                     cg.interactable = true;
                     cg.blocksRaycasts = true;
@@ -47,7 +47,7 @@ public class PhoneUIForceReveal : MonoBehaviour
                     btn.gameObject.SetActive(true);
                 }
 
-                Debug.Log("📱 PhoneUI fully forced visible.");
+                // Debug.Log("📱 PhoneUI fully forced visible.");
             }
             else
             {

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: ML_After_Reading_Referral__MadameLichenia_ToneDialogueProfile__AfterReadingReferral__Neutral
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Madame Lichenia
+    Text: The reading is done, but one thread is still pulling at you.
+  - Speaker: Madame Lichenia
+    Text: There is an antiquarian with a blue atlas hidden beneath his counter.
+  choices:
+  - choiceText: I'll ask him about it.
+    nextDialogue: {fileID: 11400000, guid: 575538df813b58d43b48de3974a0a579, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 8d8424af305a4b94d8e1d1fe46528df1, type: 2}
+    - {fileID: 11400000, guid: 78bb02793c98b1545b1ebdbfbd3b6e71, type: 2}
+  - choiceText: Not yet.
+    nextDialogue: {fileID: 11400000, guid: 55094d7a690251f48be529ef25643d1e, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects: []

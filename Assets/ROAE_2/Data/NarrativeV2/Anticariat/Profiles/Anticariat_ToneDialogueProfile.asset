@@ -1,0 +1,251 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5236b6a0e5963f94a87b2793537b8934, type: 3}
+  m_Name: Anticariat_ToneDialogueProfile
+  m_EditorClassIdentifier: Assembly-CSharp::NpcToneDialogueProfile
+  npcId: anticar
+  momentId: 
+  outcomeLogTag: AnticariatOutcome
+  dialogueLogTag: AnticariatDialogue
+  devSummaryLogTag: AnticariatDev
+  devResetLogTag: AnticariatDevReset
+  isEnabled: 1
+  priority: 0
+  requiredChapterId: 
+  requiredSceneId: 
+  requiredNarrativeMomentId: 
+  requiredTrueFlags: []
+  requiredFalseFlags: []
+  skipWhenCompleted: 0
+  completedFlagKey: 
+  plannerMode: 0
+  gamma: 0.85
+  epsilon: 0.0001
+  maxValueIterations: 96
+  maxPolicyIterations: 24
+  maxPolicyEvaluationSweeps: 96
+  toneSelectionMode: 0
+  resetNpcIds:
+  - barista
+  - anticar
+  - madame_lichenia
+  playerPrefFlagsToReset:
+  - anticariat_intro_done
+  - barista_tarot_followup_done
+  - AnticarLeft
+  - tarot_reading_completed
+  - madame_sent_to_anticar
+  - anticar_shared_barista_secret
+  - barista_secret_closure_done
+  dialogueFlagsToReset: []
+  interactionBlockers:
+  - failureReason: anticar_already_left
+    conditions:
+    - label: escapeFlag
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: AnticarLeft
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+  phaseDefinitions:
+  - phaseId: CircuitComplete
+    notes: Anticar acknowledges the completed secret loop.
+    conditions:
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: f3ae7c7a78cb3ba4ca8c338c4a901f5a, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 94cfaff2d3d6f504b8c302b9e61d8cfe, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 202199e307800ad49916832c4cda1d20, type: 2}
+  - phaseId: TarotReferral
+    notes: Anticar receives the player once Madame has pointed the way.
+    conditions:
+    - label: madame_sent_to_anticar
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: madame_sent_to_anticar
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    - label: anticar_shared_barista_secret
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: anticar_shared_barista_secret
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 721a35af99be9a7439a488498f40932d, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 8b3b3297c0351d54aba647265044d73c, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: d9ea9263809fc144596f603ff7480588, type: 2}
+  - phaseId: ReferralPending
+    notes: Anticar waits for the player to carry the clue back to the barista.
+    conditions:
+    - label: anticar_shared_barista_secret
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: anticar_shared_barista_secret
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 2965b86b26aef8d4880b110ba7162c6f, type: 2}
+    warmDialogue: {fileID: 11400000, guid: dde06889d8fe9d344b2dcb4ddc7a02c9, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 7c381609f6fa9764eb678842764523f3, type: 2}
+  - phaseId: Intro
+    notes: "Prima interac\u021Biune din anticariat."
+    conditions:
+    - label: introDone
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: anticariat_intro_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 0
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51001, type: 2}
+    warmDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51002, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a51003, type: 2}
+  - phaseId: Return
+    notes: "Vizit\u0103 ulterioar\u0103 dup\u0103 ce intro-ul a fost marcat ca f\u0103cut."
+    conditions:
+    - label: introDone
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: anticariat_intro_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52001, type: 2}
+    warmDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52002, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: b41aa0dd91ab45b7b91f0dbe83a52003, type: 2}
