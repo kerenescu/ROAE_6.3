@@ -18,12 +18,12 @@ public class LianaFallWorld : MonoBehaviour
         pos.y = Mathf.MoveTowards(pos.y, targetY, speed * Time.deltaTime);
         transform.position = pos;
 
-        Debug.Log($"Liana Y: {pos.y}, Target: {targetY}");
+        // Debug.Log($"Liana Y: {pos.y}, Target: {targetY}");
 
         if (Mathf.Abs(pos.y - targetY) < 0.01f)
         {
             hasLanded = true;
-            Debug.Log("🎯 Liana a ajuns!");
+            // Debug.Log("🎯 Liana a ajuns!");
             StartCoroutine(LoadNextScene());
         }
     }
