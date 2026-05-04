@@ -17,7 +17,7 @@ public class TarotDeck : MonoBehaviour
     {
         if (!isInteractable) return;
 
-        Debug.Log("🎴 Click pe deck. Începem citirea.");
+        // Debug.Log("🎴 Click pe deck. Începem citirea.");
 
         if (alreadyReadTarotFlag != null && alreadyReadTarotFlag.WasTriggered)
         {

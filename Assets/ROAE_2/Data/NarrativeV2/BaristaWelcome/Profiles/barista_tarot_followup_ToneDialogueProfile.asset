@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5236b6a0e5963f94a87b2793537b8934, type: 3}
+  m_Name: barista_tarot_followup_ToneDialogueProfile
+  m_EditorClassIdentifier: Assembly-CSharp::NpcToneDialogueProfile
+  npcId: barista
+  momentId: barista_tarot_followup
+  outcomeLogTag: BaristaOutcome
+  dialogueLogTag: BaristaDialogue
+  devSummaryLogTag: BaristaDev
+  devResetLogTag: BaristaDevReset
+  isEnabled: 1
+  priority: 300
+  requiredChapterId: 
+  requiredSceneId: Bar_Interior
+  requiredNarrativeMomentId: 
+  requiredTrueFlags:
+  - tarot_reading_completed
+  requiredFalseFlags: []
+  skipWhenCompleted: 1
+  completedFlagKey: barista_tarot_followup_done
+  plannerMode: 1
+  gamma: 0.87
+  epsilon: 0.0001
+  maxValueIterations: 96
+  maxPolicyIterations: 24
+  maxPolicyEvaluationSweeps: 96
+  toneSelectionMode: 0
+  resetNpcIds:
+  - barista
+  - anticar
+  - madame_lichenia
+  playerPrefFlagsToReset:
+  - barista_tarot_followup_done
+  - tarot_reading_completed
+  dialogueFlagsToReset: []
+  interactionBlockers: []
+  phaseDefinitions:
+  - phaseId: Intro
+    notes: Initial greeting while the local intro flag is still false.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f01, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f02, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f03, type: 2}
+  - phaseId: Order
+    notes: Ordering loop after intro is complete and before a drink is pending/held.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 1
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f04, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f05, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f06, type: 2}
+  - phaseId: Preparing
+    notes: Accepted sap is pending but has not been acknowledged yet.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 1
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 2
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f07, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f08, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f09, type: 2}
+  - phaseId: PreparingReminder
+    notes: Accepted sap is still pending and has already been acknowledged once.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 1
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 2
+    pendingDrinkAcknowledged: 1
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f0a, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f0b, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 0cb28abef1b94a24a6c608b10b8f4f0c, type: 2}
+  - phaseId: AlreadyHasCola
+    notes: Player is already holding a cola.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 1
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 1
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 1574e59b9f8ba524aa3b8341ba301996, type: 2}
+    warmDialogue: {fileID: 11400000, guid: d309cabda64aa4d4c96e0357f5df2eb6, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: ac767eb70933b6746abf8bd666b675f8, type: 2}
+  - phaseId: AlreadyHasSap
+    notes: Player is already holding the photosynthetic sap.
+    conditions: []
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 1
+    expectedIntroDone: 1
+    matchCurrentPendingDrink: 1
+    matchCurrentPendingAcknowledged: 1
+    matchCurrentHeldDrink: 1
+    readUnknownText:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: read_unknown_text_01
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 1
+      fixedValue: 0
+      playerPrefKey: barista_tarot_followup_done
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 2
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: aa53339b92a115c488b733dffb5ca8c6, type: 2}
+    warmDialogue: {fileID: 11400000, guid: c5e0798f2100d6b48b65b1d17ebc6589, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 3f0bb7032d82e28409aff3121c377106, type: 2}

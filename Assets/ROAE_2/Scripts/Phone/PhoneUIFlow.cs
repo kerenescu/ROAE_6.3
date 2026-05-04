@@ -27,11 +27,11 @@ public class PhoneUIFlow : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-        Debug.Log("📱 PhoneUIFlow START");
-        Debug.Log("🧩 interfataVizuala: " + (interfataVizuala == null ? "NULL" : "OK"));
-        Debug.Log("🧩 phoneButton_Open: " + (phoneButton_Open == null ? "NULL" : "OK"));
-        Debug.Log("🧩 phoneButton_Close: " + (phoneButton_Close == null ? "NULL" : "OK"));
-        Debug.Log("🧩 messageManager: " + (messageManager == null ? "NULL" : "OK"));
+        // Debug.Log("📱 PhoneUIFlow START");
+        // Debug.Log("🧩 interfataVizuala: " + (interfataVizuala == null ? "NULL" : "OK"));
+        // Debug.Log("🧩 phoneButton_Open: " + (phoneButton_Open == null ? "NULL" : "OK"));
+        // Debug.Log("🧩 phoneButton_Close: " + (phoneButton_Close == null ? "NULL" : "OK"));
+        // Debug.Log("🧩 messageManager: " + (messageManager == null ? "NULL" : "OK"));
 
         StartCoroutine(InitialUIState());
     }

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e87a4f269af074e86ec25091a07134, type: 3}
+  m_Name: AC_Referral_Blue_Atlas__Anticariat_ToneDialogueProfile__TarotReferral__Warm
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  dialogueLines:
+  - Speaker: Anticar
+    Text: So Lichenia sent you. That means you are not here for books.
+  - Speaker: Anticar
+    Text: The blue atlas is not a map of places. It is a ledger of promises.
+  choices:
+  - choiceText: Tell me what it has to do with the barista.
+    nextDialogue: {fileID: 11400000, guid: 38eb6f9defda5e8438f0eb540d7b673d, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects:
+    - {fileID: 11400000, guid: 09c787513af470847a3273a854878570, type: 2}
+  - choiceText: I changed my mind.
+    nextDialogue: {fileID: 11400000, guid: 38909203cefd9024c9b594029424f260, type: 2}
+    statEffect:
+      creativity: 0
+      empathy: 0
+      plantCorruption: 0
+    relationshipEffect:
+      npcId: 
+      amount: 0
+    extraEffects: []

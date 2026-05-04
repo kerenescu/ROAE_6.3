@@ -100,12 +100,12 @@ public class MessageManager : MonoBehaviour
     {
         if (persistentConversations != null && persistentConversations.Count > 0)
         {
-            Debug.Log("✅ Conversații deja salvate, le restaurăm!");
+            // Debug.Log("✅ Conversații deja salvate, le restaurăm!");
             conversations = persistentConversations;
         }
         else
         {
-            Debug.Log("📥 Nicio conversație în memorie, încărcăm din JSON...");
+            // Debug.Log("📥 Nicio conversație în memorie, încărcăm din JSON...");
             LoadMessagesFromJSON();
             persistentConversations = conversations;
         }
@@ -239,7 +239,7 @@ public class MessageManager : MonoBehaviour
         else if (!scrollViewMessages.activeSelf && !phoneUI.activeSelf)
         {
             // Dacă UI-ul nu e deschis, îl putem deschide automat sau trimite o notificare
-            Debug.Log("Telefonul e închis, dar am primit un mesaj nou.");
+            // Debug.Log("Telefonul e închis, dar am primit un mesaj nou.");
         }
 
 
@@ -311,9 +311,9 @@ public class MessageManager : MonoBehaviour
         PhoneMessage lastMessage = convo.messages.LastOrDefault();
         if (lastMessage != null)
         {
-            Debug.Log($"Ultimul mesaj: {lastMessage.content}");
-            Debug.Log($"isDecision: {lastMessage.isDecision}");
-            Debug.Log($"choices count: {lastMessage.choices?.Count ?? 0}");
+            // Debug.Log($"Ultimul mesaj: {lastMessage.content}");
+            // Debug.Log($"isDecision: {lastMessage.isDecision}");
+            // Debug.Log($"choices count: {lastMessage.choices?.Count ?? 0}");
             if (lastMessage.isDecision && !lastMessage.wasDecisionTaken && lastMessage.choices != null)
 
             {
@@ -387,14 +387,14 @@ public class MessageManager : MonoBehaviour
         if (File.Exists(savedPath))
         {
             json = File.ReadAllText(savedPath);
-            Debug.Log("📥 Încărcăm conversațiile din messages_saved.json");
+            // Debug.Log("📥 Încărcăm conversațiile din messages_saved.json");
         }
         else
         {
             json = File.ReadAllText(defaultPath);
-            Debug.Log("📥 Încărcăm conversațiile din messages_start_default.json — fallback");
+            // Debug.Log("📥 Încărcăm conversațiile din messages_start_default.json — fallback");
             File.WriteAllText(savedPath, json); // 🆕 copiază defaultul în salvare
-            Debug.Log("💾 Copiat defaultul în messages_saved.json pentru sesiuni viitoare.");
+            // Debug.Log("💾 Copiat defaultul în messages_saved.json pentru sesiuni viitoare.");
         }
 
         PhoneData data = JsonUtility.FromJson<PhoneData>(json);
@@ -448,7 +448,7 @@ public class MessageManager : MonoBehaviour
         string json = JsonUtility.ToJson(data, true);
         string savePath = System.IO.Path.Combine(Application.persistentDataPath, "messages_saved.json");
         System.IO.File.WriteAllText(savePath, json);
-        Debug.Log($"💾 Conversațiile au fost salvate în {savePath}");
+        // Debug.Log($"💾 Conversațiile au fost salvate în {savePath}");
     }
 
 

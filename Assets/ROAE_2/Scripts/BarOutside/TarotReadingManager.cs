@@ -89,7 +89,7 @@ public class TarotReadingManager : MonoBehaviour
 
 
 
-        Debug.Log("🔮 Tarot reading started.");
+        // Debug.Log("🔮 Tarot reading started.");
         tarotPanelUI.SetActive(true);
         deckButton.gameObject.SetActive(!isRepeatReading);
         madameText.text = isRepeatReading ? "" : introText;
@@ -268,7 +268,7 @@ public class TarotReadingManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(NarrativeFlagKeys.TarotReadingCompleted, 1);
         PlayerPrefs.Save();
-        Debug.Log("[ROAE][TarotReadingManager] Flag set: " + NarrativeFlagKeys.TarotReadingCompleted);
+        // Debug.Log("[ROAE][TarotReadingManager] Flag set: " + NarrativeFlagKeys.TarotReadingCompleted);
 
         if (physicalDeckCollider != null)
             physicalDeckCollider.enabled = true;
@@ -310,7 +310,7 @@ public class TarotReadingManager : MonoBehaviour
         readyToClose = false;
         
 
-        Debug.Log("🔮 Tarot reading complete. Returning to gameplay.");
+        // Debug.Log("🔮 Tarot reading complete. Returning to gameplay.");
 
     }
 

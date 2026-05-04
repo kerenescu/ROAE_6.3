@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5236b6a0e5963f94a87b2793537b8934, type: 3}
+  m_Name: MadameLichenia_ToneDialogueProfile
+  m_EditorClassIdentifier: Assembly-CSharp::NpcToneDialogueProfile
+  npcId: madame_lichenia
+  momentId: 
+  outcomeLogTag: MadameOutcome
+  dialogueLogTag: MadameDialogue
+  devSummaryLogTag: MadameDev
+  devResetLogTag: MadameDevReset
+  isEnabled: 1
+  priority: 0
+  requiredChapterId: 
+  requiredSceneId: 
+  requiredNarrativeMomentId: 
+  requiredTrueFlags: []
+  requiredFalseFlags: []
+  skipWhenCompleted: 0
+  completedFlagKey: 
+  plannerMode: 1
+  gamma: 0.85
+  epsilon: 0.0001
+  maxValueIterations: 96
+  maxPolicyIterations: 24
+  maxPolicyEvaluationSweeps: 96
+  toneSelectionMode: 0
+  resetNpcIds:
+  - barista
+  - anticar
+  - madame_lichenia
+  playerPrefFlagsToReset:
+  - tarot_reading_completed
+  - madame_sent_to_anticar
+  - anticar_shared_barista_secret
+  - barista_secret_closure_done
+  - barista_tarot_followup_done
+  dialogueFlagsToReset:
+  - {fileID: 11400000, guid: e98b352d5794b9c479c6108bfc82e719, type: 2}
+  interactionBlockers: []
+  phaseDefinitions:
+  - phaseId: CircuitComplete
+    notes: Madame reacts once the barista secret loop has been closed.
+    conditions:
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 6521235fb434afa48b4208cba5469db3, type: 2}
+    warmDialogue: {fileID: 11400000, guid: b36fa5d5557849b49b3ccc48854509ef, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 234f221d0b5cfe1428f51da3166f423e, type: 2}
+  - phaseId: AfterReadingReferral
+    notes: Madame points the player toward Anticar after the tarot reading ends.
+    conditions:
+    - label: tarot_reading_completed
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: tarot_reading_completed
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    - label: madame_sent_to_anticar
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: madame_sent_to_anticar
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 09e51d712dc21d248a04dff95dd8a3a0, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 447630e7f9412214aa2446c6ac41ce51, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: b37bff8f1c01f7d4cbeed4a44bf00088, type: 2}
+  - phaseId: ReferralPending
+    notes: Madame waits while the player follows the antiquarian lead.
+    conditions:
+    - label: madame_sent_to_anticar
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: madame_sent_to_anticar
+        dialogueFlag: {fileID: 0}
+      expectedValue: 1
+    - label: barista_secret_closure_done
+      signal:
+        source: 1
+        fixedValue: 0
+        playerPrefKey: barista_secret_closure_done
+        dialogueFlag: {fileID: 0}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 778e2c9fc92f9234988819d36c425336, type: 2}
+    warmDialogue: {fileID: 11400000, guid: 66ac6e07be67699409348f4230c6cbee, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 6abcb542e1336cf4d86009727dc53a83, type: 2}
+  - phaseId: Intro
+    notes: "Prima \xEEnt\xE2lnire cu Madame Lichenia."
+    conditions:
+    - label: tarotReady
+      signal:
+        source: 2
+        fixedValue: 0
+        playerPrefKey: 
+        dialogueFlag: {fileID: 11400000, guid: e98b352d5794b9c479c6108bfc82e719, type: 2}
+      expectedValue: 0
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 0
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 0
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 6bbd40d242f54b468f11b352a7c4d1c0, type: 2}
+    warmDialogue: {fileID: 11400000, guid: f2b4a91c1f8b43d1ac2d9e6f4b701245, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 03e96b7c55f0448ba19d10f44f7be621, type: 2}
+  - phaseId: TarotReady
+    notes: Deck-ul de tarot a fost deja deblocat pentru Madame.
+    conditions:
+    - label: tarotReady
+      signal:
+        source: 2
+        fixedValue: 0
+        playerPrefKey: 
+        dialogueFlag: {fileID: 11400000, guid: e98b352d5794b9c479c6108bfc82e719, type: 2}
+      expectedValue: 1
+    matchCurrentReadUnknownText: 0
+    expectedReadUnknownText: 0
+    matchCurrentIntroDone: 0
+    expectedIntroDone: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
+    readUnknownText:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    introDone:
+      source: 0
+      fixedValue: 1
+      playerPrefKey: 
+      dialogueFlag: {fileID: 0}
+    pendingDrink: 0
+    pendingDrinkAcknowledged: 0
+    heldDrink: 0
+    fixedDialogue: {fileID: 0}
+    neutralDialogue: {fileID: 11400000, guid: 846bcf9bf10ef4e499190b0599b74377, type: 2}
+    warmDialogue: {fileID: 11400000, guid: aba4e4306fa64cb409caaf94a77e7078, type: 2}
+    mischievousDialogue: {fileID: 11400000, guid: 301117e13e7d03f4793c18bd742a7de9, type: 2}
