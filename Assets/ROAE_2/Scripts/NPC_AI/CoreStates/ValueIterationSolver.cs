@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 public struct StateTransition
 {
@@ -27,11 +28,33 @@ public readonly struct NpcValueIterationSolution
     }
 }
 
+public readonly struct NpcValueIterationRunStats
+{
+    public readonly bool converged;
+    public readonly int iterations;
+    public readonly float finalDelta;
+    public readonly double durationMs;
+
+    public NpcValueIterationRunStats(
+        bool converged,
+        int iterations,
+        float finalDelta,
+        double durationMs)
+    {
+        this.converged = converged;
+        this.iterations = iterations;
+        this.finalDelta = finalDelta;
+        this.durationMs = durationMs;
+    }
+}
+
 public static class ValueIterationSolver
 {
     public static IReadOnlyDictionary<NpcDecisionState, float> LastComputedValues => lastComputedValues;
+    public static NpcValueIterationRunStats LastRunStats => lastRunStats;
 
     private static Dictionary<NpcDecisionState, float> lastComputedValues = new Dictionary<NpcDecisionState, float>();
+    private static NpcValueIterationRunStats lastRunStats = new NpcValueIterationRunStats(false, 0, 0f, 0d);
 
     public static Dictionary<NpcDecisionState, NpcActionType> Solve(
         List<NpcDecisionState> states,
@@ -61,6 +84,7 @@ public static class ValueIterationSolver
         float epsilon = 0.0001f,
         int maxIterations = 100)
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();
         Dictionary<NpcDecisionState, float> values = new Dictionary<NpcDecisionState, float>();
         Dictionary<NpcDecisionState, float> newValues = new Dictionary<NpcDecisionState, float>();
 
@@ -68,6 +92,10 @@ public static class ValueIterationSolver
             values[states[i]] = 0f;
 
         BaristaDebug.Log("ValueIterationSolver.Solve", "start states=" + states.Count + " actions=" + actions.Length + " gamma=" + gamma + " epsilon=" + epsilon + " maxIterations=" + maxIterations);
+
+        bool converged = false;
+        int iterationsRun = 0;
+        float finalDelta = 0f;
 
         for (int iteration = 0; iteration < maxIterations; iteration++)
         {
@@ -103,10 +131,14 @@ public static class ValueIterationSolver
             foreach (NpcDecisionState state in states)
                 values[state] = newValues[state];
 
+            iterationsRun = iteration + 1;
+            finalDelta = delta;
+
             BaristaDebug.Log("ValueIterationSolver.Solve", "iteration=" + iteration + " delta=" + delta);
 
             if (delta < epsilon)
             {
+                converged = true;
                 BaristaDebug.Log("ValueIterationSolver.Solve", "converged iteration=" + iteration + " delta=" + delta);
                 break;
             }
@@ -145,6 +177,21 @@ public static class ValueIterationSolver
         }
 
         BaristaDebug.Log("ValueIterationSolver.Solve", "policyReady entries=" + policy.Count);
+        stopwatch.Stop();
+        lastRunStats = new NpcValueIterationRunStats(
+            converged,
+            iterationsRun,
+            finalDelta,
+            stopwatch.Elapsed.TotalMilliseconds);
+
+        BaristaDebug.Log(
+            "ValueIterationSolver.Solve",
+            "finish success=" + converged +
+            " iterations=" + iterationsRun +
+            " finalDelta=" + finalDelta.ToString("0.00000") +
+            " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00") +
+            " policyEntries=" + policy.Count);
+
         return new NpcValueIterationSolution(
             policy,
             new Dictionary<NpcDecisionState, float>(values));

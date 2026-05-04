@@ -1,4 +1,5 @@
 using UnityEngine;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 public class NpcActionSelector : MonoBehaviour
 {
@@ -14,26 +15,37 @@ public class NpcActionSelector : MonoBehaviour
 
     public NpcActionType GetAction()
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();
         NpcDecisionState state = BuildState();
 
         if (plannerConfig == null)
         {
+            stopwatch.Stop();
             if (debugLog)
-                Debug.LogWarning("[ROAE][NpcActionSelector] Missing planner config on " + name + ". fallback=" + fallbackAction);
+            {
+                Debug.LogWarning(
+                    "[ROAE][AI][NpcActionSelector][FAIL] npcId=" + npcId +
+                    " reason=missing_planner_config" +
+                    " state=" + state +
+                    " fallback=" + fallbackAction +
+                    " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+            }
 
             return fallbackAction;
         }
 
-        NpcActionType action = NpcPolicySolver.GetBestAction(plannerConfig, state, verbosePolicyLogs);
+        NpcActionType action = NpcPolicySolver.GetBestAction(plannerConfig, state, verbosePolicyLogs, debugLog);
+        stopwatch.Stop();
 
         if (debugLog)
         {
             Debug.Log(
-                "[ROAE][NpcActionSelector] npcId=" + npcId +
+                "[ROAE][AI][NpcActionSelector][SUCCESS] npcId=" + npcId +
                 " state=" + state +
                 " action=" + action +
                 " planner=" + plannerConfig.name +
-                " mode=" + plannerConfig.ToSettings().plannerMode);
+                " mode=" + plannerConfig.ToSettings().plannerMode +
+                " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
         }
 
         return action;
@@ -49,15 +61,30 @@ public class NpcActionSelector : MonoBehaviour
         }
 
         NpcPolicySolver.Invalidate(plannerConfig);
-        NpcPolicySolution solution = NpcPolicySolver.GetOrBuildPolicy(plannerConfig, verbosePolicyLogs);
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        NpcPolicySolution solution = NpcPolicySolver.GetOrBuildPolicy(plannerConfig, verbosePolicyLogs, debugLog);
+        stopwatch.Stop();
 
         if (debugLog)
         {
             Debug.Log(
-                "[ROAE][NpcActionSelector] Rebuilt planner cache config=" + plannerConfig.name +
+                "[ROAE][AI][NpcActionSelector][SUCCESS] rebuiltPlannerCache config=" + plannerConfig.name +
                 " states=" + solution.policy.Count +
-                " mode=" + solution.plannerMode);
+                " mode=" + solution.plannerMode +
+                " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
         }
+    }
+
+    [ContextMenu("ROAE/NPC/Reset AI Dev State")]
+    public void ResetAIDevState()
+    {
+        NpcAIDevTools.ResetRuntimeState(40, 0, 0, new[] { npcId });
+    }
+
+    [ContextMenu("ROAE/NPC/Test All Planner States")]
+    public void TestAllPlannerStates()
+    {
+        NpcAIDevTools.PrintPlannerStateMatrix(plannerConfig, true);
     }
 
     private NpcDecisionState BuildState()

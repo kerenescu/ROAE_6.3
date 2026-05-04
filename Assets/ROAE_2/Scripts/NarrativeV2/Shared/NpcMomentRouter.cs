@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 public class NpcMomentRouter : MonoBehaviour
 {
@@ -11,23 +12,41 @@ public class NpcMomentRouter : MonoBehaviour
     [SerializeField] private List<BaristaMomentDefinition> baristaMoments = new List<BaristaMomentDefinition>();
 
     [Header("Debug")]
-    [SerializeField] private bool debugLog = true;
+    [SerializeField] private bool auditLogs = true;
+    [SerializeField] private bool verboseLogs = false;
 
     public void TriggerDialogue()
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();
+
         if (dialogueManager == null)
             dialogueManager = Object.FindFirstObjectByType<DialogueManager>();
 
         if (dialogueManager == null)
         {
-            Debug.LogWarning("[ROAE][NpcMomentRouter] Missing DialogueManager.");
+            stopwatch.Stop();
+            if (auditLogs)
+            {
+                Debug.LogWarning(
+                    "[ROAE][AI][BaristaDialogue][FAIL] reason=missing_dialogue_manager" +
+                    " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+            }
             return;
         }
 
         BaristaMomentDefinition activeMoment = ResolveActiveBaristaMoment();
         if (activeMoment == null)
         {
-            Debug.LogWarning("[ROAE][NpcMomentRouter] No active barista moment matched.");
+            stopwatch.Stop();
+            if (auditLogs)
+            {
+                Debug.LogWarning(
+                    "[ROAE][AI][BaristaDialogue][FAIL] reason=no_active_moment" +
+                    " chapter=" + NarrativeProgressState.GetCurrentChapterId() +
+                    " scene=" + NarrativeProgressState.GetCurrentSceneId() +
+                    " narrativeMoment=" + NarrativeProgressState.GetCurrentMomentId() +
+                    " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+            }
             return;
         }
 
@@ -50,7 +69,16 @@ public class NpcMomentRouter : MonoBehaviour
 
         if (selectedDialogue == null)
         {
-            Debug.LogWarning("[ROAE][NpcMomentRouter] Active moment '" + activeMoment.MomentId + "' returned NULL dialogue.");
+            stopwatch.Stop();
+            if (auditLogs)
+            {
+                Debug.LogWarning(
+                    "[ROAE][AI][BaristaDialogue][FAIL] reason=null_dialogue" +
+                    " moment=" + activeMoment.MomentId +
+                    " loop=" + resolution.loop +
+                    " tone=" + resolution.tone +
+                    " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+            }
             return;
         }
 
@@ -72,6 +100,18 @@ public class NpcMomentRouter : MonoBehaviour
         );
 
         dialogueManager.StartDialogue(selectedDialogue);
+        stopwatch.Stop();
+
+        if (auditLogs)
+        {
+            Debug.Log(
+                "[ROAE][AI][BaristaDialogue][SUCCESS]" +
+                " moment=" + activeMoment.MomentId +
+                " loop=" + resolution.loop +
+                " tone=" + resolution.tone +
+                " dialogue=" + selectedDialogue.name +
+                " durationMs=" + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00"));
+        }
     }
 
     private BaristaMomentDefinition ResolveActiveBaristaMoment()
@@ -93,7 +133,7 @@ public class NpcMomentRouter : MonoBehaviour
 
     private void Log(string message)
     {
-        if (!debugLog)
+        if (!verboseLogs)
             return;
 
         Debug.Log("[ROAE][NpcMomentRouter] " + message);

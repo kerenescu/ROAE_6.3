@@ -27,14 +27,14 @@ public class BaristaWelcomeConfig : ScriptableObject
     public float rewardMischievousIfCorruptionHigh = 3f;
     [HideInInspector] [Range(0.5f, 0.95f)] public float selfLoopProbability = 0.70f;
 
-    public BaristaPlannerSettings ToPlannerSettings()
+    public NpcTonePlannerSettings ToPlannerSettings()
     {
         int fallbackIterations = Mathf.Max(1, maxIterations);
         int resolvedValueIterations = Mathf.Max(1, maxValueIterations > 0 ? maxValueIterations : fallbackIterations);
         int resolvedPolicyIterations = Mathf.Max(1, maxPolicyIterations > 0 ? maxPolicyIterations : fallbackIterations);
         int resolvedPolicyEvaluationSweeps = Mathf.Max(1, maxPolicyEvaluationSweeps > 0 ? maxPolicyEvaluationSweeps : fallbackIterations);
 
-        return new BaristaPlannerSettings(
+        return new NpcTonePlannerSettings(
             Mathf.Clamp(gamma, 0f, 0.99f),
             Mathf.Max(0.00001f, epsilon),
             resolvedValueIterations,

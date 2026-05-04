@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BaristaWelcomeDebugMenu : MonoBehaviour
 {
+    private const string BaristaNpcId = "barista";
     private const string BaristaSecondMomentId = "barista_second_visit";
     private const string BarInteriorSceneId = "Bar_Interior";
 
@@ -14,6 +15,7 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     [SerializeField] private CreativeCore creativeCore;
     [SerializeField] private BaristaWelcomeController controller;
     [SerializeField] private BaristaWelcomeBrain brain;
+    [SerializeField] private NpcToneDialogueController toneController;
 
     [Header("Preview input")]
     [SerializeField] private int previewCreativity = 40;
@@ -212,24 +214,52 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] " + brain.DebugDecideActionLabel());
     }
 
+    [ContextMenu("ROAE/Barista AI/Print current decision")]
+    public void PrintCurrentAIDecision()
+    {
+        if (toneController != null)
+        {
+            toneController.PrintCurrentDecision();
+            return;
+        }
+
+        if (brain == null) { Debug.LogWarning("[ROAE][AI][BaristaDev][FAIL] reason=missing_brain"); return; }
+
+        NpcTonePlanningRuntimeState state = brain.BuildCurrentRuntimeState();
+        BaristaWelcomePlannerResult result = brain.ResolveResult(state);
+        Debug.Log(
+            "[ROAE][AI][BaristaDev][SUMMARY] state={" + state.ToDebugString() +
+            "} result={" + result.BuildDebugString() + "}");
+    }
+
+    [ContextMenu("ROAE/Barista AI/Reset dev state and planner cache")]
+    public void ResetDevStateAndPlannerCache()
+    {
+        ResetPreviewFields();
+        NpcAIDevTools.ResetRuntimeState(40, 0, 0, new[] { BaristaNpcId, "anticar", "madame_lichenia" });
+        Debug.Log("[ROAE][AI][BaristaDevReset][SUCCESS] preview=neutral runtime=reset");
+    }
+
     [ContextMenu("ROAE/Barista/Reset state and stats")]
     public void ResetStateAndStats()
     {
-        previewCreativity = 40; previewEmpathy = 0; previewCorruption = 0;
-        previewRelationship = 0; previewReadUnknownText = false;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
-
-        if (creativeCore != null) creativeCore.ForceSetStats(40, 0, 0);
-        if (controller != null) controller.ResetMomentAndStats();
-        else BaristaWelcomeState.ResetAll();
-
-        NarrativeProgressState.SetCurrentMomentId(string.Empty);
-        NarrativeProgressState.ClearSceneOverride();
-
-        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Preview and runtime reset.");
+        ResetDevStateAndPlannerCache();
     }
 
     // ── Builder ───────────────────────────────────────────────────────────────
+
+    private void ResetPreviewFields()
+    {
+        previewCreativity = 40;
+        previewEmpathy = 0;
+        previewCorruption = 0;
+        previewRelationship = 0;
+        previewReadUnknownText = false;
+        previewIntroDone = false;
+        previewAccepted = false;
+        previewPendingAcknowledged = false;
+        previewHeldDrink = BaristaDrinkType.None;
+    }
 
     private BaristaWelcomePlannerInput BuildInput()
     {
@@ -252,6 +282,14 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     private BaristaWelcomePlannerResult ResolvePreview()
     {
         BaristaWelcomePlannerInput input = BuildInput();
+        if (toneController != null)
+        {
+            return BaristaWelcomeOutcomeResolver.Resolve(
+                input,
+                toneController.ResolvePlannerMode(),
+                toneController.ResolvePlannerSettings());
+        }
+
         if (brain != null)
             return BaristaWelcomeOutcomeResolver.Resolve(input, brain.PlannerMode, brain.CurrentPlannerSettings);
 

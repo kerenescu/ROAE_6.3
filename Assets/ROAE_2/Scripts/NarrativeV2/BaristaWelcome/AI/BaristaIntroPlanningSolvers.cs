@@ -1,5 +1,5 @@
 ﻿// ============================================================
-//  BaristaIntroPlanningSolvers  –  ROAE refactor
+//  NpcTonePlanningSolvers  –  ROAE refactor
 //  Adăugat: empathyTier + relationshipTier în statekey
 //  Adăugat: acțiuni Warm (WarmOffer, WarmReassure)
 //  Corectat: MapActionToTone acoperă toate acțiunile
@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 public enum BaristaNarrativeAction
 {
@@ -42,7 +43,7 @@ public enum BaristaNarrativePhase
 // ── Runtime state (trimis de Brain spre planner) ────────────────────────────
 
 [Serializable]
-public struct BaristaIntroPlanningRuntimeState
+public struct NpcTonePlanningRuntimeState
 {
     public bool readUnknownText;
     public int creativity;
@@ -228,7 +229,7 @@ internal struct BaristaStateTransition
     public BaristaStateTransition(BaristaPlanningStateKey s, float p) { nextState = s; probability = p; }
 }
 
-internal struct BaristaPlannerDecision
+internal struct NpcTonePlannerDecision
 {
     public BaristaNarrativeAction bestAction;
     public Dictionary<BaristaNarrativeAction, float> actionScores;
@@ -236,10 +237,10 @@ internal struct BaristaPlannerDecision
     public Dictionary<BaristaPlanningStateKey, float> values;
 }
 
-public readonly struct BaristaPlannerSettings
+public readonly struct NpcTonePlannerSettings
 {
-    public static BaristaPlannerSettings Default =>
-        new BaristaPlannerSettings(0.87f, 0.0001f, 96, 24, 96);
+    public static NpcTonePlannerSettings Default =>
+        new NpcTonePlannerSettings(0.87f, 0.0001f, 96, 24, 96);
 
     public readonly float gamma;
     public readonly float evaluationEpsilon;
@@ -247,7 +248,7 @@ public readonly struct BaristaPlannerSettings
     public readonly int maxPolicyIterations;
     public readonly int maxPolicyEvaluationSweeps;
 
-    public BaristaPlannerSettings(
+    public NpcTonePlannerSettings(
         float gamma,
         float evaluationEpsilon,
         int maxValueIterations,
@@ -262,7 +263,7 @@ public readonly struct BaristaPlannerSettings
     }
 }
 
-public readonly struct BaristaPlannerEvaluation
+public readonly struct NpcTonePlannerEvaluation
 {
     public readonly BaristaNarrativeAction bestAction;
     public readonly BaristaIntroTone mappedTone;
@@ -271,7 +272,7 @@ public readonly struct BaristaPlannerEvaluation
     public readonly float mischievousScore;
     public readonly string actionScoreSummary;
 
-    public BaristaPlannerEvaluation(
+    public NpcTonePlannerEvaluation(
         BaristaNarrativeAction bestAction,
         BaristaIntroTone mappedTone,
         float neutralScore,
@@ -300,7 +301,7 @@ public readonly struct BaristaPlannerEvaluation
 
 // ── Solver principal ─────────────────────────────────────────────────────────
 
-public static class BaristaIntroPlanningSolvers
+public static class NpcTonePlanningSolvers
 {
     private static readonly BaristaNarrativeAction[] Actions =
     {
@@ -316,64 +317,133 @@ public static class BaristaIntroPlanningSolvers
         BaristaNarrativeAction.Deflect
     };
 
+    private static readonly Dictionary<NpcTonePlannerCacheKey, NpcToneCachedPolicy> PolicyCache =
+        new Dictionary<NpcTonePlannerCacheKey, NpcToneCachedPolicy>();
+
     // ── Intrare publică ───────────────────────────────────────────────────────
 
-    public static BaristaNarrativeAction DecideAction(
-        BaristaIntroPlanningRuntimeState runtimeState,
-        BaristaPlannerMode plannerMode,
-        bool verboseLogs)
+    public static void ClearCache()
     {
-        return Evaluate(runtimeState, plannerMode, BaristaPlannerSettings.Default, verboseLogs).bestAction;
+        PolicyCache.Clear();
     }
 
     public static BaristaNarrativeAction DecideAction(
-        BaristaIntroPlanningRuntimeState runtimeState,
+        NpcTonePlanningRuntimeState runtimeState,
         BaristaPlannerMode plannerMode,
-        BaristaPlannerSettings settings,
+        bool verboseLogs)
+    {
+        return Evaluate(runtimeState, plannerMode, NpcTonePlannerSettings.Default, verboseLogs).bestAction;
+    }
+
+    public static BaristaNarrativeAction DecideAction(
+        NpcTonePlanningRuntimeState runtimeState,
+        BaristaPlannerMode plannerMode,
+        NpcTonePlannerSettings settings,
         bool verboseLogs)
     {
         return Evaluate(runtimeState, plannerMode, settings, verboseLogs).bestAction;
     }
 
-    public static BaristaPlannerEvaluation Evaluate(
-        BaristaIntroPlanningRuntimeState runtimeState,
+    public static NpcTonePlannerEvaluation Evaluate(
+        NpcTonePlanningRuntimeState runtimeState,
         BaristaPlannerMode plannerMode,
         bool verboseLogs)
     {
-        return Evaluate(runtimeState, plannerMode, BaristaPlannerSettings.Default, verboseLogs);
+        return Evaluate(runtimeState, plannerMode, NpcTonePlannerSettings.Default, verboseLogs);
     }
 
-    public static BaristaPlannerEvaluation Evaluate(
-        BaristaIntroPlanningRuntimeState runtimeState,
+    public static NpcTonePlannerEvaluation Evaluate(
+        NpcTonePlanningRuntimeState runtimeState,
         BaristaPlannerMode plannerMode,
-        BaristaPlannerSettings settings,
+        NpcTonePlannerSettings settings,
         bool verboseLogs)
     {
-        var stateSpace = GenerateStateSpace();
+        return Evaluate(runtimeState, plannerMode, settings, verboseLogs, false);
+    }
+
+    public static NpcTonePlannerEvaluation Evaluate(
+        NpcTonePlanningRuntimeState runtimeState,
+        BaristaPlannerMode plannerMode,
+        NpcTonePlannerSettings settings,
+        bool verboseLogs,
+        bool auditCacheLogs)
+    {
         var currentState = ToStateKey(runtimeState);
 
         if (verboseLogs)
-            Debug.Log("[ROAE][Planner][" + plannerMode + "][START] states=" + stateSpace.Count +
+            Debug.Log("[ROAE][Planner][" + plannerMode + "][START]" +
                       " actions=" + Actions.Length +
                       " currentState={" + currentState.ToDebugString() + "}");
 
-        var decision = plannerMode == BaristaPlannerMode.PolicyIteration
-            ? RunPolicyIteration(stateSpace, currentState, settings, verboseLogs)
-            : RunValueIteration(stateSpace, currentState, settings, verboseLogs);
+        NpcToneCachedPolicy cachedPolicy = GetOrBuildPolicy(plannerMode, settings, verboseLogs, auditCacheLogs);
+        BaristaNarrativeAction bestAction = cachedPolicy.policy.TryGetValue(currentState, out BaristaNarrativeAction policyAction)
+            ? policyAction
+            : DefaultActionForState(currentState);
 
-        var evaluation = new BaristaPlannerEvaluation(
-            decision.bestAction,
-            MapActionToTone(decision.bestAction),
-            GetBestToneScore(decision.actionScores, BaristaIntroTone.Neutral),
-            GetBestToneScore(decision.actionScores, BaristaIntroTone.Warm),
-            GetBestToneScore(decision.actionScores, BaristaIntroTone.Mischievous),
-            FormatActionScores(decision.actionScores));
+        Dictionary<BaristaNarrativeAction, float> actionScores =
+            ComputeActionScores(currentState, cachedPolicy.values, settings);
+
+        var evaluation = new NpcTonePlannerEvaluation(
+            bestAction,
+            MapActionToTone(bestAction),
+            GetBestToneScore(actionScores, BaristaIntroTone.Neutral),
+            GetBestToneScore(actionScores, BaristaIntroTone.Warm),
+            GetBestToneScore(actionScores, BaristaIntroTone.Mischievous),
+            FormatActionScores(actionScores));
 
         if (verboseLogs)
             Debug.Log("[ROAE][Planner][" + plannerMode + "][RESULT] state={" + currentState.ToDebugString() +
                       "} " + evaluation.BuildDebugString());
 
         return evaluation;
+    }
+
+    private static NpcToneCachedPolicy GetOrBuildPolicy(
+        BaristaPlannerMode plannerMode,
+        NpcTonePlannerSettings settings,
+        bool verboseLogs,
+        bool auditCacheLogs)
+    {
+        var cacheKey = new NpcTonePlannerCacheKey(plannerMode, settings);
+        if (PolicyCache.TryGetValue(cacheKey, out NpcToneCachedPolicy cached))
+        {
+            if (auditCacheLogs)
+            {
+                Debug.Log(
+                    "[ROAE][AI][NpcTonePlannerCache][HIT] planner=" + plannerMode +
+                    " states=" + cached.stateCount +
+                    " policyEntries=" + cached.policy.Count +
+                    " originalBuildDurationMs=" + cached.buildDurationMs.ToString("0.00"));
+            }
+
+            return cached;
+        }
+
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        List<BaristaPlanningStateKey> stateSpace = GenerateStateSpace();
+        BaristaPlanningStateKey seedState = stateSpace[0];
+        NpcTonePlannerDecision decision = plannerMode == BaristaPlannerMode.PolicyIteration
+            ? RunPolicyIteration(stateSpace, seedState, settings, verboseLogs)
+            : RunValueIteration(stateSpace, seedState, settings, verboseLogs);
+        stopwatch.Stop();
+
+        cached = new NpcToneCachedPolicy(
+            decision.policy,
+            decision.values,
+            stateSpace.Count,
+            stopwatch.Elapsed.TotalMilliseconds);
+        PolicyCache[cacheKey] = cached;
+
+        if (auditCacheLogs)
+        {
+            Debug.Log(
+                "[ROAE][AI][NpcTonePlannerCache][MISS] planner=" + plannerMode +
+                " states=" + cached.stateCount +
+                " policyEntries=" + cached.policy.Count +
+                " buildDurationMs=" + cached.buildDurationMs.ToString("0.00"));
+        }
+
+        return cached;
     }
 
     /// <summary>
@@ -434,7 +504,7 @@ public static class BaristaIntroPlanningSolvers
         return states;
     }
 
-    private static BaristaPlanningStateKey ToStateKey(BaristaIntroPlanningRuntimeState rs)
+    private static BaristaPlanningStateKey ToStateKey(NpcTonePlanningRuntimeState rs)
     {
         return new BaristaPlanningStateKey
         {
@@ -473,10 +543,10 @@ public static class BaristaIntroPlanningSolvers
 
     // ── Value Iteration ──────────────────────────────────────────────────────
 
-    private static BaristaPlannerDecision RunValueIteration(
+    private static NpcTonePlannerDecision RunValueIteration(
         List<BaristaPlanningStateKey> states,
         BaristaPlanningStateKey currentState,
-        BaristaPlannerSettings settings,
+        NpcTonePlannerSettings settings,
         bool verboseLogs)
     {
         var values = states.ToDictionary(s => s, s => 0f);
@@ -504,7 +574,7 @@ public static class BaristaIntroPlanningSolvers
         }
 
         var policy = states.ToDictionary(s => s, s => SelectBestAction(s, values, settings).bestAction);
-        return new BaristaPlannerDecision
+        return new NpcTonePlannerDecision
         {
             bestAction = policy[currentState],
             actionScores = ComputeActionScores(currentState, values, settings),
@@ -515,10 +585,10 @@ public static class BaristaIntroPlanningSolvers
 
     // ── Policy Iteration ─────────────────────────────────────────────────────
 
-    private static BaristaPlannerDecision RunPolicyIteration(
+    private static NpcTonePlannerDecision RunPolicyIteration(
         List<BaristaPlanningStateKey> states,
         BaristaPlanningStateKey currentState,
-        BaristaPlannerSettings settings,
+        NpcTonePlannerSettings settings,
         bool verboseLogs)
     {
         var values = states.ToDictionary(s => s, s => 0f);
@@ -553,7 +623,7 @@ public static class BaristaIntroPlanningSolvers
             if (stable) break;
         }
 
-        return new BaristaPlannerDecision
+        return new NpcTonePlannerDecision
         {
             bestAction = policy[currentState],
             actionScores = ComputeActionScores(currentState, values, settings),
@@ -567,7 +637,7 @@ public static class BaristaIntroPlanningSolvers
     private static (BaristaNarrativeAction bestAction, float bestScore) SelectBestAction(
         BaristaPlanningStateKey state,
         Dictionary<BaristaPlanningStateKey, float> values,
-        BaristaPlannerSettings settings)
+        NpcTonePlannerSettings settings)
     {
         var bestAction = Actions[0];
         float bestScore = float.NegativeInfinity;
@@ -582,7 +652,7 @@ public static class BaristaIntroPlanningSolvers
     private static Dictionary<BaristaNarrativeAction, float> ComputeActionScores(
         BaristaPlanningStateKey state,
         Dictionary<BaristaPlanningStateKey, float> values,
-        BaristaPlannerSettings settings)
+        NpcTonePlannerSettings settings)
     {
         var scores = new Dictionary<BaristaNarrativeAction, float>();
         foreach (var a in Actions) scores[a] = ComputeActionValue(state, a, values, settings);
@@ -593,7 +663,7 @@ public static class BaristaIntroPlanningSolvers
         BaristaPlanningStateKey state,
         BaristaNarrativeAction action,
         Dictionary<BaristaPlanningStateKey, float> values,
-        BaristaPlannerSettings settings)
+        NpcTonePlannerSettings settings)
     {
         float reward = EvaluateReward(state, action);
         var transitions = EvaluateTransitions(state, action);
@@ -1151,5 +1221,72 @@ public static class BaristaIntroPlanningSolvers
     {
         return string.Join(" | ", scores.OrderByDescending(p => p.Value)
                                         .Select(p => p.Key + "=" + p.Value.ToString("0.000")));
+    }
+
+    private readonly struct NpcTonePlannerCacheKey : IEquatable<NpcTonePlannerCacheKey>
+    {
+        private readonly BaristaPlannerMode plannerMode;
+        private readonly float gamma;
+        private readonly float epsilon;
+        private readonly int maxValueIterations;
+        private readonly int maxPolicyIterations;
+        private readonly int maxPolicyEvaluationSweeps;
+
+        public NpcTonePlannerCacheKey(BaristaPlannerMode plannerMode, NpcTonePlannerSettings settings)
+        {
+            this.plannerMode = plannerMode;
+            gamma = settings.gamma;
+            epsilon = settings.evaluationEpsilon;
+            maxValueIterations = settings.maxValueIterations;
+            maxPolicyIterations = settings.maxPolicyIterations;
+            maxPolicyEvaluationSweeps = settings.maxPolicyEvaluationSweeps;
+        }
+
+        public bool Equals(NpcTonePlannerCacheKey other)
+        {
+            return plannerMode == other.plannerMode &&
+                   gamma.Equals(other.gamma) &&
+                   epsilon.Equals(other.epsilon) &&
+                   maxValueIterations == other.maxValueIterations &&
+                   maxPolicyIterations == other.maxPolicyIterations &&
+                   maxPolicyEvaluationSweeps == other.maxPolicyEvaluationSweeps;
+        }
+
+        public override bool Equals(object obj)
+            => obj is NpcTonePlannerCacheKey other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = (int)plannerMode;
+                hash = (hash * 397) ^ gamma.GetHashCode();
+                hash = (hash * 397) ^ epsilon.GetHashCode();
+                hash = (hash * 397) ^ maxValueIterations;
+                hash = (hash * 397) ^ maxPolicyIterations;
+                hash = (hash * 397) ^ maxPolicyEvaluationSweeps;
+                return hash;
+            }
+        }
+    }
+
+    private sealed class NpcToneCachedPolicy
+    {
+        public readonly Dictionary<BaristaPlanningStateKey, BaristaNarrativeAction> policy;
+        public readonly Dictionary<BaristaPlanningStateKey, float> values;
+        public readonly int stateCount;
+        public readonly double buildDurationMs;
+
+        public NpcToneCachedPolicy(
+            Dictionary<BaristaPlanningStateKey, BaristaNarrativeAction> policy,
+            Dictionary<BaristaPlanningStateKey, float> values,
+            int stateCount,
+            double buildDurationMs)
+        {
+            this.policy = policy;
+            this.values = values;
+            this.stateCount = stateCount;
+            this.buildDurationMs = buildDurationMs;
+        }
     }
 }
