@@ -1,8 +1,8 @@
-# ROAE 6.3
+# ROAE
 
 Acest repo contine versiunea updatata a proiectului meu Unity, in care am inceput sa mut logica narativa dintr-o structura veche, bazata pe multe `if-else` greu de urmarit, intr-un sistem mai clar si mai scalabil.
 
-Focusul principal al upgrade-ului este trecerea catre un sistem de decizie pentru NPC-uri bazat pe `value iteration`, plus un sistem de dialog mai organizat, cu panel dedicat si alegeri care influenteaza atat stats-urile playerului, cat si relatia 1v1 cu fiecare NPC.
+Scopul principal al upgrade-ului este trecerea catre un sistem de decizie pentru NPC-uri bazat pe `value iteration/policy iteration`, plus un sistem de dialog mai organizat, cu panel dedicat si alegeri care influenteaza atat stats-urile playerului, cat si relatia 1v1 cu fiecare NPC.
 
 ## Ce s-a schimbat fata de varianta initiala
 
@@ -67,31 +67,6 @@ Fiecare `DialogueChoice` poate:
 - modifica relatia cu NPC-ul
 - declansa efecte narative suplimentare
 
-## De ce upgrade-ul asta conteaza
-
-Scopul nu este doar "sa mearga", ci sa pot extinde proiectul fara sa il stric de fiecare data cand adaug o interactiune noua.
-
-Trecerea de la `if-else` hardcodate la un sistem bazat pe stare + policy ajuta la:
-
-- cod mai usor de inteles
-- dialoguri mai coerente
-- NPC-uri mai usor de extins
-- separare mai buna intre continut, UI si logica
-- iteratie mai rapida pe comportamente narative
-
-## Structura curata a proiectului
-
-Codul propriu al jocului locuieste in `Assets/ROAE_2`. Pachetele externe sau generate de Unity, cum ar fi `AdventureCreator`, `TextMesh Pro`, `Packages` si `ProjectSettings`, nu trebuie reorganizate manual.
-
-Zonele principale sunt:
-
-- `Assets/ROAE_2/Scripts`: cod runtime/editor propriu, impartit pe module.
-- `Assets/ROAE_2/Data`: asset-uri de configurare si continut narativ.
-- `Assets/ROAE_2/Prefabs`: prefabs folosite de UI, gameplay si sisteme.
-- `Assets/ROAE_2/_Archive`: cod istoric sau experimente care nu sunt parte din runtime-ul curent.
-
-Pentru orientare rapida, folderele importante au README local. Regula de baza: daca un script nou apartine unui sistem existent, intra in folderul acelui sistem; daca introduce o categorie noua de responsabilitate, creeaza un folder nou cu README scurt.
-
 ## Stare curenta
 
-Momentan proiectul este in tranzitie: unele zone au fost deja mutate pe structura noua, iar altele inca pastreaza urme din sistemul vechi. Repo-ul documenteaza tocmai aceasta trecere catre o arhitectura narativa mai curata si mai usor de scalat.
+Momentan proiectul este in tranzitie: unele zone au fost deja mutate pe structura noua, iar altele inca pastreaza urme din sistemul vechi.
