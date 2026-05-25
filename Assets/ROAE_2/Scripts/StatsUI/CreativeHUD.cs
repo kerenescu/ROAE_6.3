@@ -29,12 +29,15 @@ public class CreativeHUD : MonoBehaviour
 
         // Culoare Empatie
         int emp = CreativeCore.Instance.empathy;
-        if (emp < 0) empathyIcon.color = empathyNegative;
-        else if (emp == 0) empathyIcon.color = empathyNeutral;
-        else empathyIcon.color = empathyPositive;
+        if (emp <= CreativeStatScale.EmpathyLowMax)
+            empathyIcon.color = empathyNegative;
+        else if (emp >= CreativeStatScale.EmpathyHighMin)
+            empathyIcon.color = empathyPositive;
+        else
+            empathyIcon.color = empathyNeutral;
 
         // Culoare Corupție – interpolare între healthy și toxic
-        float t = CreativeCore.Instance.plantCorruption / 5f;
+        float t = CreativeCore.Instance.plantCorruption / 100f;
         corruptionIcon.color = Color.Lerp(corruptionLow, corruptionHigh, t);
     }
 
@@ -43,9 +46,13 @@ public class CreativeHUD : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            transform.root.localScale = Vector3.one;
+            DontDestroyOnLoad(transform.root.gameObject);
+        }
         else
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
     }
 
     public void ShowStatChange(string statName, int amount)
