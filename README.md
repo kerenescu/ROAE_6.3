@@ -1,72 +1,86 @@
 # ROAE
 
-Acest repo contine versiunea updatata a proiectului meu Unity, in care am inceput sa mut logica narativa dintr-o structura veche, bazata pe multe `if-else` greu de urmarit, intr-un sistem mai clar si mai scalabil.
+Repo pentru versiunea Unity actualizata a proiectului **Root of All Evil**, cu focus pe un sistem AI narativ mai clar: NPC-urile nu mai aleg replici doar prin ramuri hardcodate, ci printr-un pipeline de stare, bias, planner si routing de dialog.
 
-Scopul principal al upgrade-ului este trecerea catre un sistem de decizie pentru NPC-uri bazat pe `value iteration/policy iteration`, plus un sistem de dialog mai organizat, cu panel dedicat si alegeri care influenteaza atat stats-urile playerului, cat si relatia 1v1 cu fiecare NPC.
+## Pipeline-ul AI pentru NPC-uri
 
-## Ce s-a schimbat fata de varianta initiala
+Fluxul principal este:
 
-Varianta veche a proiectului era construita in mare parte din conditii hardcodate si ramuri de dialog greu de mentinut. In aceasta versiune:
+```text
+raw player stats
+-> relationship cu NPC-ul
+-> bias afin specific NPC-ului
+-> context bucketizat
+-> model shared VI/PI
+-> actiune NPC
+-> ton narativ
+-> varianta de dialog
+```
 
-- am inceput sa inlocuiesc logica dezorganizata de tip `if-else` cu un planner bazat pe stari si actiuni
-- am creat un panel de dialog dedicat, gestionat printr-un `DialogueManager`
-- am legat replicile si alegerile de cele 3 stats principale ale playerului
-- am adaugat relatie 1v1 intre player si NPC, urmarita separat pentru fiecare personaj
-- am separat mai bine UI-ul, state-ul narativ si logica de decizie
-
-## Cele 3 stats ale playerului
-
-Sistemul curent foloseste 3 axe principale:
+Pe scurt, sistemul porneste de la valorile reale ale playerului:
 
 - `Creativity`
 - `Empathy`
 - `Plant Corruption`
 
-Aceste valori sunt tinute in `CreativeCore`, iar alegerile din dialog pot modifica direct aceste stats prin `StatsEffect`.
+La acestea se adauga relatia 1v1 cu NPC-ul curent. Apoi fiecare personaj poate aplica un **bias afin** propriu, adica o transformare controlata a felului in care acel NPC "citeste" aceleasi stats. Astfel, acelasi player poate fi interpretat diferit de Barista, Madame Lichenia sau Anticar.
 
-## Relatia 1v1 cu NPC-ul
+## Context bucketizat
 
-Pe langa stats-urile globale ale playerului, fiecare NPC important poate avea propria relatie cu playerul. Aceasta este gestionata prin `NpcRelationshipState`.
+Dupa bias, valorile sunt transformate in bucket-uri:
 
-Asta inseamna ca dialogul nu mai reactioneaza doar la "cine este playerul in general", ci si la istoricul lui cu un personaj anume. Practic, doua interactiuni cu stats similare pot produce tonuri diferite daca relatia cu NPC-ul este buna, neutra sau proasta.
+- creativity: `Low / Medium / High`
+- empathy: `Low / Neutral / High`
+- corruption: `Low / Medium / High`
+- relationship: `Bad / Neutral / Good`
 
-## Cum functioneaza Value Iteration aici
+Aceste bucket-uri formeaza starea compacta folosita de planner. In loc sa existe multe conditii de tip `if-else`, starea este evaluata de un model comun.
 
-In loc sa aleg manual fiecare reactie prin ramuri fixe, sistemul construieste o stare simplificata a contextului curent:
+## VI / PI shared model
 
-- bucket pentru `empathy`
-- bucket pentru `creativity`
-- bucket pentru `corruption`
-- bucket pentru `relationship`
+NPC-urile pot folosi acelasi model de decizie cu:
 
-Acestea sunt combinate intr-un `NpcDecisionState`.
+- `Value Iteration`
+- `Policy Iteration`
 
-Mai departe:
+Plannerul calculeaza o politica peste starile posibile si alege o actiune NPC precum `WarmOffer`, `ObserveNeutral`, `MischievousProbe`, `RevealHint` etc. Actiunea este apoi mapata catre un ton narativ:
 
-- `NpcStateDiscretizer` transforma valorile curente in bucket-uri usor de evaluat
-- `ValueIterationSolver` calculeaza ce actiune are valoarea asteptata cea mai buna pentru fiecare stare
-- `NpcPolicySolver` construieste si cache-uieste politica rezultata
-- `NpcActionSelector` cere actiunea potrivita pentru NPC-ul curent
+- `Warm`
+- `Neutral`
+- `Mischievous`
 
-Pe scurt, in loc sa spun "daca empathy > x si relationship < y atunci replica Z", las sistemul sa aleaga tonul optim pe baza unei politici calculate.
+Tonul rezultat face routing catre varianta concreta de dialog pentru momentul narativ curent.
 
-## Sistemul de dialog
+## Routing narativ
 
-Dialogul este gestionat prin `DialogueManager`, care:
+Dialogul final nu este ales direct din stats. El trece prin:
 
-- afiseaza panelul de dialog
-- reda liniile de text in ordine
-- afiseaza alegerile disponibile
-- aplica efectele alese
-- poate lega dialogul de portrete, flags si alte efecte narative
+```text
+planner action -> tone -> exact tone variant / fallback variant
+```
 
-Fiecare `DialogueChoice` poate:
+Asta permite aceluiasi moment narativ sa aiba versiuni diferite de text, fara sa duplicam toata logica de decizie in fiecare NPC.
 
-- duce la un alt nod de dialog
-- modifica stats-urile playerului
-- modifica relatia cu NPC-ul
-- declansa efecte narative suplimentare
+## Companion / Snail
 
-## Stare curenta
+Upgrade-ul adauga si un companion nou: melcul.
 
-Momentan proiectul este in tranzitie: unele zone au fost deja mutate pe structura noua, iar altele inca pastreaza urme din sistemul vechi.
+Companionul are propriul sistem de:
+
+- summon points
+- manifestare vizuala
+- stare emotionala
+- planner VI/PI simplificat
+- feedback din emotiile NPC-urilor
+
+Melcul poate rula in mod `Stats + NPC signals` sau `NPC Signals Only`. In modul `NPC Signals Only`, summon-ul si starea companionului sunt legate de semnalele sociale observate din NPC-uri, nu doar de stats-urile brute ale playerului.
+
+## De ce conteaza
+
+Scopul acestei versiuni este sa faca AI-ul narativ mai usor de testat si demonstrat:
+
+- aceleasi stats pot produce reactii diferite prin bias de personaj
+- VI si PI pot fi comparate pe acelasi context local
+- dialogurile sunt routate prin tonuri, nu prin ramuri hardcodate
+- companionul reactioneaza la climatul emotional creat de NPC-uri
+
