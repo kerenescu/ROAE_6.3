@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5e0b1de56d435c94c5d48b6e75a2c6, type: 3}
+  m_Name: BaristaToneDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDefinition
+  npcId: barista
+  displayName: Barista
+  plannerConfig: {fileID: 11400000, guid: a14d05e2b84b4cbe9f0a0e5c2e781003, type: 2}
+  statAffineBias:
+    enabled: 1
+    creativity:
+      bias: 8
+      creativityWeight: 0.75
+      empathyWeight: 0.55
+      corruptionWeight: -0.12
+      relationshipWeight: 0
+    empathy:
+      bias: 18
+      creativityWeight: 0.55
+      empathyWeight: 1.05
+      corruptionWeight: -0.2
+      relationshipWeight: 0.1
+    corruption:
+      bias: -10
+      creativityWeight: 0.05
+      empathyWeight: -0.3
+      corruptionWeight: 0.75
+      relationshipWeight: -0.1
+    relationship:
+      bias: 0
+      creativityWeight: 0
+      empathyWeight: 0.04
+      corruptionWeight: -0.05
+      relationshipWeight: 1
+  availableActions: 0000000001000000020000000300000004000000060000000a0000000b000000
+  responseSet: {fileID: 0}

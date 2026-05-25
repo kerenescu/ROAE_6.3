@@ -23,40 +23,40 @@ public class StatsEffect
         int empathyBefore = core.empathy;
         int corruptionBefore = core.plantCorruption;
 
+        int appliedEmpathyDelta = CreativeStatScale.ConvertLegacyEmpathyDelta(empathy);
+        int appliedCorruptionDelta = CreativeStatScale.ConvertLegacyCorruptionDelta(plantCorruption);
+
         Debug.Log(
             "[STATS][StatsEffect.Apply][START] " +
             "deltaCreativity=" + creativity + " " +
-            "deltaEmpathy=" + empathy + " " +
-            "deltaCorruption=" + plantCorruption + " " +
-            "beforeCreativity=" + creativityBefore + " " +
-            "beforeEmpathy=" + empathyBefore + " " +
-            "beforeCorruption=" + corruptionBefore);
+            "deltaEmpathy=" + empathy + "->" + appliedEmpathyDelta + " " +
+            "deltaCorruption=" + plantCorruption + "->" + appliedCorruptionDelta);
 
         if (creativity != 0)
         {
-            Debug.Log("[STATS][StatsEffect.Apply] applying creativity delta=" + creativity);
+            //Debug.Log("[STATS][StatsEffect.Apply] applying creativity delta=" + creativity);
             core.AdjustCreativity(creativity);
             if (hud != null) hud.ShowStatChange("creativity", creativity);
         }
 
         if (empathy != 0)
         {
-            Debug.Log("[STATS][StatsEffect.Apply] applying empathy delta=" + empathy);
-            core.AdjustEmpathy(empathy);
-            if (hud != null) hud.ShowStatChange("empathy", empathy);
+            Debug.Log("[STATS][StatsEffect.Apply] applying empathy delta=" + appliedEmpathyDelta);
+            core.AdjustEmpathy(appliedEmpathyDelta);
+            if (hud != null) hud.ShowStatChange("empathy", appliedEmpathyDelta);
         }
 
         if (plantCorruption != 0)
         {
-            core.AdjustCorruption(plantCorruption);
-            if (hud != null) hud.ShowStatChange("plantCorruption", plantCorruption);
+            core.AdjustCorruption(appliedCorruptionDelta);
+            if (hud != null) hud.ShowStatChange("plantCorruption", appliedCorruptionDelta);
         }
 
-        Debug.Log(
-            "[STATS][StatsEffect.Apply][END] " +
-            "afterCreativity=" + core.creativity + " " +
-            "afterEmpathy=" + core.empathy + " " +
-            "afterCorruption=" + core.plantCorruption);
+        //Debug.Log(
+        //    "[STATS][StatsEffect.Apply][END] " +
+        //    "afterCreativity=" + core.creativity + " " +
+        //    "afterEmpathy=" + core.empathy + " " +
+        //    "afterCorruption=" + core.plantCorruption);
 
         core.PrintStats();
     }

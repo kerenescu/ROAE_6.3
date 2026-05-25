@@ -55,18 +55,21 @@ public class NpcToneDialogueController : NpcToneDialogueControllerBase
     public BaristaPlannerMode ResolvePlannerMode()
     {
         NpcToneDialogueProfile activeProfile = ResolveAssignedOrFallbackProfile();
-        return activeProfile != null ? activeProfile.plannerMode : BaristaPlannerMode.PolicyIteration;
+        return activeProfile != null ? activeProfile.ResolveEffectivePlannerMode() : BaristaPlannerMode.PolicyIteration;
     }
 
     public NpcTonePlannerSettings ResolvePlannerSettings()
     {
         NpcToneDialogueProfile activeProfile = ResolveAssignedOrFallbackProfile();
-        return activeProfile != null ? activeProfile.ToPlannerSettings() : NpcTonePlannerSettings.Default;
+        return activeProfile != null ? activeProfile.ResolvePlannerSettings() : NpcTonePlannerSettings.Default;
     }
 
     public BaristaIntroTone ResolveTone(NpcTonePlannerEvaluation evaluation)
     {
         NpcToneDialogueProfile activeProfile = ResolveAssignedOrFallbackProfile();
+        if (activeProfile != null && activeProfile.DecisionDefinition != null)
+            return BaristaDialogueResolver.NormalizeTone(evaluation.mappedTone);
+
         NpcToneDialogueToneSelectionMode toneMode = activeProfile != null
             ? activeProfile.toneSelectionMode
             : NpcToneDialogueToneSelectionMode.UsePlanner;
@@ -90,14 +93,14 @@ public class NpcToneDialogueController : NpcToneDialogueControllerBase
     public void SetPlannerMode(BaristaPlannerMode mode)
     {
         if (profile != null)
-            profile.plannerMode = mode;
+            profile.ApplyPlannerMode(mode);
 
         if (momentProfiles != null)
         {
             for (int i = 0; i < momentProfiles.Count; i++)
             {
                 if (momentProfiles[i] != null)
-                    momentProfiles[i].plannerMode = mode;
+                    momentProfiles[i].ApplyPlannerMode(mode);
             }
         }
     }

@@ -86,9 +86,10 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
                 relationship = runtimeState.relationship,
                 readUnknownText = runtimeState.readUnknownText,
                 introDone = runtimeState.introDone,
-                pendingDrink = runtimeState.pendingDrink,
-                pendingDrinkAcknowledged = runtimeState.pendingDrinkAcknowledged,
-                heldDrink = runtimeState.heldDrink
+                hasDrink = runtimeState.hasDrink,
+                pendingDrink = BaristaDrinkType.None,
+                pendingDrinkAcknowledged = false,
+                heldDrink = runtimeState.hasDrink ? runtimeState.heldDrink : BaristaDrinkType.None
             },
             ResolvePlannerMode(),
             ResolvePlannerSettings(),
@@ -114,7 +115,18 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
 
     public NpcTonePlannerEvaluation Evaluate(NpcTonePlanningRuntimeState runtimeState)
     {
-        return NpcTonePlanningSolvers.Evaluate(
+        NpcToneDialogueProfile activeProfile = toneController != null ? toneController.ActiveProfile : null;
+
+        if (activeProfile != null)
+        {
+            return NarrativeTonePlanningSolvers.Evaluate(
+                runtimeState,
+                activeProfile,
+                verbosePlannerLogs,
+                auditLogs);
+        }
+
+        return NarrativeTonePlanningSolvers.Evaluate(
             runtimeState,
             ResolvePlannerMode(),
             ResolvePlannerSettings(),
@@ -124,19 +136,19 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
 
     private NpcTonePlanningRuntimeState ExtractRuntimeState()
     {
-        CreativeCore creativeCore = CreativeCore.Instance;
-
+        NpcFactContext factContext = NpcFactContext.BuildLive("barista");
         NpcTonePlanningRuntimeState runtimeState = new NpcTonePlanningRuntimeState
         {
-            readUnknownText = BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.ReadUnknownText01),
-            creativity = creativeCore != null ? creativeCore.Creativity : PlayerPrefs.GetInt("creativity", 50),
-            corruption = creativeCore != null ? creativeCore.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", 0),
-            empathy = creativeCore != null ? creativeCore.Empathy : PlayerPrefs.GetInt("empathy", 0),
-            relationship = BaristaWelcomeState.GetBaristaRelationship(),
+            readUnknownText = factContext.readUnknownText,
+            creativity = factContext.creativity,
+            corruption = factContext.corruption,
+            empathy = factContext.empathy,
+            relationship = factContext.relationship,
             introDone = ReadCurrentIntroDoneState(),
-            pendingDrink = BaristaWelcomeState.GetPendingDrink(),
-            pendingDrinkAcknowledged = BaristaWelcomeState.HasAcknowledgedPendingDrink(),
-            heldDrink = BaristaWelcomeState.GetHeldDrink()
+            hasDrink = factContext.hasDrink,
+            pendingDrink = BaristaDrinkType.None,
+            pendingDrinkAcknowledged = false,
+            heldDrink = factContext.hasDrink ? factContext.heldDrink : BaristaDrinkType.None
         };
 
         if (verboseStateExtraction)
@@ -147,6 +159,7 @@ public sealed class BaristaWelcomeBrain : MonoBehaviour, INarrativeMomentPlanner
 
             Debug.Log(
                 "[ROAE][BaristaWelcomeBrain][StateExtraction] source=" + stateSource +
+                " factContext={" + factContext.ToDebugString() + "}" +
                 " runtimeState={" + runtimeState.ToDebugString() + "}");
         }
 

@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82b6803c8ec05e44bba9340bc594407, type: 3}
+  m_Name: MadameToneRewardProfile
+  m_EditorClassIdentifier: Assembly-CSharp::NpcRewardProfile
+  baseRewards:
+  - action: 0
+    reward: 2.2
+  - action: 1
+    reward: 1.4
+  - action: 2
+    reward: 1.9
+  - action: 3
+    reward: 1.6
+  - action: 8
+    reward: 1.5
+  - action: 11
+    reward: 1.25
+  rules:
+  - action: 2
+    rewardDelta: 0.8
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 0
+    creativity: 0
+    useCorruption: 0
+    corruption: 0
+    useRelationship: 1
+    relationship: 0
+  - action: 1
+    rewardDelta: 0.9
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 0
+    creativity: 0
+    useCorruption: 0
+    corruption: 0
+    useRelationship: 1
+    relationship: 2
+  - action: 1
+    rewardDelta: 0.5
+    useEmpathy: 1
+    empathy: 2
+    useCreativity: 0
+    creativity: 0
+    useCorruption: 0
+    corruption: 0
+    useRelationship: 0
+    relationship: 0
+  - action: 3
+    rewardDelta: 0.7
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 1
+    creativity: 2
+    useCorruption: 0
+    corruption: 0
+    useRelationship: 0
+    relationship: 0
+  - action: 8
+    rewardDelta: 0.8
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 1
+    creativity: 2
+    useCorruption: 0
+    corruption: 0
+    useRelationship: 0
+    relationship: 0
+  - action: 0
+    rewardDelta: 0.4
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 0
+    creativity: 0
+    useCorruption: 1
+    corruption: 0
+    useRelationship: 0
+    relationship: 0
+  - action: 11
+    rewardDelta: 0.3
+    useEmpathy: 0
+    empathy: 0
+    useCreativity: 0
+    creativity: 0
+    useCorruption: 1
+    corruption: 2
+    useRelationship: 0
+    relationship: 0

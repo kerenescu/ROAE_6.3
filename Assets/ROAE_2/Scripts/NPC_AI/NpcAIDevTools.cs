@@ -21,8 +21,8 @@ public class NpcAIDevTools : MonoBehaviour
 
     [Header("Reset")]
     [SerializeField] private int resetCreativity = 40;
-    [SerializeField] private int resetEmpathy = 0;
-    [SerializeField] private int resetCorruption = 0;
+    [SerializeField] private int resetEmpathy = CreativeStatScale.DevResetEmpathy;
+    [SerializeField] private int resetCorruption = CreativeStatScale.DevResetCorruption;
     [SerializeField] private string[] npcIdsToReset = { "barista", "anticar", "madame_lichenia" };
     [SerializeField] private string[] extraPlayerPrefFlagsToReset;
     [SerializeField] private DialogueFlag[] dialogueFlagsToReset;
@@ -75,6 +75,9 @@ public class NpcAIDevTools : MonoBehaviour
             }
         }
 
+        NpcRelationshipState.SetDebugSharedRelationshipOverride(false, 0);
+        CompanionSystem.Instance?.ResetSocialStateForDebug();
+
         NpcPolicySolver.ClearCache();
         NpcTonePlanningSolvers.ClearCache();
         PlayerPrefs.Save();
@@ -83,6 +86,8 @@ public class NpcAIDevTools : MonoBehaviour
             "[ROAE][AI][DevReset][SUCCESS] creativity=" + creativity +
             " empathy=" + empathy +
             " corruption=" + corruption +
+            " sharedRelationshipOverride=reset" +
+            " companionSocialState=reset" +
             " npcPlannerCache=cleared" +
             " tonePlannerCache=cleared" +
             " baristaState=reset" +

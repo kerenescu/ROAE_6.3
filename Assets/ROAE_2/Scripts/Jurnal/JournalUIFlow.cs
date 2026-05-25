@@ -92,9 +92,13 @@ public class JournalUIFlow : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            transform.root.localScale = Vector3.one;
+            DontDestroyOnLoad(transform.root.gameObject);
+        }
         else
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
     }
 
     private void Update()

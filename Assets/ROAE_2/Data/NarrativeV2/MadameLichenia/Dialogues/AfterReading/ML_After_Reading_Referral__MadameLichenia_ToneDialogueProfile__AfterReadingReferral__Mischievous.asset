@@ -14,29 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Madame Lichenia
-    Text: The reading is done, but one thread is still pulling at you.
+    Text: The reading is done, but I wouldn't be so calm about it, if I was to be
+      in your shoes...
   - Speaker: Madame Lichenia
-    Text: There is an antiquarian with a blue atlas hidden beneath his counter.
+    Text: However, you might be interested in what I'm going to tell you.
+  - Speaker: Rina
+    Text: I'm listening?
+  - Speaker: Madame Lichenia
+    Text: 'Listen carefully: your savior is between the shelves.'
+  - Speaker: Rina
+    Text: Like... in a Library?
+  - Speaker: Madame Lichenia
+    Text: Yes, but your like is not to borrow, you must PAY for it
+  - Speaker: Rina
+    Text: Pay..
   choices:
-  - choiceText: I'll ask him about it.
+  - choiceText: I will think about your riddle..
     nextDialogue: {fileID: 11400000, guid: 575538df813b58d43b48de3974a0a579, type: 2}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: 6
+      empathy: 10
+      plantCorruption: 15
     relationshipEffect:
-      npcId: 
-      amount: 0
+      npcId: madame_lichenia
+      amount: 10
     extraEffects:
     - {fileID: 11400000, guid: 8d8424af305a4b94d8e1d1fe46528df1, type: 2}
     - {fileID: 11400000, guid: 78bb02793c98b1545b1ebdbfbd3b6e71, type: 2}
-  - choiceText: Not yet.
+  - choiceText: Why are you talking to me like that? What have I done to you?
     nextDialogue: {fileID: 11400000, guid: 55094d7a690251f48be529ef25643d1e, type: 2}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: 15
+      empathy: -10
+      plantCorruption: -20
     relationshipEffect:
-      npcId: 
-      amount: 0
+      npcId: barista
+      amount: 20
     extraEffects: []

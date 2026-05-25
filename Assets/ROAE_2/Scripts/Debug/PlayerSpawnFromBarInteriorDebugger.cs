@@ -37,7 +37,7 @@ public class PlayerSpawnFromBarInteriorDebugger : MonoBehaviour
 
                     if (dist > 2f)
                     {
-                        Debug.LogWarning("[FIX] Mutez playerul forțat pe marker!");
+                        // Debug.LogWarning("[FIX] Mutez playerul forțat pe marker!");
                         player.transform.position = marker.transform.position;
                     }
                     else
@@ -47,7 +47,7 @@ public class PlayerSpawnFromBarInteriorDebugger : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError($"[EROARE] Markerul '{markerName}' NU a fost găsit în scenă!");
+                    // Debug.LogError($"[EROARE] Markerul '{markerName}' NU a fost găsit în scenă!");
                 }
             }
             else
@@ -57,7 +57,7 @@ public class PlayerSpawnFromBarInteriorDebugger : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[EROARE] Playerul NU a fost găsit în scenă după întârziere!");
+            // Debug.LogError("[EROARE] Playerul NU a fost găsit în scenă după întârziere!");
         }
     }
 }

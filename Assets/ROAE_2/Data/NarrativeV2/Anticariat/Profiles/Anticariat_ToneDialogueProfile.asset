@@ -27,6 +27,8 @@ MonoBehaviour:
   requiredFalseFlags: []
   skipWhenCompleted: 0
   completedFlagKey: 
+  decisionDefinition: {fileID: 11400000, guid: b24d05e2b84b4cbe9f0a0e5c2e781004, type: 2}
+  actionToneMappings: []
   plannerMode: 0
   gamma: 0.85
   epsilon: 0.0001

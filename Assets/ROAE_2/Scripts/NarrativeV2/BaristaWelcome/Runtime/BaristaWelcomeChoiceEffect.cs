@@ -1,4 +1,5 @@
 using UnityEngine;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 public enum BaristaWelcomeChoiceCommand
 {
@@ -22,68 +23,79 @@ public class BaristaWelcomeChoiceEffect : DialogueChoiceEffect
 
     public override void Apply()
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        string beforeState = CaptureStateSnapshot();
+
         switch (command)
         {
             case BaristaWelcomeChoiceCommand.MarkIntroDone:
                 BaristaWelcomeState.SetFlag(BaristaWelcomeKeys.BaristaIntroDone, true);
-                Log("MarkIntroDone");
+                Log("MarkIntroDone", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.ApplyNaiveResponse:
                 BaristaWelcomeState.ApplyNaiveResponseEffects();
-                Log("ApplyNaiveResponse");
+                Log("ApplyNaiveResponse", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.ApplyGuardedResponse:
                 BaristaWelcomeState.ApplyGuardedResponseEffects();
-                Log("ApplyGuardedResponse");
+                Log("ApplyGuardedResponse", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.GiveAcceptedDrinkIfPossible:
                 BaristaWelcomeState.DeliverPendingDrinkIfPossible();
-                Log("DeliverPendingDrinkIfPossible");
+                Log("DeliverPendingDrinkIfPossible", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.OrderCola:
                 BaristaWelcomeState.TryOrderCola();
-                Log("OrderCola");
+                Log("OrderCola", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.OrderPhotosyntheticSap:
                 BaristaWelcomeState.TryOrderPhotosyntheticSap();
-                Log("OrderPhotosyntheticSap");
+                Log("OrderPhotosyntheticSap", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.DrinkHeldDrink:
                 BaristaWelcomeState.TryDrinkHeldDrink();
-                Log("DrinkHeldDrink");
+                Log("DrinkHeldDrink", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.DiscardHeldDrink:
                 BaristaWelcomeState.DiscardHeldDrink();
-                Log("DiscardHeldDrink");
+                Log("DiscardHeldDrink", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
 
             case BaristaWelcomeChoiceCommand.AcknowledgePendingDrink:
                 BaristaWelcomeState.AcknowledgePendingDrink();
-                Log("AcknowledgePendingDrink");
+                Log("AcknowledgePendingDrink", beforeState, stopwatch.Elapsed.TotalMilliseconds);
                 break;
         }
     }
 
-    private void Log(string msg)
+    private void Log(string msg, string beforeState, double durationMs)
     {
         if (!debugLog) return;
 
         Debug.Log(
-            "[ROAE][BaristaWelcomeChoiceEffect] " + msg +
-            " | heldDrink=" + BaristaWelcomeState.GetHeldDrink() +
-            " | pendingDrink=" + BaristaWelcomeState.GetPendingDrink() +
-            " | hasAlreadyDrink=" + BaristaWelcomeState.HasAlreadyDrink() +
-            " | introDone=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.BaristaIntroDone) +
-            " | accepted=" + BaristaWelcomeState.HasAcceptedFirstDrink() +
-            " | drankCola=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.DrankCola) +
-            " | drankPhotosynthetic=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.DrankPhotosyntheticDrink) +
-            " | tone=" + BaristaWelcomeState.GetIntroTone());
+            "[ROAE][AI][BaristaWelcomeChoiceEffect][SUCCESS] command=" + msg +
+            " before={" + beforeState + "}" +
+            " after={" + CaptureStateSnapshot() + "}" +
+            " durationMs=" + durationMs.ToString("0.00"));
+    }
+
+    private static string CaptureStateSnapshot()
+    {
+        return "heldDrink=" + BaristaWelcomeState.GetHeldDrink() +
+               " pendingDrink=" + BaristaWelcomeState.GetPendingDrink() +
+               " hasAlreadyDrink=" + BaristaWelcomeState.HasAlreadyDrink() +
+               " introDone=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.BaristaIntroDone) +
+               " accepted=" + BaristaWelcomeState.HasAcceptedFirstDrink() +
+               " pendingAcknowledged=" + BaristaWelcomeState.HasAcknowledgedPendingDrink() +
+               " drankCola=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.DrankCola) +
+               " drankPhotosynthetic=" + BaristaWelcomeState.GetFlag(BaristaWelcomeKeys.DrankPhotosyntheticDrink) +
+               " tone=" + BaristaWelcomeState.GetIntroTone();
     }
 }

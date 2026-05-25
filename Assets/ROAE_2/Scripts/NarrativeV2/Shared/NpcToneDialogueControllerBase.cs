@@ -3,13 +3,9 @@ using Stopwatch = System.Diagnostics.Stopwatch;
 
 public abstract class NpcToneDialogueControllerBase : MonoBehaviour
 {
-    private const int DefaultCreativity = 50;
-    private const int DefaultEmpathy = 0;
-    private const int DefaultCorruption = 0;
-
-    private const int DevResetCreativity = 40;
-    private const int DevResetEmpathy = 0;
-    private const int DevResetCorruption = 0;
+    private const int DevResetCreativity = CreativeStatScale.DevResetCreativity;
+    private const int DevResetEmpathy = CreativeStatScale.DevResetEmpathy;
+    private const int DevResetCorruption = CreativeStatScale.DevResetCorruption;
 
     private NpcToneDialogueProfile legacyProfileCache;
 
@@ -18,6 +14,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         public readonly NpcToneDialogueProfile profile;
         public readonly NpcToneDialoguePhaseDefinition phase;
         public readonly NpcTonePlanningRuntimeState runtimeState;
+        public readonly string runtimeStateDebug;
         public readonly NpcTonePlannerEvaluation evaluation;
         public readonly BaristaIntroTone tone;
         public readonly DialogueData dialogue;
@@ -28,6 +25,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
             NpcToneDialogueProfile profile,
             NpcToneDialoguePhaseDefinition phase,
             NpcTonePlanningRuntimeState runtimeState,
+            string runtimeStateDebug,
             NpcTonePlannerEvaluation evaluation,
             BaristaIntroTone tone,
             DialogueData dialogue,
@@ -37,6 +35,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
             this.profile = profile;
             this.phase = phase;
             this.runtimeState = runtimeState;
+            this.runtimeStateDebug = runtimeStateDebug ?? runtimeState.ToDebugString();
             this.evaluation = evaluation;
             this.tone = tone;
             this.dialogue = dialogue;
@@ -88,6 +87,12 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         }
 
         LogOutcome(decision, stopwatch.Elapsed.TotalMilliseconds);
+        CompanionSystem.Instance?.ObserveNpcPlannerFeedback(
+            decision.profile.NpcIdOrDefault,
+            decision.evaluation.neutralScore,
+            decision.evaluation.warmScore,
+            decision.evaluation.mischievousScore,
+            decision.tone);
         dialogueManager.StartDialogue(decision.dialogue);
         LogDialogueSuccess(decision, stopwatch.Elapsed.TotalMilliseconds);
     }
@@ -112,7 +117,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         LogOutcome(decision, stopwatch.Elapsed.TotalMilliseconds);
         Debug.Log(
             "[ROAE][AI][" + profile.DevSummaryLogTagOrDefault(ControllerLogPrefix) + "][SUMMARY] state={" +
-            decision.runtimeState.ToDebugString() +
+            decision.runtimeStateDebug +
             "} result={" + BuildDecisionResult(decision) + "}");
     }
 
@@ -185,18 +190,23 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         out NpcToneDialogueDecision decision,
         out string failReason)
     {
-        if (!profile.TryResolvePhase(out NpcToneDialoguePhaseDefinition phase))
+        NpcFactContext factContext = BuildFactContext(profile);
+        string introDoneFlagKey = ResolveIntroDoneFlagKey(profile);
+
+        if (!profile.TryResolvePhase(factContext, introDoneFlagKey, out NpcToneDialoguePhaseDefinition phase))
         {
             decision = default;
             failReason = "no_matching_phase";
             return false;
         }
 
-        NpcTonePlanningRuntimeState runtimeState = BuildRuntimeState(profile, phase);
-        NpcTonePlannerEvaluation evaluation = NpcTonePlanningSolvers.Evaluate(
+        NpcTonePlanningRuntimeState runtimeState = BuildRuntimeState(factContext, phase, introDoneFlagKey);
+        NpcTonePlannerSettings plannerSettings = profile.ResolvePlannerSettings();
+        string runtimeStateDebug = runtimeState.ToDebugString(plannerSettings.bucketConfig);
+        LogDecisionInput(profile, phase, runtimeStateDebug);
+        NpcTonePlannerEvaluation evaluation = NarrativeTonePlanningSolvers.Evaluate(
             runtimeState,
-            profile.plannerMode,
-            profile.ToPlannerSettings(),
+            profile,
             VerbosePlannerLogsEnabled,
             AuditLogsEnabled);
 
@@ -213,6 +223,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
             profile,
             phase,
             runtimeState,
+            runtimeStateDebug,
             evaluation,
             tone,
             resolution.dialogue,
@@ -222,18 +233,36 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         return true;
     }
 
+    private NpcFactContext BuildFactContext(NpcToneDialogueProfile profile)
+    {
+        return NpcFactContext.BuildLive(profile != null ? profile.NpcIdOrDefault : "npc");
+    }
+
+    private NpcTonePlanningRuntimeState BuildRuntimeState(
+        NpcFactContext factContext,
+        NpcToneDialoguePhaseDefinition phase,
+        string introDoneFlagKey)
+    {
+        return phase.BuildRuntimeState(factContext, introDoneFlagKey);
+    }
+
+    private string ResolveIntroDoneFlagKey(NpcToneDialogueProfile profile)
+    {
+        if (profile != null &&
+            string.Equals(profile.NpcIdOrDefault, "barista", System.StringComparison.OrdinalIgnoreCase))
+        {
+            return BaristaWelcomeKeys.BaristaIntroDone;
+        }
+
+        return string.Empty;
+    }
+
     private NpcTonePlanningRuntimeState BuildRuntimeState(
         NpcToneDialogueProfile profile,
         NpcToneDialoguePhaseDefinition phase)
     {
-        CreativeCore core = CreativeCore.Instance ?? Object.FindFirstObjectByType<CreativeCore>();
-
-        int creativity = core != null ? core.Creativity : PlayerPrefs.GetInt("creativity", DefaultCreativity);
-        int corruption = core != null ? core.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", DefaultCorruption);
-        int empathy = core != null ? core.Empathy : PlayerPrefs.GetInt("empathy", DefaultEmpathy);
-        int relationship = NpcRelationshipState.GetRelationshipScore(profile.NpcIdOrDefault);
-
-        return phase.BuildRuntimeState(creativity, corruption, empathy, relationship);
+        NpcFactContext factContext = BuildFactContext(profile);
+        return BuildRuntimeState(factContext, phase, ResolveIntroDoneFlagKey(profile));
     }
 
     private NpcToneDialogueProfile ResolveProfile()
@@ -258,11 +287,29 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
 
         Debug.Log(
             "[ROAE][AI][" + decision.profile.OutcomeLogTagOrDefault(ControllerLogPrefix) + "][SUCCESS] planner=" +
-            decision.profile.plannerMode +
+            decision.profile.ResolveEffectivePlannerMode() +
             " moment=" + decision.profile.MomentIdOrDefault +
-            " state={" + decision.runtimeState.ToDebugString() + "}" +
+            " state={" + decision.runtimeStateDebug + "}" +
             " result={" + BuildDecisionResult(decision) + "}" +
             " durationMs=" + FormatDuration(durationMs));
+    }
+
+    private void LogDecisionInput(
+        NpcToneDialogueProfile profile,
+        NpcToneDialoguePhaseDefinition phase,
+        string runtimeStateDebug)
+    {
+        if (!AuditLogsEnabled)
+            return;
+
+        Debug.Log(
+            "[ROAE][AI][" + profile.OutcomeLogTagOrDefault(ControllerLogPrefix) + "][INPUT] npc=" +
+            profile.NpcIdOrDefault +
+            " moment=" + profile.MomentIdOrDefault +
+            " phase=" + phase.PhaseIdOrDefault +
+            " planner=" + profile.ResolveEffectivePlannerMode() +
+            " toneMode=" + profile.toneSelectionMode +
+            " state={" + runtimeStateDebug + "}");
     }
 
     private void LogDialogueSuccess(NpcToneDialogueDecision decision, double durationMs)
@@ -270,13 +317,13 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         if (!AuditLogsEnabled)
             return;
 
-        Debug.Log(
-            "[ROAE][AI][" + decision.profile.DialogueLogTagOrDefault(ControllerLogPrefix) + "][SUCCESS] phase=" +
-            decision.phase.PhaseIdOrDefault +
-            " moment=" + decision.profile.MomentIdOrDefault +
-            " tone=" + decision.tone +
-            " dialogue=" + DialogueName(decision.dialogue) +
-            " durationMs=" + FormatDuration(durationMs));
+        //Debug.Log(
+        //    "[ROAE][AI][" + decision.profile.DialogueLogTagOrDefault(ControllerLogPrefix) + "][SUCCESS] phase=" +
+        //    decision.phase.PhaseIdOrDefault +
+        //    " moment=" + decision.profile.MomentIdOrDefault +
+        //    " tone=" + decision.tone +
+        //    " dialogue=" + DialogueName(decision.dialogue) +
+        //    " durationMs=" + FormatDuration(durationMs));
 
         Debug.Log(
             "[ROAE][AI][" + decision.profile.DialogueLogTagOrDefault(ControllerLogPrefix) + "][TONE] tone - [" +
@@ -295,8 +342,16 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         string tag = profile != null
             ? profile.DialogueLogTagOrDefault(ControllerLogPrefix)
             : ControllerLogPrefix + "Dialogue";
+        string context = profile != null
+            ? " npc=" + profile.NpcIdOrDefault +
+              " moment=" + profile.MomentIdOrDefault +
+              " planner=" + profile.ResolveEffectivePlannerMode()
+            : string.Empty;
 
-        Debug.LogWarning("[ROAE][AI][" + tag + "][FAIL] reason=" + reason + " durationMs=" + FormatDuration(durationMs));
+        Debug.LogWarning(
+            "[ROAE][AI][" + tag + "][FAIL] reason=" + reason +
+            context +
+            " durationMs=" + FormatDuration(durationMs));
     }
 
     private string BuildDecisionResult(NpcToneDialogueDecision decision)
@@ -309,7 +364,7 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
                " routing=" + decision.routingKind +
                " sourceTone=" + decision.routingSourceTone +
                " dialogue=" + DialogueName(decision.dialogue) +
-               " reason=planner=" + decision.profile.plannerMode + " " + decision.evaluation.BuildDebugString();
+               " reason=planner=" + decision.profile.ResolveEffectivePlannerMode() + " " + decision.evaluation.BuildDebugString();
     }
 
     private static string DialogueName(DialogueData dialogue)
@@ -321,6 +376,9 @@ public abstract class NpcToneDialogueControllerBase : MonoBehaviour
         NpcToneDialogueProfile profile,
         NpcTonePlannerEvaluation evaluation)
     {
+        if (profile != null && profile.DecisionDefinition != null)
+            return BaristaDialogueResolver.NormalizeTone(evaluation.mappedTone);
+
         if (profile == null)
             return BaristaDialogueResolver.NormalizeTone(evaluation.mappedTone);
 

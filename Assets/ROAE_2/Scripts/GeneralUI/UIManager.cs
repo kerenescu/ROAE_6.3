@@ -40,6 +40,8 @@ public class UIContainerManager : MonoBehaviour
 
     private void TryReassignReferences(Scene scene, LoadSceneMode mode)
     {
+        transform.root.localScale = Vector3.one;
+
         if (phoneButton_Open == null)
             phoneButton_Open = GameObject.Find("PhoneButton_Open");
 
@@ -51,5 +53,23 @@ public class UIContainerManager : MonoBehaviour
 
         if (journalButton_Close == null)
             journalButton_Close = GameObject.Find("JurnalButton_Close");
+
+        if (statsUI == null)
+            statsUI = GameObject.Find("StatsUI");
+
+        if (statsUI != null)
+            statsUI.SetActive(true);
+
+        bool phoneOpen = PhoneUIFlow.Instance != null && PhoneUIFlow.Instance.IsPhoneOpen();
+        if (phoneButton_Open != null)
+            phoneButton_Open.SetActive(!phoneOpen);
+        if (phoneButton_Close != null)
+            phoneButton_Close.SetActive(phoneOpen);
+
+        bool journalOpen = JournalUIFlow.Instance != null && JournalUIFlow.Instance.IsJournalOpen();
+        if (journalButton_Open != null)
+            journalButton_Open.SetActive(!journalOpen);
+        if (journalButton_Close != null)
+            journalButton_Close.SetActive(journalOpen);
     }
 }

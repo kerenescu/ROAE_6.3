@@ -29,11 +29,11 @@ MonoBehaviour:
   - choiceText: Fine. I'll get rid of it.
     nextDialogue: {fileID: 0}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: 1
+      empathy: -4
+      plantCorruption: 1
     relationshipEffect:
-      npcId: 
-      amount: 0
+      npcId: barista
+      amount: -4
     extraEffects:
     - {fileID: 11400000, guid: 5fa59da31089b8d4ea8fbe0b5477050b, type: 2}

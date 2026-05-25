@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Madame Lichenia
-    Text: So the circle closed after all.
+    Text: Well done, dear! So the circle closed after all.
   - Speaker: Madame Lichenia
     Text: Good. Some truths only survive when three strangers carry them together.
   choices: []

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5e0b1de56d435c94c5d48b6e75a2c6, type: 3}
+  m_Name: MadameToneDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDefinition
+  npcId: madame_lichenia
+  displayName: Madame Lichenia
+  plannerConfig: {fileID: 11400000, guid: a14d05e2b84b4cbe9f0a0e5c2e781003, type: 2}
+  statAffineBias:
+    enabled: 1
+    creativity:
+      bias: 4
+      creativityWeight: 0.95
+      empathyWeight: 0.1
+      corruptionWeight: 0.1
+      relationshipWeight: 0
+    empathy:
+      bias: -2
+      creativityWeight: 0.05
+      empathyWeight: 0.8
+      corruptionWeight: -0.35
+      relationshipWeight: 0
+    corruption:
+      bias: 11
+      creativityWeight: 0.1
+      empathyWeight: -0.15
+      corruptionWeight: 1.05
+      relationshipWeight: 0
+    relationship:
+      bias: -2
+      creativityWeight: 0.02
+      empathyWeight: 0
+      corruptionWeight: -0.08
+      relationshipWeight: 1
+  availableActions: 0000000001000000020000000300000004000000060000000a0000000b000000
+  responseSet: {fileID: 0}

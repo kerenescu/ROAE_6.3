@@ -81,6 +81,7 @@ public class MessageManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            EnsureDecisionPanel();
 
             // dacă avem conversații salvate, restaurăm
             if (persistentConversations != null && persistentConversations.Count > 0)
@@ -98,6 +99,8 @@ public class MessageManager : MonoBehaviour
 
     void Start()
     {
+        EnsureDecisionPanel();
+
         if (persistentConversations != null && persistentConversations.Count > 0)
         {
             // Debug.Log("✅ Conversații deja salvate, le restaurăm!");
@@ -115,6 +118,55 @@ public class MessageManager : MonoBehaviour
         StartCoroutine(SendDelayedIntroMessage2());
         StartCoroutine(SendDelayedIntroMessage3());
 
+    }
+
+    private void EnsureDecisionPanel()
+    {
+        if (decisionPanel != null)
+            return;
+
+        Transform existingPanel = transform.root.Find("DecisionPanel");
+        if (existingPanel == null && phoneUI != null)
+            existingPanel = phoneUI.transform.Find("DecisionPanel");
+
+        if (existingPanel != null)
+        {
+            decisionPanel = existingPanel.gameObject;
+            return;
+        }
+
+        if (phoneUI == null)
+            return;
+
+        GameObject panelObject = new GameObject(
+            "DecisionPanel",
+            typeof(RectTransform),
+            typeof(HorizontalLayoutGroup),
+            typeof(ContentSizeFitter));
+
+        RectTransform panelRect = panelObject.GetComponent<RectTransform>();
+        panelRect.SetParent(phoneUI.transform, false);
+        panelRect.anchorMin = new Vector2(0.5f, 0f);
+        panelRect.anchorMax = new Vector2(0.5f, 0f);
+        panelRect.pivot = new Vector2(0.5f, 0f);
+        panelRect.anchoredPosition = new Vector2(0f, 453f);
+        panelRect.sizeDelta = new Vector2(400f, 40f);
+
+        HorizontalLayoutGroup layoutGroup = panelObject.GetComponent<HorizontalLayoutGroup>();
+        layoutGroup.padding = new RectOffset(200, 200, 20, 20);
+        layoutGroup.spacing = 10f;
+        layoutGroup.childAlignment = TextAnchor.MiddleCenter;
+        layoutGroup.childForceExpandWidth = true;
+        layoutGroup.childForceExpandHeight = false;
+        layoutGroup.childControlWidth = true;
+        layoutGroup.childControlHeight = false;
+
+        ContentSizeFitter sizeFitter = panelObject.GetComponent<ContentSizeFitter>();
+        sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+        sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        panelObject.SetActive(false);
+        decisionPanel = panelObject;
     }
 
 
@@ -317,6 +369,10 @@ public class MessageManager : MonoBehaviour
             if (lastMessage.isDecision && !lastMessage.wasDecisionTaken && lastMessage.choices != null)
 
             {
+                EnsureDecisionPanel();
+                if (decisionPanel == null || responseButtonPrefab == null)
+                    return;
+
                 decisionPanel.SetActive(true); // Afișăm panelul cu butoane
 
                 // Golesc butoanele anterioare ca sa nu se repete in caz ca nu iau o decizie la prima intrare in conversatie
@@ -350,7 +406,7 @@ public class MessageManager : MonoBehaviour
             }
             else
             {
-                decisionPanel.SetActive(false); // Dacă nu e decizie, ascundem panelul
+                HideDecisionPanel(); // Dacă nu e decizie, ascundem panelul
             }
         }
     }
@@ -371,6 +427,9 @@ public class MessageManager : MonoBehaviour
 
     private void ClearDecisions()
     {
+        if (decisionPanel == null)
+            return;
+
         foreach (Transform child in decisionPanel.transform)
         {
             Destroy(child.gameObject);
@@ -524,7 +583,8 @@ public class MessageManager : MonoBehaviour
 
     public void HideDecisionPanel()
     {
-        decisionPanel.SetActive(false);
+        if (decisionPanel != null)
+            decisionPanel.SetActive(false);
     }
 
 }

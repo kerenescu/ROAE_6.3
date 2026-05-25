@@ -62,12 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\RoaeValueIterationAuditRunner.cs" />
+    <Compile Include="Assets\Editor\Companion\CompanionTrailPrefabBaker.cs" />
+    <Compile Include="Assets\Editor\Companion\CompanionSceneStarterMenu.cs" />
     <Compile Include="Assets\Editor\NpcToneDialogueProfileWindow.cs" />
     <Compile Include="Assets\Tests\EditMode\Editor\NpcToneDialogueProfileEditModeTests.cs" />
     <Compile Include="Assets\Editor\NpcToneDialogueToneBackfillUtility.cs" />
     <Compile Include="Assets\AdventureCreator\2D Demo\Scripts\Editor\ToolbarLinks2DDemo.cs" />
     <Compile Include="Assets\Editor\RoaeAiDevDashboardWindow.cs" />
     <Compile Include="Assets\Editor\RoaeAiTestRunner.cs" />
+    <Compile Include="Assets\Editor\Companion\CompanionAuthoringMenu.cs" />
+    <Compile Include="Assets\Editor\Companion\MelcCompanionBuilder.cs" />
     <Compile Include="Assets\AdventureCreator\Demo\Scripts\Editor\ToolbarLinksDemo.cs" />
   </ItemGroup>
   <ItemGroup>

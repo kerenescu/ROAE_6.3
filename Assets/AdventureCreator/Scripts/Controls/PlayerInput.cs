@@ -1818,7 +1818,7 @@ namespace AC
 		 */
 		public bool InputGetButton (string axis)
 		{
-			if (string.IsNullOrEmpty (axis) || !KickStarter.stateHandler.CanReceiveInput ())
+			if (string.IsNullOrEmpty (axis) || KickStarter.stateHandler == null || !KickStarter.stateHandler.CanReceiveInput ())
 			{
 				return false;
 			}
@@ -1842,6 +1842,11 @@ namespace AC
 			if (InputGetButtonDelegate != null)
 			{
 				return InputGetButtonDelegate (axis);
+			}
+
+			if (KickStarter.settingsManager == null)
+			{
+				return false;
 			}
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
@@ -1875,7 +1880,7 @@ namespace AC
 		 */
 		public bool InputGetButtonDown (string axis, bool showError = false)
 		{
-			if (string.IsNullOrEmpty (axis) || !KickStarter.stateHandler.CanReceiveInput ())
+			if (string.IsNullOrEmpty (axis) || KickStarter.stateHandler == null || !KickStarter.stateHandler.CanReceiveInput ())
 			{
 				return false;
 			}
@@ -1898,6 +1903,11 @@ namespace AC
 			if (InputGetButtonDownDelegate != null)
 			{
 				return InputGetButtonDownDelegate (axis);
+			}
+
+			if (KickStarter.settingsManager == null)
+			{
+				return false;
 			}
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
@@ -1936,7 +1946,7 @@ namespace AC
 		 */
 		public bool InputGetButtonUp (string axis)
 		{
-			if (string.IsNullOrEmpty (axis) || !KickStarter.stateHandler.CanReceiveInput ())
+			if (string.IsNullOrEmpty (axis) || KickStarter.stateHandler == null || !KickStarter.stateHandler.CanReceiveInput ())
 			{
 				return false;
 			}
@@ -1944,6 +1954,11 @@ namespace AC
 			if (InputGetButtonUpDelegate != null)
 			{
 				return InputGetButtonUpDelegate (axis);
+			}
+
+			if (KickStarter.settingsManager == null)
+			{
+				return false;
 			}
 
 			if (KickStarter.settingsManager.assumeInputsDefined)

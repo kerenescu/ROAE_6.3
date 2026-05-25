@@ -27,6 +27,7 @@ public struct BaristaWelcomePlannerInput
     public int relationship;
     public bool readUnknownText;
     public bool introDone;
+    public bool hasDrink;
     public BaristaDrinkType pendingDrink;
     public bool pendingDrinkAcknowledged;
     public BaristaDrinkType heldDrink;
@@ -86,7 +87,7 @@ public static class BaristaWelcomeOutcomeResolver
         bool auditCacheLogs)
     {
         NpcTonePlanningRuntimeState runtimeState = ToRuntimeState(input);
-        NpcTonePlannerEvaluation evaluation = NpcTonePlanningSolvers.Evaluate(
+        NpcTonePlannerEvaluation evaluation = NarrativeTonePlanningSolvers.Evaluate(
             runtimeState,
             plannerMode,
             settings,
@@ -133,9 +134,12 @@ public static class BaristaWelcomeOutcomeResolver
             empathy = input.empathy,
             relationship = input.relationship,
             introDone = input.introDone,
-            pendingDrink = input.pendingDrink,
-            pendingDrinkAcknowledged = input.pendingDrinkAcknowledged,
-            heldDrink = input.heldDrink
+            hasDrink = input.hasDrink || input.heldDrink != BaristaDrinkType.None || input.pendingDrink != BaristaDrinkType.None,
+            pendingDrink = BaristaDrinkType.None,
+            pendingDrinkAcknowledged = false,
+            heldDrink = input.hasDrink || input.heldDrink != BaristaDrinkType.None
+                ? (input.heldDrink != BaristaDrinkType.None ? input.heldDrink : BaristaDrinkType.Cola)
+                : BaristaDrinkType.None
         };
     }
 

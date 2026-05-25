@@ -59,7 +59,10 @@ public static class NpcDecisionService
             return missingDefinitionResult;
         }
 
-        NpcDecisionContext context = NpcDecisionContext.Build(definition.NpcId);
+        NpcDecisionContext context = NpcDecisionContext.Build(definition);
+        if (auditLogs)
+            LogDecisionInput(definition, context);
+
         NpcActionType action = SelectAction(definition, context, auditLogs);
         DialogueData dialogue = ResolveDialogue(definition, context, action);
 
@@ -143,12 +146,7 @@ public static class NpcDecisionService
         NpcDecisionContext context,
         NpcActionType action)
     {
-        float score = BaseScore(action);
-
-        if (definition.PersonalityProfile != null)
-            score += definition.PersonalityProfile.ScoreAction(context, action);
-
-        return score;
+        return BaseScore(action);
     }
 
     private static float BaseScore(NpcActionType action)
@@ -205,11 +203,30 @@ public static class NpcDecisionService
             " action=" + result.action +
             " dialogue=" + (result.dialogue != null ? result.dialogue.name : "NULL") +
             " reason=" + result.reason +
+            " state={" + result.context.ToDebugString() + "}" +
             " durationMs=" + durationMs.ToString("0.00");
 
         if (success)
             Debug.Log(message);
         else
             Debug.LogWarning(message);
+    }
+
+    private static void LogDecisionInput(
+        NpcDefinition definition,
+        NpcDecisionContext context)
+    {
+        string planner = definition != null && definition.PlannerConfig != null
+            ? definition.PlannerConfig.name
+            : "None";
+        string model = definition != null && definition.PlannerConfig != null
+            ? "planner"
+            : "personality";
+
+        Debug.Log(
+            "[ROAE][AI][NpcDecision][INPUT] npc=" + (definition != null ? definition.NpcId : "NULL") +
+            " model=" + model +
+            " planner=" + planner +
+            " state={" + context.ToDebugString() + "}");
     }
 }

@@ -21,6 +21,15 @@ public class NpcPlannerConfig : ScriptableObject
     public NpcPlannerMode PlannerMode => plannerMode;
     public NpcActionType FallbackAction => fallbackAction;
 
+    public void SetPlannerMode(NpcPlannerMode mode)
+    {
+        if (plannerMode == mode)
+            return;
+
+        plannerMode = mode;
+        NpcPolicySolver.Invalidate(this);
+    }
+
     public NpcPlannerSettings ToSettings()
     {
         return new NpcPlannerSettings(

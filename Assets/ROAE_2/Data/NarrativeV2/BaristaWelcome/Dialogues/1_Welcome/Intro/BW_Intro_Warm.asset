@@ -29,11 +29,11 @@ MonoBehaviour:
   - choiceText: Thank you. I would like that.
     nextDialogue: {fileID: 11400000, guid: ed493a7dce613834abe0d4544b043b2c, type: 2}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: -20
+      empathy: 40
+      plantCorruption: 50
     relationshipEffect:
-      npcId: 
+      npcId: barista
       amount: 0
     extraEffects:
     - {fileID: 11400000, guid: ae4f3e7b9e4c92b49bfe27d20cd5cf00, type: 2}
@@ -42,11 +42,11 @@ MonoBehaviour:
   - choiceText: That is kind, but I would rather wait.
     nextDialogue: {fileID: 0}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: 30
+      empathy: -15
+      plantCorruption: -40
     relationshipEffect:
-      npcId: 
+      npcId: barista
       amount: 0
     extraEffects:
     - {fileID: 11400000, guid: 6cd564e724741b64abf524df68f41849, type: 2}

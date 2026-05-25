@@ -28,6 +28,8 @@ MonoBehaviour:
   requiredFalseFlags: []
   skipWhenCompleted: 1
   completedFlagKey: barista_tarot_followup_done
+  decisionDefinition: {fileID: 11400000, guid: a14d05e2b84b4cbe9f0a0e5c2e781004, type: 2}
+  actionToneMappings: []
   plannerMode: 1
   gamma: 0.87
   epsilon: 0.0001
@@ -52,9 +54,11 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 1
     expectedIntroDone: 0
-    matchCurrentPendingDrink: 1
-    matchCurrentPendingAcknowledged: 1
-    matchCurrentHeldDrink: 1
+    matchCurrentHasDrink: 1
+    expectedHasDrink: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
     readUnknownText:
       source: 1
       fixedValue: 0
@@ -79,9 +83,11 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 1
     expectedIntroDone: 1
-    matchCurrentPendingDrink: 1
-    matchCurrentPendingAcknowledged: 1
-    matchCurrentHeldDrink: 1
+    matchCurrentHasDrink: 1
+    expectedHasDrink: 0
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
+    matchCurrentHeldDrink: 0
     readUnknownText:
       source: 1
       fixedValue: 0
@@ -106,8 +112,10 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 1
     expectedIntroDone: 1
-    matchCurrentPendingDrink: 1
-    matchCurrentPendingAcknowledged: 1
+    matchCurrentHasDrink: 1
+    expectedHasDrink: 1
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 1
     readUnknownText:
       source: 1
@@ -133,8 +141,10 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 1
     expectedIntroDone: 1
-    matchCurrentPendingDrink: 1
-    matchCurrentPendingAcknowledged: 1
+    matchCurrentHasDrink: 1
+    expectedHasDrink: 1
+    matchCurrentPendingDrink: 0
+    matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 1
     readUnknownText:
       source: 1

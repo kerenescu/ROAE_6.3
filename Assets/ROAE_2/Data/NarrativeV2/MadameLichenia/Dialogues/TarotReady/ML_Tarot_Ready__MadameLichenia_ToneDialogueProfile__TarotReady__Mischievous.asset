@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Madame Lichenia
-    Text: Good. The deck is waiting for you.
+    Text: 'Haha it''s gonna be fun. '
   - Speaker: Madame Lichenia
     Text: Touch the cards when you are ready. Ask your question quietly.
   choices: []
