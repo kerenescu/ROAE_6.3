@@ -15,10 +15,12 @@ public class PhoneUIFlow : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            transform.root.localScale = Vector3.one;
+            DontDestroyOnLoad(transform.root.gameObject);
         }
         else if (Instance != this)
         {
-            Destroy(this);
+            Destroy(transform.root.gameObject);
             return;
         }
     }
