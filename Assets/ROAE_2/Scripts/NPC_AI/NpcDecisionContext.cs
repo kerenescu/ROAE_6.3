@@ -4,6 +4,10 @@ using UnityEngine;
 public readonly struct NpcDecisionContext
 {
     public readonly string npcId;
+    public readonly int rawCreativity;
+    public readonly int rawEmpathy;
+    public readonly int rawCorruption;
+    public readonly int rawRelationship;
     public readonly int creativity;
     public readonly int empathy;
     public readonly int corruption;
@@ -15,23 +19,62 @@ public readonly struct NpcDecisionContext
 
     public NpcDecisionContext(
         string npcId,
+        int rawCreativity,
+        int rawEmpathy,
+        int rawCorruption,
+        int rawRelationship,
         int creativity,
         int empathy,
         int corruption,
-        int relationship)
+        int relationship,
+        CreativityBucket creativityBucket,
+        EmpathyBucket empathyBucket,
+        CorruptionBucket corruptionBucket,
+        RelationshipBucket relationshipBucket)
     {
         this.npcId = npcId ?? string.Empty;
+        this.rawCreativity = rawCreativity;
+        this.rawEmpathy = rawEmpathy;
+        this.rawCorruption = rawCorruption;
+        this.rawRelationship = rawRelationship;
         this.creativity = creativity;
         this.empathy = empathy;
         this.corruption = corruption;
         this.relationship = relationship;
-        creativityBucket = BucketCreativity(creativity);
-        empathyBucket = BucketEmpathy(empathy);
-        corruptionBucket = BucketCorruption(corruption);
-        relationshipBucket = BucketRelationship(relationship);
+        this.creativityBucket = creativityBucket;
+        this.empathyBucket = empathyBucket;
+        this.corruptionBucket = corruptionBucket;
+        this.relationshipBucket = relationshipBucket;
+    }
+
+    public static NpcDecisionContext CreateIdentity(
+    string npcId,
+    int creativity,
+    int empathy,
+    int corruption,
+    int relationship)
+    {
+        return new NpcDecisionContext(
+            npcId,
+            creativity,
+            empathy,
+            corruption,
+            relationship,
+            creativity,
+            empathy,
+            corruption,
+            relationship,
+            BucketCreativity(creativity),
+            BucketEmpathy(empathy),
+            BucketCorruption(corruption),
+            BucketRelationship(relationship));
     }
 
     public string NpcId => npcId;
+    public int RawCreativity => rawCreativity;
+    public int RawEmpathy => rawEmpathy;
+    public int RawCorruption => rawCorruption;
+    public int RawRelationship => rawRelationship;
     public int Creativity => creativity;
     public int Empathy => empathy;
     public int Corruption => corruption;
@@ -55,10 +98,10 @@ public readonly struct NpcDecisionContext
     public string ToDebugString()
     {
         return "npcId=" + npcId +
-               " creativity=" + creativity + "(" + creativityBucket + ")" +
-               " empathy=" + empathy + "(" + empathyBucket + ")" +
-               " corruption=" + corruption + "(" + corruptionBucket + ")" +
-               " relationship=" + relationship + "(" + relationshipBucket + ")" +
+               " creativity=" + rawCreativity + "->" + creativity + "(" + creativityBucket + ")" +
+               " empathy=" + rawEmpathy + "->" + empathy + "(" + empathyBucket + ")" +
+               " corruption=" + rawCorruption + "->" + corruption + "(" + corruptionBucket + ")" +
+               " relationship=" + rawRelationship + "->" + relationship + "(" + relationshipBucket + ")" +
                " chapter=" + NarrativeProgressState.GetCurrentChapterId() +
                " scene=" + NarrativeProgressState.GetCurrentSceneId() +
                " moment=" + NarrativeProgressState.GetCurrentMomentId();
@@ -67,12 +110,12 @@ public readonly struct NpcDecisionContext
     public static NpcDecisionContext Build(string npcId)
     {
         CreativeCore core = CreativeCore.Instance ?? Object.FindFirstObjectByType<CreativeCore>();
-        int creativityValue = core != null ? core.Creativity : PlayerPrefs.GetInt("creativity", 50);
-        int empathyValue = core != null ? core.Empathy : PlayerPrefs.GetInt("empathy", 0);
-        int corruptionValue = core != null ? core.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", 0);
+        int creativityValue = core != null ? core.Creativity : PlayerPrefs.GetInt("creativity", CreativeStatScale.DefaultCreativity);
+        int empathyValue = core != null ? core.Empathy : PlayerPrefs.GetInt("empathy", CreativeStatScale.DefaultEmpathy);
+        int corruptionValue = core != null ? core.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", CreativeStatScale.DefaultCorruption);
         int relationshipValue = NpcRelationshipState.GetRelationshipScore(npcId);
 
-        return new NpcDecisionContext(
+        return CreateIdentity(
             npcId,
             creativityValue,
             empathyValue,
@@ -80,48 +123,60 @@ public readonly struct NpcDecisionContext
             relationshipValue);
     }
 
+    public static NpcDecisionContext Build(NpcDefinition definition)
+    {
+        if (definition == null)
+            return Build(string.Empty);
+
+        string resolvedNpcId = definition.NpcId;
+        CreativeCore core = CreativeCore.Instance ?? Object.FindFirstObjectByType<CreativeCore>();
+        int rawCreativityValue = core != null ? core.Creativity : PlayerPrefs.GetInt("creativity", CreativeStatScale.DefaultCreativity);
+        int rawEmpathyValue = core != null ? core.Empathy : PlayerPrefs.GetInt("empathy", CreativeStatScale.DefaultEmpathy);
+        int rawCorruptionValue = core != null ? core.PlantCorruption : PlayerPrefs.GetInt("plantCorruption", CreativeStatScale.DefaultCorruption);
+        int rawRelationshipValue = NpcRelationshipState.GetRelationshipScore(resolvedNpcId);
+
+        NpcAffineBiasResult biasResult = definition.ApplyStatAffineBias(
+            rawCreativityValue,
+            rawEmpathyValue,
+            rawCorruptionValue,
+            rawRelationshipValue);
+
+        return new NpcDecisionContext(
+            resolvedNpcId,
+            biasResult.rawCreativity,
+            biasResult.rawEmpathy,
+            biasResult.rawCorruption,
+            biasResult.rawRelationship,
+            biasResult.creativity,
+            biasResult.empathy,
+            biasResult.corruption,
+            biasResult.relationship,
+            BucketCreativity(biasResult.creativity),
+            BucketEmpathy(biasResult.empathy),
+            BucketCorruption(biasResult.corruption),
+            BucketRelationship(biasResult.relationship));
+    }
+
+
+
     private static CreativityBucket BucketCreativity(int value)
     {
-        if (value < 35)
-            return CreativityBucket.Low;
-
-        if (value > 70)
-            return CreativityBucket.High;
-
-        return CreativityBucket.Medium;
+        return CreativeStatScale.BucketCreativity(value);
     }
 
     private static EmpathyBucket BucketEmpathy(int value)
     {
-        if (value <= -2)
-            return EmpathyBucket.Low;
-
-        if (value >= 2)
-            return EmpathyBucket.High;
-
-        return EmpathyBucket.Neutral;
+        return CreativeStatScale.BucketEmpathy(value);
     }
 
     private static CorruptionBucket BucketCorruption(int value)
     {
-        if (value < 3)
-            return CorruptionBucket.Low;
-
-        if (value > 6)
-            return CorruptionBucket.High;
-
-        return CorruptionBucket.Medium;
+        return CreativeStatScale.BucketCorruption(value);
     }
 
     private static RelationshipBucket BucketRelationship(int value)
     {
-        if (value <= -2)
-            return RelationshipBucket.Bad;
-
-        if (value >= 2)
-            return RelationshipBucket.Good;
-
-        return RelationshipBucket.Neutral;
+        return CreativeStatScale.BucketRelationship(value);
     }
 }
 

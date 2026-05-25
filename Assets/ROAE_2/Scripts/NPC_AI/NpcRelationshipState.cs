@@ -4,6 +4,8 @@ using UnityEngine;
 public class NpcRelationshipState : MonoBehaviour
 {
     private const string PlayerPrefsPrefix = "npc_relationship_";
+    private const string DebugSharedRelationshipEnabledKey = "roae_ai_debug_shared_relationship_enabled";
+    private const string DebugSharedRelationshipValueKey = "roae_ai_debug_shared_relationship_value";
 
     private static readonly Dictionary<string, NpcRelationshipState> Registry =
         new Dictionary<string, NpcRelationshipState>();
@@ -78,6 +80,9 @@ public class NpcRelationshipState : MonoBehaviour
 
     public static int GetRelationshipScore(string targetNpcId)
     {
+        if (TryGetDebugSharedRelationship(out int debugSharedRelationship))
+            return debugSharedRelationship;
+
         if (string.IsNullOrEmpty(targetNpcId))
             return 0;
 
@@ -85,6 +90,35 @@ public class NpcRelationshipState : MonoBehaviour
             return state.RelationshipScore;
 
         return PlayerPrefs.GetInt(BuildPrefsKey(targetNpcId), 0);
+    }
+
+    public static void SetDebugSharedRelationshipOverride(bool enabled, int value)
+    {
+        PlayerPrefs.SetInt(DebugSharedRelationshipEnabledKey, enabled ? 1 : 0);
+        PlayerPrefs.SetInt(DebugSharedRelationshipValueKey, Mathf.Clamp(value, -100, 100));
+        PlayerPrefs.Save();
+    }
+
+    public static bool IsDebugSharedRelationshipEnabled()
+    {
+        return PlayerPrefs.GetInt(DebugSharedRelationshipEnabledKey, 0) == 1;
+    }
+
+    public static int GetDebugSharedRelationshipValue()
+    {
+        return Mathf.Clamp(PlayerPrefs.GetInt(DebugSharedRelationshipValueKey, 0), -100, 100);
+    }
+
+    private static bool TryGetDebugSharedRelationship(out int value)
+    {
+        if (IsDebugSharedRelationshipEnabled())
+        {
+            value = GetDebugSharedRelationshipValue();
+            return true;
+        }
+
+        value = 0;
+        return false;
     }
 
     private void SaveRelationship()

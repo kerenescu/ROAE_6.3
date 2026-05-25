@@ -24,10 +24,13 @@ public class NpcChoiceEffect : DialogueChoiceEffect
 
     public override void Apply()
     {
+        int appliedEmpathyDelta = CreativeStatScale.ConvertLegacyEmpathyDelta(empathyDelta);
+        int appliedCorruptionDelta = CreativeStatScale.ConvertLegacyCorruptionDelta(corruptionDelta);
+
         if (!string.IsNullOrWhiteSpace(npcId) && relationshipDelta != 0)
             NpcRelationshipState.AdjustRelationship(npcId, relationshipDelta);
 
-        ApplyStats();
+        ApplyStats(appliedEmpathyDelta, appliedCorruptionDelta);
         ApplyFlags();
 
         if (debugLogs)
@@ -36,14 +39,14 @@ public class NpcChoiceEffect : DialogueChoiceEffect
                 "[ROAE][NpcChoiceEffect] npcId=" + npcId +
                 " relationshipDelta=" + relationshipDelta +
                 " creativityDelta=" + creativityDelta +
-                " empathyDelta=" + empathyDelta +
-                " corruptionDelta=" + corruptionDelta +
+                " empathyDelta=" + empathyDelta + "->" + appliedEmpathyDelta +
+                " corruptionDelta=" + corruptionDelta + "->" + appliedCorruptionDelta +
                 " trueFlags=" + string.Join(",", setTrueFlags) +
                 " falseFlags=" + string.Join(",", setFalseFlags));
         }
     }
 
-    private void ApplyStats()
+    private void ApplyStats(int appliedEmpathyDelta, int appliedCorruptionDelta)
     {
         CreativeCore core = CreativeCore.Instance ?? Object.FindFirstObjectByType<CreativeCore>();
         if (core == null)
@@ -60,16 +63,16 @@ public class NpcChoiceEffect : DialogueChoiceEffect
 
         if (empathyDelta != 0)
         {
-            core.AdjustEmpathy(empathyDelta);
+            core.AdjustEmpathy(appliedEmpathyDelta);
             if (hud != null)
-                hud.ShowStatChange("empathy", empathyDelta);
+                hud.ShowStatChange("empathy", appliedEmpathyDelta);
         }
 
         if (corruptionDelta != 0)
         {
-            core.AdjustCorruption(corruptionDelta);
+            core.AdjustCorruption(appliedCorruptionDelta);
             if (hud != null)
-                hud.ShowStatChange("plantCorruption", corruptionDelta);
+                hud.ShowStatChange("plantCorruption", appliedCorruptionDelta);
         }
     }
 

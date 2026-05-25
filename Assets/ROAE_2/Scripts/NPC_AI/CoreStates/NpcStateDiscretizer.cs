@@ -19,15 +19,7 @@ public static class NpcStateDiscretizer
         if (CreativeCore.Instance == null)
             return EmpathyBucket.Neutral;
 
-        int value = CreativeCore.Instance.empathy;
-
-        if (value <= -2)
-            return EmpathyBucket.Low;
-
-        if (value >= 2)
-            return EmpathyBucket.High;
-
-        return EmpathyBucket.Neutral;
+        return CreativeStatScale.BucketEmpathy(CreativeCore.Instance.empathy);
     }
 
     private static CreativityBucket GetCreativityBucket()
@@ -35,15 +27,7 @@ public static class NpcStateDiscretizer
         if (CreativeCore.Instance == null)
             return CreativityBucket.Medium;
 
-        int value = CreativeCore.Instance.creativity;
-
-        if (value < 35)
-            return CreativityBucket.Low;
-
-        if (value > 70)
-            return CreativityBucket.High;
-
-        return CreativityBucket.Medium;
+        return CreativeStatScale.BucketCreativity(CreativeCore.Instance.creativity);
     }
 
     private static CorruptionBucket GetCorruptionBucket()
@@ -51,27 +35,13 @@ public static class NpcStateDiscretizer
         if (CreativeCore.Instance == null)
             return CorruptionBucket.Low;
 
-        int value = CreativeCore.Instance.plantCorruption;
-
-        if (value < 3)
-            return CorruptionBucket.Low;
-
-        if (value > 6)
-            return CorruptionBucket.High;
-
-        return CorruptionBucket.Medium;
+        return CreativeStatScale.BucketCorruption(CreativeCore.Instance.plantCorruption);
     }
 
     private static RelationshipBucket GetRelationshipBucket(string npcId)
     {
         int value = NpcRelationshipState.GetRelationshipScore(npcId);
 
-        if (value <= -2)
-            return RelationshipBucket.Bad;
-
-        if (value >= 2)
-            return RelationshipBucket.Good;
-
-        return RelationshipBucket.Neutral;
+        return CreativeStatScale.BucketRelationship(value);
     }
 }
