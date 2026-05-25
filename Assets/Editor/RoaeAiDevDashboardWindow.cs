@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using RuntimeTestMode = UnityEngine.TestTools.TestMode;
 
@@ -13,10 +14,22 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
     private const string MenuPath = "Tools/ROAE/NPC/AI Dev Dashboard";
     private const float SectionSpacing = 10f;
     private const string PrettyReportFileName = "roae-ai-pretty-report.html";
+    private const string BaristaNpcId = "barista";
+    private const string AnticarNpcId = "anticar";
+    private const string MadameNpcId = "madame_lichenia";
 
     private Vector2 scrollPosition;
     private RoaeAiTestReport editModeReport;
     private RoaeAiTestReport playModeReport;
+    private BaristaPlannerMode baristaPlannerMode;
+    private BaristaPlannerMode anticarPlannerMode;
+    private BaristaPlannerMode madamePlannerMode;
+    private bool companionUseSocialPlanner;
+    private CompanionPlannerMode companionPlannerMode;
+    private int companionEmotionSwitchThreshold;
+    private bool companionNpcSignalsOnly;
+    private bool useSharedRelationshipDebug;
+    private int sharedRelationshipDebugValue;
 
     [MenuItem(MenuPath)]
     public static void Open()
@@ -30,6 +43,9 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
     private void OnEnable()
     {
         RefreshReports();
+        SyncPlannerModesFromAssets();
+        SyncCompanionSettingsFromAssets();
+        SyncSharedRelationshipDebugFromPrefs();
         EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
     }
 
@@ -50,6 +66,10 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
         DrawOverviewSection();
         EditorGUILayout.Space(SectionSpacing);
         DrawResetSection();
+        EditorGUILayout.Space(SectionSpacing);
+        DrawPlannerSection();
+        EditorGUILayout.Space(SectionSpacing);
+        DrawBehaviorDebugSection();
         EditorGUILayout.Space(SectionSpacing);
         DrawTestRunnerSection();
         EditorGUILayout.Space(SectionSpacing);
@@ -96,6 +116,101 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
         }
     }
 
+    private void DrawPlannerSection()
+    {
+        EditorGUILayout.LabelField("Planner Switcher", EditorStyles.boldLabel);
+
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField(
+                "Apply In Assets = scrie setarea permanent in asset-urile de configurare. Apply In Runtime = schimba doar obiectele deja incarcate in scene. Sync From Assets = reciteste asset-urile si reseteaza UI-ul dashboardului la valorile lor. Clear Planner Caches = sterge politicile VI/PI cache-uite ca sa fie reconstruite la urmatoarea evaluare.",
+                EditorStyles.wordWrappedLabel);
+
+            DrawPlannerRow("Barista", BaristaNpcId, ref baristaPlannerMode);
+            DrawPlannerRow("Anticar", AnticarNpcId, ref anticarPlannerMode);
+            DrawPlannerRow("Madame Lichenia", MadameNpcId, ref madamePlannerMode);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Sync From Assets"))
+                    SyncPlannerModesFromAssets();
+
+                if (GUILayout.Button("Clear Planner Caches"))
+                {
+                    NpcPolicySolver.ClearCache();
+                    NpcTonePlanningSolvers.ClearCache();
+                    Debug.Log("[ROAE][AI][Dashboard][SUCCESS] action=clear_planner_caches");
+                }
+            }
+        }
+    }
+
+    private void DrawBehaviorDebugSection()
+    {
+        EditorGUILayout.LabelField("Behavior Debug", EditorStyles.boldLabel);
+
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField(
+                "Aici vezi daca NPC-urile folosesc biasul afin per personaj si daca melcul ruleaza modelul simplu din stats sau plannerul lui social VI/PI.",
+                EditorStyles.wordWrappedLabel);
+
+            DrawBiasDebugRow("Barista", BaristaNpcId);
+            DrawBiasDebugRow("Anticar", AnticarNpcId);
+            DrawBiasDebugRow("Madame Lichenia", MadameNpcId);
+
+            EditorGUILayout.Space(6f);
+            DrawDemoPrepRow();
+
+            EditorGUILayout.Space(6f);
+            DrawSharedRelationshipDebugRow();
+
+            EditorGUILayout.Space(6f);
+            DrawCompanionDebugRow();
+
+            if (GUILayout.Button("Sync Companion From Assets"))
+                SyncCompanionSettingsFromAssets();
+        }
+    }
+
+    private void DrawDemoPrepRow()
+    {
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField("Quick Demo Prep", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(
+                "Un singur click pentru starea comparabila. Primul buton pregateste comparatia de bias intre NPC-uri. Al doilea pregateste o stare mai luminoasa pentru companion sync.",
+                EditorStyles.wordWrappedLabel);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Prepare NPC Bias Demo"))
+                    PrepareDemoState(40, 40, 20, false);
+
+                if (GUILayout.Button("Prepare Companion Demo"))
+                    PrepareDemoState(70, 70, 10, true);
+            }
+        }
+    }
+
+    private void DrawPlannerRow(string label, string npcId, ref BaristaPlannerMode selectedMode)
+    {
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+            selectedMode = (BaristaPlannerMode)EditorGUILayout.EnumPopup("Mode", selectedMode);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Apply In Assets"))
+                    ApplyPlannerModeToAssets(npcId, selectedMode);
+
+                if (GUILayout.Button("Apply In Runtime"))
+                    ApplyPlannerModeToRuntime(npcId, selectedMode);
+            }
+        }
+    }
+
     private void DrawTestRunnerSection()
     {
         EditorGUILayout.LabelField("AI Tests", EditorStyles.boldLabel);
@@ -107,13 +222,13 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
             using (new EditorGUI.DisabledScope(RoaeAiTestRunner.IsRunInProgress))
             {
                 if (GUILayout.Button("Run AI Tests - All"))
-                    RoaeAiTestRunner.RunAllFromMenu();
+                    ScheduleTestRun(RoaeAiTestRunner.RunAllFromMenu);
 
                 if (GUILayout.Button("Run AI Tests - EditMode"))
-                    RoaeAiTestRunner.RunEditModeFromMenu();
+                    ScheduleTestRun(RoaeAiTestRunner.RunEditModeFromMenu);
 
                 if (GUILayout.Button("Run AI Tests - PlayMode"))
-                    RoaeAiTestRunner.RunPlayModeFromMenu();
+                    ScheduleTestRun(RoaeAiTestRunner.RunPlayModeFromMenu);
             }
 
             if (GUILayout.Button("Refresh Results"))
@@ -189,7 +304,20 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
     private void HandlePlayModeStateChanged(PlayModeStateChange state)
     {
         if (state == PlayModeStateChange.EnteredEditMode || state == PlayModeStateChange.ExitingPlayMode)
+        {
             RefreshReports();
+            SyncPlannerModesFromAssets();
+            SyncCompanionSettingsFromAssets();
+            SyncSharedRelationshipDebugFromPrefs();
+        }
+    }
+
+    private static void ScheduleTestRun(Action runAction)
+    {
+        if (runAction == null)
+            return;
+
+        EditorApplication.delayCall += () => runAction();
     }
 
     private void RefreshReports()
@@ -349,13 +477,81 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
         }
 
         NpcAIDevTools.ResetRuntimeState(
-            creativity: 40,
-            empathy: 0,
-            corruption: 0,
+            creativity: CreativeStatScale.DevResetCreativity,
+            empathy: CreativeStatScale.DevResetEmpathy,
+            corruption: CreativeStatScale.DevResetCorruption,
             npcIds: new[] { "barista", "anticar", "madame_lichenia" });
 
         PlayerPrefs.Save();
         Debug.Log("[ROAE][AI][Dashboard][SUCCESS] action=reset_dev_state mode=static_fallback");
+    }
+
+    private void PrepareDemoState(int creativity, int empathy, int corruption, bool companionPlannerEnabled)
+    {
+        PrepareComparableDemoRuntimeState(
+            creativity,
+            empathy,
+            corruption,
+            new[] { BaristaNpcId, AnticarNpcId, MadameNpcId });
+
+        NpcRelationshipState.SetDebugSharedRelationshipOverride(true, 0);
+        SyncSharedRelationshipDebugFromPrefs();
+
+        CompanionProfile profile = LoadAssetsOfType<CompanionProfile>().FirstOrDefault();
+        if (profile != null)
+        {
+            ApplyCompanionDebugSettings(
+                profile,
+                companionPlannerEnabled,
+                companionPlannerEnabled ? CompanionPlannerMode.PolicyIteration : profile.plannerMode,
+                companionPlannerEnabled ? Mathf.Max(12, profile.emotionSwitchThreshold) : profile.emotionSwitchThreshold,
+                profile.socialPlannerUsesNpcSignalsOnly);
+            SyncCompanionSettingsFromAssets();
+        }
+
+        NpcPolicySolver.ClearCache();
+        NpcTonePlanningSolvers.ClearCache();
+
+        Debug.Log(
+            "[ROAE][AI][Dashboard][SUCCESS] action=prepare_demo_state" +
+            " creativity=" + creativity +
+            " empathy=" + empathy +
+            " corruption=" + corruption +
+            " preservedStoryFlags=true" +
+            " sharedRelationship=0" +
+            " companionPlanner=" + companionPlannerEnabled);
+    }
+
+    private static void PrepareComparableDemoRuntimeState(
+        int creativity,
+        int empathy,
+        int corruption,
+        IEnumerable<string> npcIds)
+    {
+        CreativeCore core = CreativeCore.Instance ?? UnityEngine.Object.FindFirstObjectByType<CreativeCore>();
+        if (core != null)
+            core.ForceSetStats(creativity, empathy, corruption);
+        else
+        {
+            PlayerPrefs.SetInt("creativity", CreativeStatScale.ClampCreativity(creativity));
+            PlayerPrefs.SetInt("empathy", CreativeStatScale.ClampEmpathy(empathy));
+            PlayerPrefs.SetInt("plantCorruption", CreativeStatScale.ClampCorruption(corruption));
+        }
+
+        if (npcIds != null)
+        {
+            foreach (string npcId in npcIds)
+            {
+                if (!string.IsNullOrWhiteSpace(npcId))
+                    NpcRelationshipState.ResetRelationship(npcId.Trim());
+            }
+        }
+
+        NpcRelationshipState.SetDebugSharedRelationshipOverride(true, 0);
+        CompanionSystem.Instance?.ResetSocialStateForDebug();
+        NpcPolicySolver.ClearCache();
+        NpcTonePlanningSolvers.ClearCache();
+        PlayerPrefs.Save();
     }
 
     private static void PingSceneDevTools()
@@ -390,6 +586,430 @@ public sealed class RoaeAiDevDashboardWindow : EditorWindow
             .OrderBy(tool => tool.gameObject.scene.name)
             .ThenBy(tool => tool.gameObject.name)
             .ToList();
+    }
+
+    private void SyncPlannerModesFromAssets()
+    {
+        baristaPlannerMode = ResolvePlannerModeFromAssets(BaristaNpcId, BaristaPlannerMode.ValueIteration);
+        anticarPlannerMode = ResolvePlannerModeFromAssets(AnticarNpcId, BaristaPlannerMode.ValueIteration);
+        madamePlannerMode = ResolvePlannerModeFromAssets(MadameNpcId, BaristaPlannerMode.PolicyIteration);
+    }
+
+    private void SyncCompanionSettingsFromAssets()
+    {
+        CompanionProfile profile = LoadAssetsOfType<CompanionProfile>().FirstOrDefault();
+        if (profile == null)
+            return;
+
+        companionUseSocialPlanner = profile.useSocialPlanner;
+        companionPlannerMode = profile.plannerMode;
+        companionEmotionSwitchThreshold = profile.emotionSwitchThreshold;
+        companionNpcSignalsOnly = profile.socialPlannerUsesNpcSignalsOnly;
+    }
+
+    private void SyncSharedRelationshipDebugFromPrefs()
+    {
+        useSharedRelationshipDebug = NpcRelationshipState.IsDebugSharedRelationshipEnabled();
+        sharedRelationshipDebugValue = NpcRelationshipState.GetDebugSharedRelationshipValue();
+    }
+
+    private static BaristaPlannerMode ResolvePlannerModeFromAssets(string npcId, BaristaPlannerMode fallback)
+    {
+        NpcToneDialogueProfile profile = LoadProfilesForNpc(npcId).FirstOrDefault();
+        if (profile != null)
+            return profile.ResolveEffectivePlannerMode();
+
+        switch (npcId)
+        {
+            case BaristaNpcId:
+                BaristaWelcomeConfig baristaConfig = LoadAssetsOfType<BaristaWelcomeConfig>().FirstOrDefault();
+                return baristaConfig != null ? baristaConfig.plannerMode : fallback;
+
+            case AnticarNpcId:
+                AnticariatDialogueConfig anticariatConfig = LoadAssetsOfType<AnticariatDialogueConfig>().FirstOrDefault();
+                return anticariatConfig != null ? anticariatConfig.plannerMode : fallback;
+
+            default:
+                return fallback;
+        }
+    }
+
+    private static void ApplyPlannerModeToAssets(string npcId, BaristaPlannerMode mode)
+    {
+        int profileCount = 0;
+        foreach (NpcToneDialogueProfile profile in LoadProfilesForNpc(npcId))
+        {
+            Undo.RecordObject(profile, "Apply NPC planner mode");
+            profile.ApplyPlannerMode(mode);
+            EditorUtility.SetDirty(profile);
+
+            if (profile.DecisionDefinition?.PlannerConfig != null)
+                EditorUtility.SetDirty(profile.DecisionDefinition.PlannerConfig);
+
+            profileCount++;
+        }
+
+        int configCount = 0;
+        if (npcId == BaristaNpcId)
+        {
+            foreach (BaristaWelcomeConfig config in LoadAssetsOfType<BaristaWelcomeConfig>())
+            {
+                Undo.RecordObject(config, "Apply Barista planner mode");
+                config.plannerMode = mode;
+                EditorUtility.SetDirty(config);
+                configCount++;
+            }
+        }
+        else if (npcId == AnticarNpcId)
+        {
+            foreach (AnticariatDialogueConfig config in LoadAssetsOfType<AnticariatDialogueConfig>())
+            {
+                Undo.RecordObject(config, "Apply Anticar planner mode");
+                config.plannerMode = mode;
+                EditorUtility.SetDirty(config);
+                configCount++;
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        NpcPolicySolver.ClearCache();
+        NpcTonePlanningSolvers.ClearCache();
+
+        Debug.Log(
+            "[ROAE][AI][Dashboard][SUCCESS] action=apply_planner_assets" +
+            " npc=" + npcId +
+            " mode=" + mode +
+            " profiles=" + profileCount +
+            " configs=" + configCount);
+    }
+
+    private static void ApplyPlannerModeToRuntime(string npcId, BaristaPlannerMode mode)
+    {
+        int updated = 0;
+
+        if (npcId == BaristaNpcId)
+        {
+            foreach (BaristaWelcomeBrain brain in GetSceneObjects<BaristaWelcomeBrain>())
+            {
+                brain.SetPlannerMode(mode);
+                MarkSceneObjectDirty(brain);
+                updated++;
+            }
+        }
+        else if (npcId == AnticarNpcId)
+        {
+            foreach (AnticariatDialogueController controller in GetSceneObjects<AnticariatDialogueController>())
+            {
+                if (controller.Profile != null)
+                {
+                    controller.Profile.ApplyPlannerMode(mode);
+                    EditorUtility.SetDirty(controller.Profile);
+                }
+
+                AnticariatDialogueConfig config = ReadSerializedObjectReference<AnticariatDialogueConfig>(controller, "config");
+                if (config != null)
+                {
+                    config.plannerMode = mode;
+                    EditorUtility.SetDirty(config);
+                }
+
+                InvalidateLegacyProfileCache(controller);
+                MarkSceneObjectDirty(controller);
+                updated++;
+            }
+        }
+        else if (npcId == MadameNpcId)
+        {
+            foreach (MadameLicheniaDialogueController controller in GetSceneObjects<MadameLicheniaDialogueController>())
+            {
+                if (controller.Profile != null)
+                {
+                    controller.Profile.ApplyPlannerMode(mode);
+                    EditorUtility.SetDirty(controller.Profile);
+                }
+
+                WriteSerializedEnum(controller, "plannerMode", mode);
+                InvalidateLegacyProfileCache(controller);
+                MarkSceneObjectDirty(controller);
+                updated++;
+            }
+        }
+
+        NpcPolicySolver.ClearCache();
+        NpcTonePlanningSolvers.ClearCache();
+
+        if (updated == 0)
+        {
+            Debug.LogWarning(
+                "[ROAE][AI][Dashboard][FAIL] action=apply_planner_runtime" +
+                " npc=" + npcId +
+                " mode=" + mode +
+                " reason=no_loaded_scene_targets");
+            return;
+        }
+
+        Debug.Log(
+            "[ROAE][AI][Dashboard][SUCCESS] action=apply_planner_runtime" +
+            " npc=" + npcId +
+            " mode=" + mode +
+            " updated=" + updated);
+    }
+
+    private static IEnumerable<NpcToneDialogueProfile> LoadProfilesForNpc(string npcId)
+    {
+        return LoadAssetsOfType<NpcToneDialogueProfile>()
+            .Where(profile => profile != null && string.Equals(profile.NpcIdOrDefault, npcId, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(profile => profile.name);
+    }
+
+    private void DrawBiasDebugRow(string label, string npcId)
+    {
+        NpcDefinition definition = ResolveNpcDefinitionAsset(npcId);
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+
+            if (definition == null)
+            {
+                EditorGUILayout.LabelField("Character Bias", "Missing definition asset");
+                return;
+            }
+
+            bool biasEnabled = ReadStatAffineBiasEnabled(definition);
+            EditorGUILayout.LabelField("Character Bias", biasEnabled ? "Enabled" : "Disabled");
+            EditorGUILayout.LabelField("Definition", AssetDatabase.GetAssetPath(definition), EditorStyles.wordWrappedLabel);
+
+            string buttonLabel = biasEnabled ? "Disable Bias In Assets" : "Enable Bias In Assets";
+            if (GUILayout.Button(buttonLabel))
+                ApplyStatAffineBiasEnabled(definition, !biasEnabled);
+        }
+    }
+
+    private void DrawCompanionDebugRow()
+    {
+        CompanionProfile profile = LoadAssetsOfType<CompanionProfile>().FirstOrDefault();
+
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField("Companion", EditorStyles.boldLabel);
+
+            if (profile == null)
+            {
+                EditorGUILayout.LabelField("Model", "Missing CompanionProfile asset");
+                return;
+            }
+
+            companionUseSocialPlanner = EditorGUILayout.Toggle("Use VI/PI", companionUseSocialPlanner);
+
+            using (new EditorGUI.DisabledScope(!companionUseSocialPlanner))
+            {
+                companionPlannerMode = (CompanionPlannerMode)EditorGUILayout.EnumPopup("Planner Mode", companionPlannerMode);
+                companionEmotionSwitchThreshold = EditorGUILayout.IntSlider("Switch Threshold", companionEmotionSwitchThreshold, 0, 40);
+                companionNpcSignalsOnly = EditorGUILayout.Toggle("NPC Signals Only", companionNpcSignalsOnly);
+            }
+
+            EditorGUILayout.LabelField(
+                "Current Model",
+                BuildCompanionModelSummary(profile),
+                EditorStyles.wordWrappedLabel);
+
+            EditorGUILayout.LabelField("Profile", AssetDatabase.GetAssetPath(profile), EditorStyles.wordWrappedLabel);
+
+            if (companionUseSocialPlanner != profile.useSocialPlanner ||
+                companionPlannerMode != profile.plannerMode ||
+                companionEmotionSwitchThreshold != profile.emotionSwitchThreshold ||
+                companionNpcSignalsOnly != profile.socialPlannerUsesNpcSignalsOnly)
+            {
+                if (GUILayout.Button("Apply Companion Model In Assets"))
+                {
+                    ApplyCompanionDebugSettings(
+                        profile,
+                        companionUseSocialPlanner,
+                        companionPlannerMode,
+                        companionEmotionSwitchThreshold,
+                        companionNpcSignalsOnly);
+                    SyncCompanionSettingsFromAssets();
+                }
+            }
+        }
+    }
+
+    private void DrawSharedRelationshipDebugRow()
+    {
+        using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            EditorGUILayout.LabelField("Generic Runtime Comparison", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(
+                "Forceaza acelasi relationship pentru toti NPC-ii la runtime. Asta e piesa care lipsea daca voiai generalizare reala cu biasul oprit.",
+                EditorStyles.wordWrappedLabel);
+
+            useSharedRelationshipDebug = EditorGUILayout.Toggle("Use Shared Relationship", useSharedRelationshipDebug);
+            using (new EditorGUI.DisabledScope(!useSharedRelationshipDebug))
+                sharedRelationshipDebugValue = EditorGUILayout.IntSlider("Shared Relationship", sharedRelationshipDebugValue, -100, 100);
+
+            EditorGUILayout.LabelField(
+                "Current Runtime Override",
+                useSharedRelationshipDebug
+                    ? "Enabled (" + sharedRelationshipDebugValue + ")"
+                    : "Disabled");
+
+            if (GUILayout.Button("Apply Shared Relationship Debug"))
+            {
+                NpcRelationshipState.SetDebugSharedRelationshipOverride(useSharedRelationshipDebug, sharedRelationshipDebugValue);
+                SyncSharedRelationshipDebugFromPrefs();
+                Debug.Log(
+                    "[ROAE][AI][Dashboard][SUCCESS] action=apply_shared_relationship_debug" +
+                    " enabled=" + useSharedRelationshipDebug +
+                    " value=" + sharedRelationshipDebugValue);
+            }
+        }
+    }
+
+    private static IEnumerable<T> LoadAssetsOfType<T>() where T : UnityEngine.Object
+    {
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
+        for (int i = 0; i < guids.Length; i++)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+            T asset = AssetDatabase.LoadAssetAtPath<T>(path);
+            if (asset != null)
+                yield return asset;
+        }
+    }
+
+    private static NpcDefinition ResolveNpcDefinitionAsset(string npcId)
+    {
+        NpcToneDialogueProfile profile = LoadProfilesForNpc(npcId).FirstOrDefault();
+        if (profile != null && profile.DecisionDefinition != null)
+            return profile.DecisionDefinition;
+
+        return LoadAssetsOfType<NpcDefinition>()
+            .FirstOrDefault(definition =>
+                definition != null &&
+                string.Equals(definition.NpcId, npcId, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool ReadStatAffineBiasEnabled(NpcDefinition definition)
+    {
+        if (definition == null)
+            return false;
+
+        SerializedObject serializedObject = new SerializedObject(definition);
+        SerializedProperty property = serializedObject.FindProperty("statAffineBias.enabled");
+        return property != null && property.boolValue;
+    }
+
+    private static void ApplyStatAffineBiasEnabled(NpcDefinition definition, bool enabled)
+    {
+        if (definition == null)
+            return;
+
+        SerializedObject serializedObject = new SerializedObject(definition);
+        SerializedProperty property = serializedObject.FindProperty("statAffineBias.enabled");
+        if (property == null)
+            return;
+
+        Undo.RecordObject(definition, enabled ? "Enable NPC affine bias" : "Disable NPC affine bias");
+        property.boolValue = enabled;
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(definition);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log(
+            "[ROAE][AI][Dashboard][SUCCESS] action=apply_character_bias" +
+            " npc=" + definition.NpcId +
+            " enabled=" + enabled);
+    }
+
+    private static void ApplyCompanionDebugSettings(
+        CompanionProfile profile,
+        bool useSocialPlanner,
+        CompanionPlannerMode plannerMode,
+        int switchThreshold,
+        bool npcSignalsOnly)
+    {
+        if (profile == null)
+            return;
+
+        Undo.RecordObject(profile, "Apply companion debug model");
+        profile.useSocialPlanner = useSocialPlanner;
+        profile.plannerMode = plannerMode;
+        profile.emotionSwitchThreshold = Mathf.Clamp(switchThreshold, 0, 40);
+        profile.socialPlannerUsesNpcSignalsOnly = npcSignalsOnly;
+        EditorUtility.SetDirty(profile);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log(
+            "[ROAE][AI][Dashboard][SUCCESS] action=apply_companion_model" +
+            " useSocialPlanner=" + useSocialPlanner +
+            " plannerMode=" + plannerMode +
+            " switchThreshold=" + profile.emotionSwitchThreshold +
+            " npcSignalsOnly=" + profile.socialPlannerUsesNpcSignalsOnly);
+    }
+
+    private static string BuildCompanionModelSummary(CompanionProfile profile)
+    {
+        if (profile == null)
+            return "Missing CompanionProfile asset";
+
+        if (!profile.useSocialPlanner)
+            return "Stats Only";
+
+        return profile.socialPlannerUsesNpcSignalsOnly
+            ? "NPC social signals only + " + profile.plannerMode
+            : "Stats + NPC social tones + " + profile.plannerMode;
+    }
+
+    private static List<T> GetSceneObjects<T>() where T : Component
+    {
+        return Resources.FindObjectsOfTypeAll<T>()
+            .Where(component =>
+                component != null &&
+                !EditorUtility.IsPersistent(component) &&
+                component.gameObject.scene.IsValid())
+            .OrderBy(component => component.gameObject.scene.name)
+            .ThenBy(component => component.gameObject.name)
+            .ToList();
+    }
+
+    private static T ReadSerializedObjectReference<T>(UnityEngine.Object target, string propertyName) where T : UnityEngine.Object
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(propertyName);
+        return property != null ? property.objectReferenceValue as T : null;
+    }
+
+    private static void WriteSerializedEnum(UnityEngine.Object target, string propertyName, Enum value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(propertyName);
+        if (property == null)
+            return;
+
+        property.enumValueIndex = Convert.ToInt32(value);
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    private static void InvalidateLegacyProfileCache(object target)
+    {
+        if (target == null)
+            return;
+
+        var method = target.GetType().GetMethod(
+            "InvalidateLegacyProfileCache",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+        method?.Invoke(target, null);
+    }
+
+    private static void MarkSceneObjectDirty(Component component)
+    {
+        if (component == null)
+            return;
+
+        EditorUtility.SetDirty(component);
+        if (component.gameObject.scene.IsValid())
+            EditorSceneManager.MarkSceneDirty(component.gameObject.scene);
     }
 
     private static void RevealFile(string path)
