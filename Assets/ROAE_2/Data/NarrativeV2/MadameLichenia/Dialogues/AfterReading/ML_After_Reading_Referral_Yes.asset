@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Madame Lichenia
-    Text: Good. Ask him about the blue atlas, not the books beside it.
+    Text: And when you figure it out... ask him about the blue atlas.
   - Speaker: Madame Lichenia
-    Text: If he trusts you, he will mention the barista without using her name.
+    Text: If he trusts you, he will mention the sunflower without using their name.
   choices: []

@@ -3,6 +3,7 @@ using UnityEngine;
 public static class BaristaWelcomeState
 {
     private const string BaristaNpcId = "barista";
+    private const BaristaDrinkType DefaultDrinkType = BaristaDrinkType.Cola;
 
     public static bool GetFlag(string key)
     {
@@ -39,7 +40,11 @@ public static class BaristaWelcomeState
 
     public static BaristaDrinkType GetHeldDrink()
     {
-        return ReadDrink(BaristaWelcomeKeys.HeldDrink);
+        if (!HasDrink())
+            return BaristaDrinkType.None;
+
+        BaristaDrinkType storedDrink = ReadDrink(BaristaWelcomeKeys.HeldDrink);
+        return storedDrink == BaristaDrinkType.None ? DefaultDrinkType : storedDrink;
     }
 
     public static void SetHeldDrink(BaristaDrinkType drink)
@@ -49,7 +54,7 @@ public static class BaristaWelcomeState
 
     public static BaristaDrinkType GetPendingDrink()
     {
-        return ReadDrink(BaristaWelcomeKeys.PendingDrink);
+        return BaristaDrinkType.None;
     }
 
     public static void SetPendingDrink(BaristaDrinkType drink)
@@ -59,70 +64,77 @@ public static class BaristaWelcomeState
 
     public static void SetDrinkState(BaristaDrinkType heldDrink, BaristaDrinkType pendingDrink)
     {
-        BaristaDrinkType previousPending = GetPendingDrink();
         BaristaDrinkType normalizedHeld = NormalizeDrink(heldDrink);
-        BaristaDrinkType normalizedPending = normalizedHeld == BaristaDrinkType.None
-            ? NormalizeDrink(pendingDrink)
-            : BaristaDrinkType.None;
+        BaristaDrinkType normalizedPending = NormalizeDrink(pendingDrink);
+        BaristaDrinkType canonicalDrink = normalizedHeld != BaristaDrinkType.None
+            ? normalizedHeld
+            : normalizedPending;
 
-        SetDrinkRaw(BaristaWelcomeKeys.HeldDrink, normalizedHeld);
-        SetDrinkRaw(BaristaWelcomeKeys.PendingDrink, normalizedPending);
-        SyncDrinkFlags();
-
-        if (normalizedPending == BaristaDrinkType.None)
-            SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, false);
-        else if (previousPending != normalizedPending)
-            SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, false);
+        SetDrinkRaw(BaristaWelcomeKeys.HeldDrink, canonicalDrink);
+        SetDrinkRaw(BaristaWelcomeKeys.PendingDrink, BaristaDrinkType.None);
+        SyncDrinkFlags(canonicalDrink != BaristaDrinkType.None);
     }
 
     public static bool HasHeldDrink()
     {
-        return GetHeldDrink() != BaristaDrinkType.None;
+        return HasDrink();
     }
 
     public static bool IsDrinkDeliveryPending()
     {
-        return GetPendingDrink() != BaristaDrinkType.None;
+        return false;
     }
 
     public static bool HasAlreadyDrink()
     {
-        return HasHeldDrink() || GetPendingDrink() != BaristaDrinkType.None;
+        return HasDrink();
+    }
+
+    public static bool HasDrink()
+    {
+        return GetFlag(BaristaWelcomeKeys.HasAlreadyDrink);
+    }
+
+    public static void SetHasDrink(bool value)
+    {
+        if (!value)
+        {
+            SetDrinkRaw(BaristaWelcomeKeys.HeldDrink, BaristaDrinkType.None);
+            SetDrinkRaw(BaristaWelcomeKeys.PendingDrink, BaristaDrinkType.None);
+            SyncDrinkFlags(false);
+            return;
+        }
+
+        BaristaDrinkType currentDrink = GetHeldDrink();
+        if (currentDrink == BaristaDrinkType.None)
+            currentDrink = DefaultDrinkType;
+
+        SetDrinkRaw(BaristaWelcomeKeys.HeldDrink, currentDrink);
+        SetDrinkRaw(BaristaWelcomeKeys.PendingDrink, BaristaDrinkType.None);
+        SyncDrinkFlags(true);
     }
 
     public static bool HasAcceptedFirstDrink()
     {
-        return GetPendingDrink() != BaristaDrinkType.None;
+        return HasDrink();
     }
 
     public static bool HasAcknowledgedPendingDrink()
     {
-        return GetPendingDrink() != BaristaDrinkType.None &&
-               GetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged);
+        return false;
     }
 
     public static void AcknowledgePendingDrink()
     {
-        if (GetPendingDrink() == BaristaDrinkType.None)
-            return;
-
-        SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, true);
+        SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, false);
     }
 
     public static void SetAcceptedFirstDrink(bool value)
     {
         if (value)
-        {
-            if (!HasHeldDrink() && GetPendingDrink() == BaristaDrinkType.None)
-                SetDrinkState(BaristaDrinkType.None, BaristaDrinkType.PhotosyntheticSap);
-
-            return;
-        }
-
-        if (GetPendingDrink() != BaristaDrinkType.None)
-            SetDrinkState(GetHeldDrink(), BaristaDrinkType.None);
+            SetDrinkState(BaristaDrinkType.PhotosyntheticSap, BaristaDrinkType.None);
         else
-            SyncDrinkFlags();
+            SetHasDrink(false);
     }
 
     public static BaristaIntroTone GetIntroTone()
@@ -171,11 +183,10 @@ public static class BaristaWelcomeState
 
     public static bool DeliverPendingDrinkIfPossible()
     {
-        BaristaDrinkType pending = GetPendingDrink();
-        if (pending == BaristaDrinkType.None || HasHeldDrink())
+        if (HasDrink())
             return false;
 
-        SetDrinkState(pending, BaristaDrinkType.None);
+        SetHasDrink(true);
         return true;
     }
 
@@ -186,7 +197,7 @@ public static class BaristaWelcomeState
 
     public static bool TryOrderCola()
     {
-        if (HasAlreadyDrink())
+        if (HasDrink())
             return false;
 
         SetDrinkState(BaristaDrinkType.Cola, BaristaDrinkType.None);
@@ -195,10 +206,10 @@ public static class BaristaWelcomeState
 
     public static bool TryOrderPhotosyntheticSap()
     {
-        if (HasAlreadyDrink())
+        if (HasDrink())
             return false;
 
-        SetDrinkState(BaristaDrinkType.None, BaristaDrinkType.PhotosyntheticSap);
+        SetDrinkState(BaristaDrinkType.PhotosyntheticSap, BaristaDrinkType.None);
         return true;
     }
 
@@ -220,10 +231,10 @@ public static class BaristaWelcomeState
 
     public static void DiscardHeldDrink()
     {
-        if (!HasHeldDrink())
+        if (!HasDrink())
             return;
 
-        SetDrinkState(BaristaDrinkType.None, GetPendingDrink());
+        SetHasDrink(false);
     }
 
     public static bool IsMomentComplete()
@@ -238,7 +249,7 @@ public static class BaristaWelcomeState
         SetFlag(BaristaWelcomeKeys.DrankPhotosyntheticDrink, false);
         SetFlag(BaristaWelcomeKeys.DrankCola, false);
         SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, false);
-        SetDrinkState(BaristaDrinkType.None, BaristaDrinkType.None);
+        SetHasDrink(false);
         SetIntroTone(BaristaIntroTone.Neutral);
         SetBaristaRelationship(0);
     }
@@ -265,15 +276,12 @@ public static class BaristaWelcomeState
         return drink;
     }
 
-    private static void SyncDrinkFlags()
+    private static void SyncDrinkFlags(bool hasDrink)
     {
-        bool pending = GetPendingDrink() != BaristaDrinkType.None;
-        bool held = GetHeldDrink() != BaristaDrinkType.None;
-        bool hasAlreadyDrink = pending || held;
-
-        SetFlag(BaristaWelcomeKeys.DrinkDeliveryPending, pending);
-        SetFlag(BaristaWelcomeKeys.HasAlreadyDrink, hasAlreadyDrink);
-        SetFlag(BaristaWelcomeKeys.AcceptedFirstDrink, pending);
+        SetFlag(BaristaWelcomeKeys.DrinkDeliveryPending, false);
+        SetFlag(BaristaWelcomeKeys.DrinkDeliveryAcknowledged, false);
+        SetFlag(BaristaWelcomeKeys.HasAlreadyDrink, hasDrink);
+        SetFlag(BaristaWelcomeKeys.AcceptedFirstDrink, hasDrink);
     }
 
     private static void ApplyStats(int creativityDelta, int empathyDelta, int corruptionDelta)
@@ -283,6 +291,8 @@ public static class BaristaWelcomeState
             return;
 
         CreativeHUD hud = CreativeHUD.Instance;
+        int appliedEmpathyDelta = CreativeStatScale.ConvertLegacyEmpathyDelta(empathyDelta);
+        int appliedCorruptionDelta = CreativeStatScale.ConvertLegacyCorruptionDelta(corruptionDelta);
 
         if (creativityDelta != 0)
         {
@@ -292,14 +302,14 @@ public static class BaristaWelcomeState
 
         if (empathyDelta != 0)
         {
-            core.AdjustEmpathy(empathyDelta);
-            if (hud != null) hud.ShowStatChange("empathy", empathyDelta);
+            core.AdjustEmpathy(appliedEmpathyDelta);
+            if (hud != null) hud.ShowStatChange("empathy", appliedEmpathyDelta);
         }
 
         if (corruptionDelta != 0)
         {
-            core.AdjustCorruption(corruptionDelta);
-            if (hud != null) hud.ShowStatChange("plantCorruption", corruptionDelta);
+            core.AdjustCorruption(appliedCorruptionDelta);
+            if (hud != null) hud.ShowStatChange("plantCorruption", appliedCorruptionDelta);
         }
 
         core.PrintStats();

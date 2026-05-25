@@ -13,20 +13,18 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
 
     [Header("Optional refs")]
     [SerializeField] private CreativeCore creativeCore;
-    [SerializeField] private BaristaWelcomeController controller;
+    [SerializeField] private NarrativeToneRuntimeController controller;
     [SerializeField] private BaristaWelcomeBrain brain;
     [SerializeField] private NpcToneDialogueController toneController;
 
     [Header("Preview input")]
-    [SerializeField] private int previewCreativity = 40;
-    [SerializeField] private int previewEmpathy = 0;
-    [SerializeField] private int previewCorruption = 0;
+    [SerializeField] private int previewCreativity = CreativeStatScale.DevResetCreativity;
+    [SerializeField] private int previewEmpathy = CreativeStatScale.DevResetEmpathy;
+    [SerializeField] private int previewCorruption = CreativeStatScale.DevResetCorruption;
     [SerializeField] private int previewRelationship = 0;   // ← NOU
     [SerializeField] private bool previewReadUnknownText = false;
     [SerializeField] private bool previewIntroDone = false;
-    [SerializeField] private bool previewAccepted = false;
-    [SerializeField] private bool previewPendingAcknowledged = false;
-    [SerializeField] private BaristaDrinkType previewHeldDrink = BaristaDrinkType.None;
+    [SerializeField] private bool previewHasDrink = false;
 
     // ── Context menu actions ──────────────────────────────────────────────────
 
@@ -43,9 +41,7 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
             " relationship=" + input.relationship +
             " readUnknownText=" + input.readUnknownText +
             " introDone=" + input.introDone +
-            " pendingDrink=" + input.pendingDrink +
-            " pendingAcknowledged=" + input.pendingDrinkAcknowledged +
-            " heldDrink=" + input.heldDrink +
+            " hasDrink=" + previewHasDrink +
             "} -> " + result.BuildDebugString());
     }
 
@@ -53,9 +49,6 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     public void ApplyPreviewToRuntime()
     {
         var result = ResolvePreview();
-        BaristaDrinkType pendingDrink = previewAccepted && previewHeldDrink == BaristaDrinkType.None
-            ? BaristaDrinkType.PhotosyntheticSap
-            : BaristaDrinkType.None;
         CreativeCore activeCreativeCore = ResolveCreativeCore();
 
         if (activeCreativeCore != null)
@@ -66,7 +59,7 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
             controller.SetReadUnknownText(previewReadUnknownText);
             controller.SetIntroDone(previewIntroDone);
             controller.SetBaristaRelationship(previewRelationship);
-            controller.SetDrinkState(previewHeldDrink, pendingDrink);
+            controller.SetHasDrink(previewHasDrink);
             controller.SetTone(result.introTone);
             controller.PrintCurrentState();
         }
@@ -75,12 +68,9 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
             BaristaWelcomeState.SetFlag(BaristaWelcomeKeys.ReadUnknownText01, previewReadUnknownText);
             BaristaWelcomeState.SetFlag(BaristaWelcomeKeys.BaristaIntroDone, previewIntroDone);
             BaristaWelcomeState.SetBaristaRelationship(previewRelationship);
-            BaristaWelcomeState.SetDrinkState(previewHeldDrink, pendingDrink);
+            BaristaWelcomeState.SetHasDrink(previewHasDrink);
             BaristaWelcomeState.SetIntroTone(result.introTone);
         }
-
-        if (previewPendingAcknowledged && pendingDrink != BaristaDrinkType.None)
-            BaristaWelcomeState.AcknowledgePendingDrink();
 
         PreviewCurrentInput();
     }
@@ -90,9 +80,9 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     [ContextMenu("ROAE/Barista/Neutral preset")]
     public void SetNeutralCase()
     {
-        previewCreativity = 40; previewEmpathy = 0; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 50; previewCorruption = 0;
         previewRelationship = 0; previewReadUnknownText = false;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Neutral preset loaded.");
     }
 
@@ -100,73 +90,73 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     [ContextMenu("ROAE/Barista/Warm preset (high empathy)")]
     public void SetWarmCaseEmpathy()
     {
-        previewCreativity = 40; previewEmpathy = 3; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 80; previewCorruption = 0;
         previewRelationship = 0; previewReadUnknownText = false;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Warm preset (high empathy) loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Warm preset (good relationship)")]
     public void SetWarmCaseRelationship()
     {
-        previewCreativity = 40; previewEmpathy = 1; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 60; previewCorruption = 0;
         previewRelationship = 5; previewReadUnknownText = false;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Warm preset (good relationship) loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Mischievous preset by knowledge")]
     public void SetMischievousKnowledgeCase()
     {
-        previewCreativity = 40; previewEmpathy = 0; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 50; previewCorruption = 0;
         previewRelationship = 0; previewReadUnknownText = true;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Mischievous preset by knowledge loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Mischievous preset by corruption")]
     public void SetMischievousCorruptionCase()
     {
-        previewCreativity = 40; previewEmpathy = -1; previewCorruption = 5;
+        previewCreativity = 40; previewEmpathy = 40; previewCorruption = 80;
         previewRelationship = 0; previewReadUnknownText = false;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Mischievous preset by corruption loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Mischievous preset (guaranteed)")]
     public void SetMischievousGuaranteedCase()
     {
-        previewCreativity = 70; previewEmpathy = -2; previewCorruption = 5;
+        previewCreativity = 70; previewEmpathy = 30; previewCorruption = 80;
         previewRelationship = -3; previewReadUnknownText = true;
-        previewIntroDone = false; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
+        previewIntroDone = false; previewHasDrink = false;
         Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Mischievous preset (guaranteed) loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Pending sap delivery (warm)")]
     public void SetPendingSapCase()
     {
-        previewCreativity = 40; previewEmpathy = 3; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 80; previewCorruption = 0;
         previewRelationship = 3; previewReadUnknownText = false;
-        previewIntroDone = true; previewAccepted = true; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.None;
-        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Pending sap delivery (warm) preset loaded.");
+        previewIntroDone = true; previewHasDrink = true;
+        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Has-drink preset (warm) loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Holding cola preset")]
     public void SetHoldingColaCase()
     {
-        previewCreativity = 40; previewEmpathy = 0; previewCorruption = 0;
+        previewCreativity = 40; previewEmpathy = 50; previewCorruption = 0;
         previewRelationship = 0; previewReadUnknownText = false;
-        previewIntroDone = true; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.Cola;
-        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Holding cola preset loaded.");
+        previewIntroDone = true; previewHasDrink = true;
+        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Holding drink preset loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Holding sap preset")]
     public void SetHoldingSapCase()
     {
-        previewCreativity = 40; previewEmpathy = 0; previewCorruption = 2;
+        previewCreativity = 40; previewEmpathy = 50; previewCorruption = 70;
         previewRelationship = 0; previewReadUnknownText = true;
-        previewIntroDone = true; previewAccepted = false; previewPendingAcknowledged = false; previewHeldDrink = BaristaDrinkType.PhotosyntheticSap;
-        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Holding sap preset loaded.");
+        previewIntroDone = true; previewHasDrink = true;
+        Debug.Log("[ROAE][BaristaWelcomeDebugMenu] Holding drink preset loaded.");
     }
 
     [ContextMenu("ROAE/Barista/Go to moment 2 (neutral)")]
@@ -250,15 +240,13 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
 
     private void ResetPreviewFields()
     {
-        previewCreativity = 40;
-        previewEmpathy = 0;
-        previewCorruption = 0;
+        previewCreativity = CreativeStatScale.DevResetCreativity;
+        previewEmpathy = CreativeStatScale.DevResetEmpathy;
+        previewCorruption = CreativeStatScale.DevResetCorruption;
         previewRelationship = 0;
         previewReadUnknownText = false;
         previewIntroDone = false;
-        previewAccepted = false;
-        previewPendingAcknowledged = false;
-        previewHeldDrink = BaristaDrinkType.None;
+        previewHasDrink = false;
     }
 
     private BaristaWelcomePlannerInput BuildInput()
@@ -271,11 +259,10 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
             relationship = previewRelationship,
             readUnknownText = previewReadUnknownText,
             introDone = previewIntroDone,
-            pendingDrink = previewAccepted && previewHeldDrink == BaristaDrinkType.None
-                ? BaristaDrinkType.PhotosyntheticSap
-                : BaristaDrinkType.None,
-            pendingDrinkAcknowledged = previewPendingAcknowledged,
-            heldDrink = previewHeldDrink
+            hasDrink = previewHasDrink,
+            pendingDrink = BaristaDrinkType.None,
+            pendingDrinkAcknowledged = false,
+            heldDrink = previewHasDrink ? BaristaDrinkType.Cola : BaristaDrinkType.None
         };
     }
 
@@ -310,9 +297,7 @@ public class BaristaWelcomeDebugMenu : MonoBehaviour
     private void EnterSecondMomentFromPreview()
     {
         previewIntroDone = false;
-        previewAccepted = false;
-        previewPendingAcknowledged = false;
-        previewHeldDrink = BaristaDrinkType.None;
+        previewHasDrink = false;
 
         NarrativeProgressState.SetCurrentMomentId(BaristaSecondMomentId);
         NarrativeProgressState.SetSceneOverride(BarInteriorSceneId);

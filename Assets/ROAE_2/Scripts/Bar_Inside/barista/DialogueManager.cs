@@ -74,6 +74,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData startingDialogue)
     {
+        bool obscuredCompanion = false;
+
         try
         {
             Log("StartDialogue called on object=" + gameObject.name);
@@ -114,6 +116,8 @@ public class DialogueManager : MonoBehaviour
 
             LogRootState("Before UI enable");
 
+            SetCompanionDialogueObscured(true);
+            obscuredCompanion = true;
             dialogueUIRoot.SetActive(true);
 
             LogRootState("After UI enable");
@@ -158,6 +162,9 @@ public class DialogueManager : MonoBehaviour
         }
         catch (System.Exception ex)
         {
+            if (obscuredCompanion)
+                SetCompanionDialogueObscured(false);
+
             Debug.LogError("[ROAE][DialogueManager] EXCEPTION in StartDialogue: " + ex);
         }
     }
@@ -355,6 +362,7 @@ public class DialogueManager : MonoBehaviour
             if (portraitManager != null && !skipPortraitCalls)
                 portraitManager.HideAll();
 
+            SetCompanionDialogueObscured(false);
             Time.timeScale = 1f;
 
             currentDialogue = null;
@@ -375,6 +383,15 @@ public class DialogueManager : MonoBehaviour
 
         foreach (Transform child in choicesContainer)
             Destroy(child.gameObject);
+    }
+
+    private static void SetCompanionDialogueObscured(bool obscured)
+    {
+        CompanionSystem companionSystem = CompanionSystem.Instance;
+        if (companionSystem == null)
+            return;
+
+        companionSystem.SetPresentationObscuredByUi(obscured);
     }
 
     private bool AreChoicesVisible()

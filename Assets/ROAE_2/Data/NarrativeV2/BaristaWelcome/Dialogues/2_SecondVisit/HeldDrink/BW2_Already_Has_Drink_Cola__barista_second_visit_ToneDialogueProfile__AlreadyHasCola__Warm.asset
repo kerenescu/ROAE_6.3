@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Barista
-    Text: You still have your drink. Finish that one first.
+    Text: Babe, finish your drink first
   choices:
   - choiceText: Alright. I'll finish it.
     nextDialogue: {fileID: 11400000, guid: a7301f98483c0ef49846f053562374fe, type: 2}
@@ -29,11 +29,11 @@ MonoBehaviour:
   - choiceText: Fine. I'll get rid of it.
     nextDialogue: {fileID: 0}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: 3
+      empathy: -4
+      plantCorruption: 4
     relationshipEffect:
-      npcId: 
-      amount: 0
+      npcId: barista
+      amount: -5
     extraEffects:
     - {fileID: 11400000, guid: 5fa59da31089b8d4ea8fbe0b5477050b, type: 2}

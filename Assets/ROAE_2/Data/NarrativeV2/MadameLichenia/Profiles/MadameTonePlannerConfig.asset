@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2506ec6c94de84c81f56149cea9551, type: 3}
+  m_Name: MadameTonePlannerConfig
+  m_EditorClassIdentifier: Assembly-CSharp::NpcPlannerConfig
+  rewardProfile: {fileID: 11400000, guid: a14d05e2b84b4cbe9f0a0e5c2e781001, type: 2}
+  transitionProfile: {fileID: 11400000, guid: a14d05e2b84b4cbe9f0a0e5c2e781002, type: 2}
+  plannerMode: 1
+  gamma: 0.87
+  epsilon: 0.0001
+  maxValueIterations: 96
+  maxPolicyIterations: 24
+  maxPolicyEvaluationSweeps: 96
+  fallbackAction: 0

@@ -27,13 +27,24 @@ MonoBehaviour:
   requiredFalseFlags: []
   skipWhenCompleted: 0
   completedFlagKey: 
-  plannerMode: 1
+  decisionDefinition: {fileID: 11400000, guid: c34d05e2b84b4cbe9f0a0e5c2e781004, type: 2}
+  actionToneMappings: []
+  plannerMode: 0
   gamma: 0.85
   epsilon: 0.0001
   maxValueIterations: 96
   maxPolicyIterations: 24
   maxPolicyEvaluationSweeps: 96
   toneSelectionMode: 0
+  toneBuckets:
+    creativityLowMax: 34
+    creativityHighMin: 67
+    corruptionLowMax: 29
+    corruptionHighMin: 70
+    empathyLowMax: 34
+    empathyHighMin: 67
+    relationshipBadMax: -2
+    relationshipGoodMin: 2
   resetNpcIds:
   - barista
   - anticar
@@ -62,6 +73,8 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 0
     expectedIntroDone: 0
+    matchCurrentHasDrink: 0
+    expectedHasDrink: 0
     matchCurrentPendingDrink: 0
     matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 0
@@ -75,6 +88,7 @@ MonoBehaviour:
       fixedValue: 1
       playerPrefKey: 
       dialogueFlag: {fileID: 0}
+    hasDrink: 0
     pendingDrink: 0
     pendingDrinkAcknowledged: 0
     heldDrink: 0
@@ -110,6 +124,8 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 0
     expectedIntroDone: 0
+    matchCurrentHasDrink: 0
+    expectedHasDrink: 0
     matchCurrentPendingDrink: 0
     matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 0
@@ -123,6 +139,7 @@ MonoBehaviour:
       fixedValue: 1
       playerPrefKey: 
       dialogueFlag: {fileID: 0}
+    hasDrink: 0
     pendingDrink: 0
     pendingDrinkAcknowledged: 0
     heldDrink: 0
@@ -151,6 +168,8 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 0
     expectedIntroDone: 0
+    matchCurrentHasDrink: 0
+    expectedHasDrink: 0
     matchCurrentPendingDrink: 0
     matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 0
@@ -164,6 +183,7 @@ MonoBehaviour:
       fixedValue: 1
       playerPrefKey: 
       dialogueFlag: {fileID: 0}
+    hasDrink: 0
     pendingDrink: 0
     pendingDrinkAcknowledged: 0
     heldDrink: 0
@@ -185,6 +205,8 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 0
     expectedIntroDone: 0
+    matchCurrentHasDrink: 0
+    expectedHasDrink: 0
     matchCurrentPendingDrink: 0
     matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 0
@@ -198,6 +220,7 @@ MonoBehaviour:
       fixedValue: 0
       playerPrefKey: 
       dialogueFlag: {fileID: 0}
+    hasDrink: 0
     pendingDrink: 0
     pendingDrinkAcknowledged: 0
     heldDrink: 0
@@ -219,6 +242,8 @@ MonoBehaviour:
     expectedReadUnknownText: 0
     matchCurrentIntroDone: 0
     expectedIntroDone: 0
+    matchCurrentHasDrink: 0
+    expectedHasDrink: 0
     matchCurrentPendingDrink: 0
     matchCurrentPendingAcknowledged: 0
     matchCurrentHeldDrink: 0
@@ -232,6 +257,7 @@ MonoBehaviour:
       fixedValue: 1
       playerPrefKey: 
       dialogueFlag: {fileID: 0}
+    hasDrink: 0
     pendingDrink: 0
     pendingDrinkAcknowledged: 0
     heldDrink: 0

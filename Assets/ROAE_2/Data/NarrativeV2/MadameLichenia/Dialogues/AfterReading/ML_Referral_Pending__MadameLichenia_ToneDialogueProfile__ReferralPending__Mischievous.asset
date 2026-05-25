@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   dialogueLines:
   - Speaker: Madame Lichenia
-    Text: The antiquarian is waiting for the right question.
+    Text: He is waiting for the right question.
   - Speaker: Madame Lichenia
     Text: Do not ask him about destiny. Ask him about the atlas.
   choices: []

@@ -29,22 +29,22 @@ MonoBehaviour:
   - choiceText: Alright... give me a photosynthetic drink, please.
     nextDialogue: {fileID: 11400000, guid: ed493a7dce613834abe0d4544b043b2c, type: 2}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: -40
+      empathy: 20
+      plantCorruption: 30
     relationshipEffect:
-      npcId: 
+      npcId: barista
       amount: 0
     extraEffects:
     - {fileID: 11400000, guid: 2b8f0f3d515bf544089c0d76715abd49, type: 2}
   - choiceText: Do you have cola?
     nextDialogue: {fileID: 11400000, guid: a4f9b5d8307ab6e4f95b5d57c670edae, type: 2}
     statEffect:
-      creativity: 0
-      empathy: 0
-      plantCorruption: 0
+      creativity: -70
+      empathy: -20
+      plantCorruption: -60
     relationshipEffect:
-      npcId: 
-      amount: 0
+      npcId: barista
+      amount: -40
     extraEffects:
     - {fileID: 11400000, guid: e013d9ec08356c74dafd9a90791d02ed, type: 2}
