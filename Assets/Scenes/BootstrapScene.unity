@@ -1381,6 +1381,7 @@ GameObject:
   - component: {fileID: 1136019154}
   - component: {fileID: 1136019153}
   - component: {fileID: 1136019155}
+  - component: {fileID: 1136019156}
   m_Layer: 0
   m_Name: BootStrapScene
   m_TagString: Untagged
@@ -1427,6 +1428,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02677518cce18a04d8fc3516716d5391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1136019156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136019152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8ac49b7d2a4f6bab04d1ef0a7c55a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 678b19d33e8202944933b636fdf6ca23, type: 2}
+  dialogueLibrary: {fileID: 11400000, guid: fe9b6651ee29313408ab1ec4573edf6b, type: 2}
+  manifestationPrefab: {fileID: 379025703999347824, guid: 1f28991559bc89c4abbb05a637651712, type: 3}
+  keepAcrossScenes: 1
+  dismissOnSceneChange: 0
+  debugLogs: 1
 --- !u!1 &1302891928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetY: 0.25
   speed: 7
-  nextScene: FlowerField
+  nextScene: Flower_Field
 --- !u!114 &1676554568
 MonoBehaviour:
   m_ObjectHideFlags: 0

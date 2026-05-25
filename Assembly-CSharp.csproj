@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.11f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeTonePlanningSolvers.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NpcToneDialogueController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Bar_Inside\barista\DialogueManager.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\_Archive\NPC_AI\Barista\BaristaDebug.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\ROAE_2\Scripts\Presentation\ParallaxBackground.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeFlagChoiceEffect.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcAIDevTools.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionEnvironmentZone.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\StatsUI\StatsEffect.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\MessageManager.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\CreativityBucket.cs" />
@@ -108,7 +110,7 @@
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\Runtime\BaristaMomentDefinition.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\BaristaDialogueResolver.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Dialogue\DialogueChoiceEffect.cs" />
-    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\AI\BaristaIntroPlanningSolvers.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionReactionTrigger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcChoiceEffect.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Debug\PhoneUIDebug.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\TarotDeckInteractButton2D.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Assets\ROAE_2\Scripts\Presentation\ParallaxLayer.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Dialogue\DialogueTrigger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\MainMenu\ShowCursorOnStart.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionProfile.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Bar_Inside\barista\DialogueChoice.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Presentation\GlowEffectController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Assets\ROAE_2\Scripts\Presentation\PerspectiveCharacterScaler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Core\VisibilityToggler.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionActionBridge.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\Core\BaristaIntroTone.cs" />
@@ -139,12 +143,15 @@
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcTransitionEvaluator.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Core\TriggerActivatorByFlag.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\ChangeScenes\LianaIntro.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionSummonPoint.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcStatAffineBias.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcModularDialogueTrigger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\TarotInterpretationController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\Core\BaristaWelcomeState.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NpcTonePlanningSolvers.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeProgressState.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Core\PersistUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
@@ -156,15 +163,17 @@
     <Compile Include="Assets\ROAE_2\Scripts\Inventory\ShardInventory.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcRewardProfile.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\ChangeScenes\PhoneUIForceReveal.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionDialogueLibrary.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionTypes.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Puzzles\MirrorClick.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\MainMenu\FlickerEffect.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Bar_Inside\barista\BaristaDialogueTrigger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Presentation\ParallaxCamera.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\PhoneConversation.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\ChangeScenes\CompanionBootstrapper.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeMomentSelection.cs" />
-    <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcPersonalityProfile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\ChangeScenes\UsaAnticariat.cs" />
@@ -172,18 +181,22 @@
     <Compile Include="Assets\ROAE_2\Scripts\Phone\ThoughtManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcDecisionContext.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeToneRuntimeController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\TarotReadingManager.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionObservationTarget.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\GeneralUI\CaptionThoughtDatabase.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\INpcStateProvider.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NarrativeFlagKeys.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionPersistence.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Inventory\ShardGiver.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\PhoneUIFlow.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\RelationshipEffect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Bar_Inside\barista\DialogueData.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NpcToneDialoguePhaseDefinition.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\ThoughtBubble.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcActionTransitionEntry.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Bar_Inside\FlagBasedCharacterSwitcher.cs" />
@@ -194,10 +207,12 @@
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\Runtime\BaristaWelcomeDebugMenu.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\PhoneMessage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\Shared\NpcFactContext.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\ChangeScenes\UIBootStrapper.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\MainMenu\DestroyUIFromBootstrap.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\NpcResponseSet.cs" />
+    <Compile Include="Assets\Tests\EditMode\Companion\CompanionSystemEditModeTests.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\GeneralUI\CaptionUIManager.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Phone\MessageNotifier.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\TarotCard.cs" />
@@ -231,8 +246,10 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Anticariat\AnticariatDialogueConfig.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\ValueIterationSolver.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionResolvers.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Debug\PlayerSpawnDebugger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\StatsUI\CreativeHUD.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\TarotDeck.cs" />
@@ -245,11 +262,13 @@
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcDecisionState.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Anticariat\RunActionListIfFlag.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcBaseActionReward.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionManifestationController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Anticariat\AnticarDistractor.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NarrativeV2\BaristaWelcome\Runtime\BaristaWelcomeChoiceEffect.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Jurnal\JournalUIFlow.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\Interaction\HotspotSparkle.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\NPC_AI\CoreStates\NpcRewardEvaluator.cs" />
+    <Compile Include="Assets\ROAE_2\Scripts\Companion\CompanionAudioController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\BarOutside\MadameLicheniaDialogueController.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\_Archive\nenecesare\IntroMessageTrigger.cs" />
     <Compile Include="Assets\ROAE_2\Scripts\_Archive\NPC_AI\Barista\BaristaPolicy.cs" />
