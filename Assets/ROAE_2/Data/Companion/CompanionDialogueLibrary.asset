@@ -1,0 +1,328 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab262c2554779e54786610fe5ac22db5, type: 3}
+  m_Name: CompanionDialogueLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::CompanionDialogueLibrary
+  entries:
+  - entryId: companion_arrival_reflection
+    line: The glass remembered us first.
+    intent: 1
+    reliability: 1
+    baseWeight: 16
+    empathyScale: 0
+    creativityScale: 0
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 000000000100000006000000
+    conditions:
+      requireSafeSpace: 1
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 07000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_hint_sadness
+    line: This place sounds tired.
+    intent: 2
+    reliability: 1
+    baseWeight: 20
+    empathyScale: 0.25
+    creativityScale: 0
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 020000000800000000000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 01000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_hint_falsehood
+    line: The mirror doesn't want to look at us.
+    intent: 2
+    reliability: 1
+    baseWeight: 24
+    empathyScale: 0
+    creativityScale: 0
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0.1
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 0100000007000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 0400000007000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_hint_bloom
+    line: The flowers are hiding something softer than they look.
+    intent: 2
+    reliability: 1
+    baseWeight: 18
+    empathyScale: 0
+    creativityScale: 0.25
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 0100000006000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 09000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_comfort_lonely
+    line: We don't have to fill every silence. Some silences are already holding
+      us.
+    intent: 4
+    reliability: 1
+    baseWeight: 20
+    empathyScale: 0.4
+    creativityScale: 0
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0.15
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 0200000006000000
+    conditions:
+      requireSafeSpace: 1
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 05000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_warning_danger
+    line: Something here wants us smaller.
+    intent: 5
+    reliability: 1
+    baseWeight: 22
+    empathyScale: 0
+    creativityScale: 0
+    corruptionScale: 0.1
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 030000000800000005000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 02000000
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_contradiction_self
+    line: You keep calling me here like I wasn't already inside the room.
+    intent: 7
+    reliability: 3
+    baseWeight: 28
+    empathyScale: 0
+    creativityScale: 0
+    corruptionScale: 0.15
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0.2
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 1
+    unlockPoolId: 
+    supportedStates: 0700000008000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 40, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
+  - entryId: companion_departure_soft
+    line: I'll go quiet before I go away.
+    intent: 6
+    reliability: 1
+    baseWeight: 14
+    empathyScale: 0
+    creativityScale: 0
+    corruptionScale: 0
+    trustScale: 0
+    affectionScale: 0
+    contradictionScale: 0
+    cooldownSeconds: 45
+    unlocksOnHear: 0
+    contradictionCandidate: 0
+    unlockPoolId: 
+    supportedStates: 040000000500000008000000
+    conditions:
+      requireSafeSpace: 0
+      requireVisibleCompanion: 0
+      maxThreatLevel: 3
+      creativityRange: {x: 0, y: 100}
+      empathyRange: {x: 0, y: 100}
+      corruptionRange: {x: 0, y: 100}
+      affectionRange: {x: 0, y: 100}
+      trustRange: {x: 0, y: 100}
+      irritationRange: {x: 0, y: 100}
+      abandonmentRange: {x: 0, y: 100}
+      lonelinessRange: {x: 0, y: 100}
+      relationshipRange: {x: -100, y: 100}
+      recentSummonRange: {x: 0, y: 99}
+      selfAwarenessRange: {x: 0, y: 100}
+      contradictionRange: {x: 0, y: 100}
+      requiredTags: 
+      blockedTags: 
+      allowedPointTypes: 
+      requiredTrueFlags: []
+      requiredFalseFlags: []
+      requiredUnlockedPools: []
+      requiredDiscoveredInteractions: []
